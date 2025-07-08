@@ -82,17 +82,6 @@ const FinanceXDivider = () => {
             {/* Línea central destacada */}
             <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent z-10"></div>
 
-            {/* Texto central (opcional) */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-                <motion.div
-                    initial={{ scale: 0.9, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className="bg-blue-800/80 backdrop-blur-sm px-6 py-2 rounded-full border border-blue-400/30 shadow-lg"
-                >
-                    <span className="text-blue-100 font-semibold text-sm md:text-base">Soluciones Financieras Integrales</span>
-                </motion.div>
-            </div>
         </div>
     );
 };
