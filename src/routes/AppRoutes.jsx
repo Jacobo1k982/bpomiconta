@@ -14,6 +14,7 @@ const AccountingAdvisory = lazy(() => import("../Components/ContabilidadFinancie
 const OtherServices = lazy(() => import("../page/OtrosServicios.jsx"));
 const InventoryManagement = lazy(() => import("../Components/GestionInventario.jsx"));
 const ImplementacionERP = lazy(() => import("../Components/ImplementacionERP.jsx"));
+const RegistroDeMarca = lazy(() => import("../Components/RegistroDeMarca.jsx"));
 const NotFound = lazy(() => import("../Components/NotFound.jsx"));
 
 // Loader mejorado con animación profesional
@@ -65,18 +66,18 @@ const AppRoutes = () => {
 
                     {/* Rutas de servicios */}
                     <Route path="/servicios/asesoria-contable" element={<AccountingAdvisory />} />
-                    <Route path="/servicios/gestion-inventario" element={<InventoryManagement />} />
+                    <Route path="/servicios/gestion_inventario" element={<InventoryManagement />} />
 
                     {/* Rutas corporativas */}
                     <Route path="/nosotros" element={<AboutUs />} />
                     <Route path="/contacto" element={<Contactanos />} />
                     <Route path="/servicios/contabilidad-financiera" element={<AccountingAdvisory />} />
                     <Route path="/servicios/erp" element={<ImplementacionERP />} />
+                    <Route patah="/servicios/registro_marca" element={<RegistroDeMarca />} />
 
                     {/* Redirección para rutas obsoletas */}
                     <Route path="/about" element={<Navigate to="/nosotros" replace />} />
                     <Route path="/contact" element={<Navigate to="/contacto" replace />} />
-                    <Route path="/inventario" element={<Navigate to="/servicios/gestion-inventario" replace />} />
 
                     {/* Ruta comodín para 404 */}
                     <Route path="*" element={<NotFound />} />

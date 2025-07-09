@@ -36,7 +36,7 @@ const NavbarFinanzas = () => {
         {
             name: "Inventario y Logística",
             icon: "📦",
-            path: "/inventario"
+            path: "/servicios/gestion_inventario"
         },
     ];
 
