@@ -1,87 +1,88 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGlobe, FaMoneyBillWave, FaChartLine, FaPiggyBank, FaHandHoldingUsd } from 'react-icons/fa';
+import {
+    FaGlobe, FaMoneyBillWave, FaChartLine, FaPiggyBank, FaHandHoldingUsd
+} from 'react-icons/fa';
 import { FaColonSign, FaPercent } from 'react-icons/fa6';
 
 const FinanceXDivider = () => {
     const financialTerms = [
-        { text: "Inversión", icon: <FaChartLine className="text-blue-300" /> },
-        { text: "Finanzas", icon: <FaMoneyBillWave className="text-blue-300" /> },
-        { text: "Contabilidad", icon: <FaColonSign className="text-blue-300" /> },
-        { text: "Ahorro", icon: <FaPiggyBank className="text-blue-300" /> },
-        { text: "Crédito", icon: <FaHandHoldingUsd className="text-blue-300" /> },
-        { text: "ROI", icon: <FaPercent className="text-blue-300" /> },
-        { text: "Global", icon: <FaGlobe className="text-blue-300" /> }
+        { text: "Inversión", icon: <FaChartLine className="text-sky-300 drop-shadow-sm" /> },
+        { text: "Finanzas", icon: <FaMoneyBillWave className="text-sky-300 drop-shadow-sm" /> },
+        { text: "Contabilidad", icon: <FaColonSign className="text-sky-300 drop-shadow-sm" /> },
+        { text: "Ahorro", icon: <FaPiggyBank className="text-sky-300 drop-shadow-sm" /> },
+        { text: "Crédito", icon: <FaHandHoldingUsd className="text-sky-300 drop-shadow-sm" /> },
+        { text: "ROI", icon: <FaPercent className="text-sky-300 drop-shadow-sm" /> },
+        { text: "Global", icon: <FaGlobe className="text-sky-300 drop-shadow-sm" /> }
     ];
 
-    const Banda = ({ rotate, gradient, delay = 0, reverse = false }) => (
+    const Banda = ({ rotate, gradient, delay = 0, direction = 'left' }) => (
         <motion.div
-            className="absolute top-1/2 left-0 -translate-y-1/2"
-            style={{
-                width: '200vw',
-                height: '4rem',
-                transform: `rotate(${rotate}deg)`,
-                background: gradient,
-                zIndex: 1,
-            }}
-            initial={{ x: reverse ? '100%' : '-100%' }}
-            animate={{ x: reverse ? '-100%' : '100%' }}
-            transition={{
-                duration: 40,
-                ease: "linear",
-                repeat: Infinity,
-                delay: delay
-            }}
+            className="absolute top-0 left-0 w-full h-full origin-center pointer-events-none"
+            style={{ transform: `rotate(${rotate}deg)`, zIndex: 1 }}
         >
-            <div className={`flex gap-8 h-full items-center px-4 ${reverse ? 'flex-row-reverse' : ''}`}>
-                {[...Array(10)].map((_, i) => (
-                    <React.Fragment key={i}>
-                        {financialTerms.map((term, idx) => (
-                            <div key={idx} className="flex items-center gap-3 text-white font-medium text-sm md:text-base">
-                                <span className="text-blue-100">{term.text}</span>
-                                <span className="text-lg">{term.icon}</span>
-                            </div>
-                        ))}
-                    </React.Fragment>
-                ))}
-            </div>
+            <motion.div
+                className="absolute top-1/2 w-[200%] h-20"
+                style={{ background: gradient }}
+                initial={{ x: direction === 'left' ? '-100%' : '0%' }}
+                animate={{ x: direction === 'left' ? '0%' : '-100%' }}
+                transition={{
+                    duration: 40,
+                    ease: "linear",
+                    repeat: Infinity,
+                    delay
+                }}
+            >
+                <div className={`flex gap-10 h-full items-center px-6 ${direction === 'right' ? 'flex-row-reverse' : ''}`}>
+                    {[...Array(6)].map((_, i) => (
+                        <React.Fragment key={i}>
+                            {financialTerms.map((term, idx) => (
+                                <div key={idx} className="flex items-center gap-2 text-sky-100 font-medium text-sm md:text-base">
+                                    <span>{term.text}</span>
+                                    <span className="text-xl">{term.icon}</span>
+                                </div>
+                            ))}
+                        </React.Fragment>
+                    ))}
+                </div>
+            </motion.div>
         </motion.div>
     );
 
     return (
-        <div className="relative h-20 md:h-24 overflow-hidden w-full bg-gradient-to-r from-blue-900 to-indigo-900">
-            {/* Efecto de brillo animado */}
+        <div className="relative h-32 md:h-40 w-full overflow-hidden bg-[#233789] backdrop-blur-sm rounded-md shadow-md">
+            {/* Brillo animado sutil */}
             <motion.div
-                className="absolute inset-0 opacity-20"
+                className="absolute inset-0 opacity-10"
                 initial={{ x: '-100%' }}
                 animate={{ x: '100%' }}
                 transition={{
-                    duration: 8,
+                    duration: 6,
                     ease: "easeInOut",
                     repeat: Infinity,
                     repeatType: "reverse"
                 }}
                 style={{
-                    background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)'
+                    background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)'
                 }}
             />
 
-            {/* Bandas diagonales */}
+            {/* Bandas cruzadas */}
             <Banda
-                rotate={5}
-                gradient="linear-gradient(90deg, rgba(8,47,73,0.8) 0%, rgba(37,99,235,0.6) 50%, rgba(8,47,73,0.8) 100%)"
+                rotate={6}
+                gradient="linear-gradient(100deg, rgba(56,189,248,0.15), rgba(96,165,250,0.4), rgba(56,189,248,0.15))"
                 delay={0}
+                direction="left"
             />
             <Banda
-                rotate={-5}
-                gradient="linear-gradient(90deg, rgba(8,47,73,0.8) 0%, rgba(29,78,216,0.6) 50%, rgba(8,47,73,0.8) 100%)"
-                delay={10}
-                reverse
+                rotate={-6}
+                gradient="linear-gradient(100deg, rgba(59,130,246,0.15), rgba(147,197,253,0.3), rgba(59,130,246,0.15))"
+                delay={5}
+                direction="right"
             />
 
-            {/* Línea central destacada */}
-            <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent z-10"></div>
-
+            {/* Punto central decorativo */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-sky-400 shadow-lg z-20"></div>
         </div>
     );
 };

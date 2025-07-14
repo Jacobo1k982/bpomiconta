@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import logoFinanzas from '../../public/Logo/LogoBlanco.png';
+import { Link, useNavigate } from 'react-router-dom';
+import logoFinanzas from '/Imagen/Navbar/icon.png';
 
 const NavbarFinanzas = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(null);
+    const navigate = useNavigate();
+
+    const handleLogoClick = () => {
+        // Navega a la página de inicio y luego recarga
+        navigate('/');
+        window.location.reload();
+    };
 
     const services = [
         {
@@ -44,17 +51,27 @@ const NavbarFinanzas = () => {
         <nav className="bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm fixed w-full z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16 items-center">
-                    {/* Logo con enlace a home */}
-                    <Link to="/" className="flex-shrink-0 flex items-center">
+                    {/* Logo con enlace a home que recarga la página */}
+                    <div
+                        onClick={handleLogoClick}
+                        className="flex-shrink-0 flex items-center cursor-pointer"
+                    >
                         <div className="flex items-center">
                             <img
                                 src={logoFinanzas}
                                 alt="Logo Finanzas"
-                                className="h-7 w-auto"
+                                className="h-12 w-auto"
                             />
-                            <span className="ml-1 text-3xl font-bold text-gray-900">BPO<span className="text-blue-600">MICONTA</span></span>
+                            <div className="ml-2 flex flex-col">
+                                <span className="text-3xl font-bold text-gray-900">
+                                    BPO<span className="text-blue-600">MICONTA</span>
+                                </span>
+                                <span className="text-sm text-gray-500 mt-[-4px]">
+                                    Soluciones financieras integrales
+                                </span>
+                            </div>
                         </div>
-                    </Link>
+                    </div>
 
                     {/* Menú desktop */}
                     <div className="hidden md:flex items-center space-x-8">

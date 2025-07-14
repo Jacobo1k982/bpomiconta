@@ -1,113 +1,199 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { FiTrendingUp, FiBarChart2, FiDollarSign, FiCheckCircle } from 'react-icons/fi';
 
 const HeroFinanzas = () => {
+    const metrics = [
+        { value: "24.5%", label: "ROI Anual", icon: <FiTrendingUp className="text-blue-300" /> },
+        { value: "+37%", label: "Ahorro Fiscal", icon: <FiDollarSign className="text-blue-300" /> },
+        { value: "95%", label: "Clientes Satisfechos", icon: <FiCheckCircle className="text-blue-300" /> }
+    ];
+
+    const features = [
+        "Certificados IFRS",
+        "Analítica Financiera",
+        "Reportes Personalizados",
+        "Optimización Fiscal"
+    ];
+
     return (
-        <section className="relative bg-gradient-to-br from-indigo-900 to-blue-800 text-white overflow-hidden">
-            {/* Fondo con elementos gráficos financieros */}
-            <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-20 left-10 w-32 h-32 bg-blue-500 rounded-full filter blur-3xl opacity-30"></div>
-                <div className="absolute bottom-10 right-20 w-40 h-40 bg-indigo-600 rounded-full filter blur-3xl opacity-20"></div>
-                <svg
-                    className="absolute bottom-0 left-0 w-full opacity-5"
-                    viewBox="0 0 1200 120"
-                    preserveAspectRatio="none"
-                >
+        <section className="relative bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900 text-white overflow-hidden">
+            {/* Fondo con elementos abstractos modernos */}
+            <div className="absolute inset-0 overflow-hidden opacity-20">
+                <div className="absolute top-1/4 -left-20 w-96 h-96 bg-blue-600 rounded-full filter blur-3xl opacity-10"></div>
+                <div className="absolute bottom-1/3 -right-20 w-80 h-80 bg-indigo-600 rounded-full filter blur-3xl opacity-10"></div>
+
+                {/* Patrón geométrico abstracto */}
+                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
                     <path
-                        d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
-                        fill="currentColor"
-                    ></path>
+                        d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"
+                        fill="rgba(59, 130, 246, 0.03)"
+                    />
+                    <path
+                        d="M0,0 L100,0 L50,50 L0,100 Z"
+                        fill="rgba(99, 102, 241, 0.03)"
+                        className="animate-pulse"
+                    />
                 </svg>
             </div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 relative z-10">
-                <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 md:py-36 relative z-10">
+                <div className="grid md:grid-cols-2 gap-16 items-center">
                     <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                     >
+                        <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 mb-6">
+                            <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 animate-pulse"></span>
+                            <span className="text-sm font-medium text-blue-300">Finanzas Inteligentes</span>
+                        </div>
+
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                            <span className="block">Optimiza tus</span>
-                            <span className="text-blue-300">Finanzas Empresariales</span>
+                            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-blue-100">Transformación</span>
+                            <span className="block">Financiera Digital</span>
                         </h1>
 
-                        <p className="text-lg md:text-xl text-blue-100 max-w-lg mb-8">
-                            Soluciones contables inteligentes para tomar decisiones estratégicas y maximizar el crecimiento de tu negocio.
+                        <p className="text-lg md:text-xl text-blue-100/90 max-w-lg mb-8 leading-relaxed">
+                            Soluciones contables basadas en datos para una toma de decisiones estratégica que impulse el crecimiento sostenible de tu organización.
                         </p>
 
-                        <div className="flex flex-col sm:flex-row gap-4">
+                        <div className="flex flex-col sm:flex-row gap-4 mb-12">
                             <motion.button
-                                whileHover={{ scale: 1.03 }}
+                                whileHover={{
+                                    scale: 1.03,
+                                    boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.4)"
+                                }}
                                 whileTap={{ scale: 0.98 }}
-                                className="bg-white text-blue-800 px-8 py-3 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-all"
+                                className="relative overflow-hidden bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all"
                             >
-                                Solicitar Auditoría
+                                <span className="relative z-10">Solicitar Auditoría</span>
+                                <motion.span
+                                    className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-500 opacity-0 hover:opacity-100 transition-opacity"
+                                    initial={{ opacity: 0 }}
+                                    whileHover={{ opacity: 1 }}
+                                />
                             </motion.button>
 
                             <motion.button
-                                whileHover={{ scale: 1.03 }}
+                                whileHover={{
+                                    scale: 1.03,
+                                    backgroundColor: "rgba(99, 102, 241, 0.2)"
+                                }}
                                 whileTap={{ scale: 0.98 }}
-                                className="border-2 border-blue-300 text-white px-8 py-3 rounded-lg font-semibold text-lg hover:bg-blue-700/30 transition-all"
+                                className="border-2 border-blue-300/50 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:border-blue-300 transition-all"
                             >
-                                Conoce Nuestros Servicios
+                                Explorar Servicios
                             </motion.button>
                         </div>
 
-                        <div className="mt-10 flex items-center space-x-6">
-                            <div className="flex items-center">
-                                <svg className="w-6 h-6 text-blue-300 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span className="text-blue-100">Certificados IFRS</span>
-                            </div>
-                            <div className="flex items-center">
-                                <svg className="w-6 h-6 text-blue-300 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span className="text-blue-100">Analítica Financiera</span>
-                            </div>
+                        <div className="grid grid-cols-2 gap-4 max-w-md">
+                            {features.map((feature, index) => (
+                                <div key={index} className="flex items-center">
+                                    <div className="flex-shrink-0 bg-blue-500/10 p-1.5 rounded-lg mr-3">
+                                        <FiCheckCircle className="w-5 h-5 text-blue-400" />
+                                    </div>
+                                    <span className="text-blue-100 text-sm font-medium">{feature}</span>
+                                </div>
+                            ))}
                         </div>
                     </motion.div>
 
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                         className="relative"
                     >
-                        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-1 border border-blue-400/20 shadow-2xl">
-                            <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl p-6">
-                                {/* Gráfico financiero animado */}
-                                <div className="h-64 flex items-end space-x-2 mb-6">
-                                    {[30, 60, 45, 80, 65, 90, 70].map((height, index) => (
+                        {/* Tarjeta de gráfico principal */}
+                        <div className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 backdrop-blur-xl rounded-3xl p-1 border border-white/10 shadow-2xl">
+                            <div className="bg-gradient-to-br from-gray-900 to-blue-900/70 rounded-2xl p-8 h-full">
+                                {/* Encabezado del dashboard */}
+                                <div className="flex justify-between items-center mb-8">
+                                    <h3 className="text-lg font-semibold text-blue-200">Dashboard Financiero</h3>
+                                    <div className="text-xs bg-blue-800/30 text-blue-300 px-3 py-1 rounded-full">
+                                        Tiempo Real
+                                    </div>
+                                </div>
+
+                                {/* Gráfico animado moderno */}
+                                <div className="h-52 flex items-end space-x-1 mb-8">
+                                    {[30, 50, 45, 70, 65, 90, 75, 60, 80, 55].map((height, index) => (
                                         <motion.div
                                             key={index}
                                             initial={{ height: 0 }}
                                             animate={{ height: `${height}%` }}
-                                            transition={{ duration: 1, delay: index * 0.1 }}
-                                            className={`w-8 ${index === 3 ? 'bg-blue-300' : 'bg-white/70'} rounded-t-md`}
-                                        ></motion.div>
+                                            transition={{
+                                                duration: 1,
+                                                delay: index * 0.1,
+                                                type: "spring",
+                                                damping: 10
+                                            }}
+                                            className={`relative flex-1 rounded-t-md ${index % 3 === 0 ? 'bg-blue-400' : 'bg-blue-300/70'}`}
+                                        >
+                                            <motion.div
+                                                className="absolute -top-6 left-1/2 transform -translate-x-1/2 text-xs font-medium text-blue-100 opacity-0"
+                                                animate={{ opacity: [0, 1, 0] }}
+                                                transition={{
+                                                    delay: 1 + index * 0.1,
+                                                    duration: 3,
+                                                    repeat: Infinity
+                                                }}
+                                            >
+                                                {height}%
+                                            </motion.div>
+                                        </motion.div>
                                     ))}
                                 </div>
 
-                                {/* Tarjetas de métricas */}
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-                                        <p className="text-blue-200 text-sm">ROI Anual</p>
-                                        <p className="text-white text-2xl font-bold">24.5%</p>
-                                    </div>
-                                    <div className="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-                                        <p className="text-blue-200 text-sm">Ahorro Fiscal</p>
-                                        <p className="text-white text-2xl font-bold">+37%</p>
-                                    </div>
+                                {/* Métricas */}
+                                <div className="grid grid-cols-3 gap-4">
+                                    {metrics.map((metric, index) => (
+                                        <motion.div
+                                            key={index}
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ delay: 0.5 + index * 0.1 }}
+                                            className="bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/5 hover:border-blue-400/30 transition-colors"
+                                        >
+                                            <div className="flex items-center justify-between mb-2">
+                                                <span className="text-xs text-blue-300/80">{metric.label}</span>
+                                                {metric.icon}
+                                            </div>
+                                            <p className="text-2xl font-bold text-white">{metric.value}</p>
+                                        </motion.div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
 
-                        {/* Elementos decorativos */}
-                        <div className="absolute -top-6 -left-6 w-24 h-24 rounded-full bg-blue-400/20 filter blur-xl"></div>
-                        <div className="absolute -bottom-6 -right-6 w-32 h-32 rounded-full bg-indigo-500/20 filter blur-xl"></div>
+                        {/* Elementos decorativos flotantes */}
+                        <motion.div
+                            className="absolute -top-6 -left-6 w-24 h-24 rounded-full bg-blue-500/10 filter blur-lg"
+                            animate={{
+                                y: [0, -10, 0],
+                                opacity: [0.8, 1, 0.8]
+                            }}
+                            transition={{
+                                duration: 6,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
+                        />
+
+                        <motion.div
+                            className="absolute -bottom-8 -right-8 w-28 h-28 rounded-full bg-indigo-600/10 filter blur-lg"
+                            animate={{
+                                y: [0, 10, 0],
+                                opacity: [0.8, 1, 0.8]
+                            }}
+                            transition={{
+                                duration: 8,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                                delay: 1
+                            }}
+                        />
                     </motion.div>
                 </div>
             </div>
