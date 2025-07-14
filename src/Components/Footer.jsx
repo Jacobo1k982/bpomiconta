@@ -36,9 +36,9 @@ const FooterFinanzas = () => {
                     >
                         <div className="flex items-center">
                             <img
-                                src="/Logo/LogoBlanco2.png" // Asegúrate de que la ruta sea correcta
+                                src="/Imagen/Navbar/icon.png" // Asegúrate de que la ruta sea correcta
                                 alt="FinCorp Logo"
-                                className="h-5 w-auto"
+                                className="h-8 w-auto"
                             />
                             <span className="ml-2 text-xl font-bold">BPO<span className="text-blue-400">MICONTA</span></span>
                         </div>
