@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const FooterFinanzas = () => {
     return (
@@ -120,17 +121,17 @@ const FooterFinanzas = () => {
                         <h3 className="text-lg font-semibold mb-6 text-blue-400">Enlaces Rápidos</h3>
                         <ul className="space-y-3">
                             {[
-                                { text: "Sobre Nosotros", icon: "🏢" },
-                                { text: "Nuestro Equipo", icon: "👥" },
-                                { text: "Casos de Estudio", icon: "📑" },
-                                { text: "Testimonios", icon: "💬" },
-                                { text: "Blog Financiero", icon: "📚" },
-                                { text: "Preguntas Frecuentes", icon: "❓" }
+                                { text: "Sobre Nosotros", icon: "🏢", href: "#sobre-nosotros" },
+                                { text: "Nuestro Equipo", icon: "👥", href: "/nosotros" },
+                                { text: "Casos de Estudio", icon: "📑", href: "#casos-estudio" },
+                                { text: "Testimonios", icon: "💬", href: "#testimonios" },
+                                { text: "Blog Financiero", icon: "📚", href: "/noticias" },
+                                { text: "Preguntas Frecuentes", icon: "❓", href: "#faq" }
                             ].map((link, index) => (
                                 <li key={index}>
                                     <motion.a
                                         whileHover={{ x: 5 }}
-                                        href="#"
+                                        href={link.href}
                                         className="text-gray-400 hover:text-white transition-colors flex items-center"
                                     >
                                         <span className="mr-2">{link.icon}</span>
@@ -202,9 +203,15 @@ const FooterFinanzas = () => {
                             © {new Date().getFullYear()} BPOMICONTA. Todos los derechos reservados.
                         </p>
                         <div className="flex space-x-6 mt-4 md:mt-0">
-                            <a href="#" className="text-gray-500 hover:text-blue-400 text-sm transition-colors">Política de Privacidad</a>
-                            <a href="#" className="text-gray-500 hover:text-blue-400 text-sm transition-colors">Términos de Servicio</a>
-                            <a href="#" className="text-gray-500 hover:text-blue-400 text-sm transition-colors">Mapa del Sitio</a>
+                            <Link to="/politica-privacidad" className="text-gray-500 hover:text-blue-400 text-sm transition-colors">
+                                Política de Privacidad
+                            </Link>
+                            <Link to="#" className="text-gray-500 hover:text-blue-400 text-sm transition-colors">
+                                Términos de Servicio
+                            </Link>
+                            <Link to="#" className="text-gray-500 hover:text-blue-400 text-sm transition-colors">
+                                Mapa del Sitio
+                            </Link>
                         </div>
                     </div>
                 </div>

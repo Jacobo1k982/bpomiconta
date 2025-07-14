@@ -16,6 +16,7 @@ const InventoryManagement = lazy(() => import("../Components/GestionInventario.j
 const ImplementacionERP = lazy(() => import("../Components/ImplementacionERP.jsx"));
 const RegistroDeMarca = lazy(() => import("../Components/RegistroDeMarca.jsx"));
 const NotFound = lazy(() => import("../Components/NotFound.jsx"));
+const PrivacyPolicy = lazy(() => import("../page/PrivacyPolicy.jsx"));
 
 // Loader mejorado con animación profesional
 const LoadingIndicator = () => (
@@ -63,6 +64,7 @@ const AppRoutes = () => {
                     {/* Rutas de contenido */}
                     <Route path="/noticias" element={<NewsSection />} />
                     <Route path="/noticias/:id" element={<NewsDetail />} />
+                    <Route path="/politica-privacidad" component={PrivacyPolicy} />
 
                     {/* Rutas de servicios */}
                     <Route path="/servicios/asesoria-contable" element={<AccountingAdvisory />} />
