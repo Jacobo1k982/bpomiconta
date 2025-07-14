@@ -10,7 +10,7 @@ const HeroFinanzas = () => {
     ];
 
     const features = [
-        "Certificados IFRS",
+        "Certificados Ingresos",
         "Analítica Financiera",
         "Reportes Personalizados",
         "Optimización Fiscal"
