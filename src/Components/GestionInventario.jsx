@@ -144,11 +144,15 @@ const GestionInventario = () => {
                             {benefits.map((benefit, index) => (
                                 <motion.div
                                     key={index}
-                                    initial={{ opacity: 0, y: 20 }}
+                                    initial={{ opacity: 0, y: 50 }}
                                     whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: index * 0.1 + 0.4 }}
-                                    viewport={{ once: true }}
-                                    className="flex items-start p-5 bg-white/5 rounded-xl border border-white/5 hover:border-blue-400/30 transition-colors"
+                                    transition={{
+                                        duration: 0.6,
+                                        delay: index * 0.1
+                                    }}
+                                    viewport={{ once: true, margin: "-50px" }}
+                                    className="group"
+                                    onClick={() => console.log(`Paso ${index + 1} clickeado`)} // Agrega esta línea
                                 >
                                     <div className="flex-shrink-0 mt-1 mr-4">
                                         <div className="w-3 h-3 rounded-full bg-gradient-to-br from-blue-400 to-teal-400"></div>

@@ -212,7 +212,7 @@ const FooterFinanzas = () => {
                             <Link to="#" className="text-gray-500 hover:text-blue-400 text-sm transition-colors">
                                 Mapa del Sitio
                             </Link>
-                        </div>
+                        </div>+
                     </div>
                 </div>
             </div>

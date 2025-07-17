@@ -17,6 +17,8 @@ const ImplementacionERP = lazy(() => import("../Components/ImplementacionERP.jsx
 const RegistroDeMarca = lazy(() => import("../Components/RegistroDeMarca.jsx"));
 const NotFound = lazy(() => import("../Components/NotFound.jsx"));
 const PrivacyPolicy = lazy(() => import("../page/PrivacyPolicy.jsx"));
+const NoticiaDestacada = lazy(() => import("../Components/NoticiaDestacada.jsx"));
+const NoticiaDestacadaDetalle = lazy(() => import("../page/NoticiaDestacadaDetalle.jsx"));
 
 // Loader mejorado con animación profesional
 const LoadingIndicator = () => (
@@ -55,6 +57,7 @@ const AppRoutes = () => {
                         element={
                             <div className="space-y-0">
                                 <HomeHero />
+                                <NoticiaDestacada />
                                 <FinanceDivider />
                                 <OtherServices />
                             </div>
@@ -65,6 +68,8 @@ const AppRoutes = () => {
                     <Route path="/noticias" element={<NewsSection />} />
                     <Route path="/noticias/:id" element={<NewsDetail />} />
                     <Route path="/politica-privacidad" component={PrivacyPolicy} />
+                    <Route path="/noticias-destacadas/:id" element={<NoticiaDestacadaDetalle />} />
+"
 
                     {/* Rutas de servicios */}
                     <Route path="/servicios/asesoria-contable" element={<AccountingAdvisory />} />
