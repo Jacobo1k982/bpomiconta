@@ -21,8 +21,8 @@ const NavbarFinanzas = () => {
             path: "/servicios/contabilidad-financiera"
         },
         {
-            name: "Consultoría Fiscal",
-            icon: "💼",
+            name: "Sistemas de Facturación",
+            icon: "🖥️",
             path: "/servicios/consultoria-fiscal"
         },
         {
@@ -34,11 +34,6 @@ const NavbarFinanzas = () => {
             name: "Implementación ERP",
             icon: "🖥️",
             path: "/servicios/erp"
-        },
-        {
-            name: "Due Diligence",
-            icon: "🔍",
-            path: "/servicios/due-diligence"
         },
         {
             name: "Inventario y Logística",
@@ -114,8 +109,7 @@ const NavbarFinanzas = () => {
                         </div>
 
                         <Link to="/about" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">Sobre Nosotros</Link>
-                        <Link to="/clientes" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">Clientes</Link>
-                        <Link to="/noticias" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">Blog</Link>
+                        <Link to="/noticias" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">Noticias</Link>
                         <Link to="/contacto" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">Contacto</Link>
 
                         <motion.button

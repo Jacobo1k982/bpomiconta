@@ -1,0 +1,140 @@
+{
+    "noticias": [
+        {
+            "id": "migracion-tribu",
+            "titulo": "¿Cómo pasar de ATV a Tribu-CR?",
+            "fecha": "2025-07-05",
+            "categoria": "Guía Práctica",
+            "destacada": true,
+            "prioridad": "Media",
+            "resumen": "Guía completa para migrar de ATV al nuevo sistema",
+            "portada": "/ImagenNoticias/Destacada/Tribu-CR-empezara-800x533.jpg",
+            "contenido": "El próximo 4 de agosto, la Dirección General de Tributación (DGT), del Ministerio de Hacienda, va a estrenar la plataforma de Tribu-CR con el lanzamiento de la Oficina Virtual (OVI). Si usted cuenta con una pequeña o mediana empresa registrada ante Tributación para el pago de los impuestos, este es el paso a paso de lo que debe hacer la primera vez que ingrese al sitio web. Para hacer la solicitud del usuario con el que ingresará, se necesita uno de los siguientes tres documentos: Cédula de Identidad (Nacionales), Documento de Identidad Migratorio para Extranjeros (Dimex), Número de Identificación Tributario Especial (NITE) \n\nEste último es número único y personal que asigna la DGT a personas físicas o jurídicas que no poseen una cédula de identidad costarricense, pero que requieren inscribirse en el sistema tributario del país. Próximamente podrá leer una segunda entrega de este reportaje.",
+            "pasos": [
+                {
+                    "titulo": "Paso 1",
+                    "subtitulo": "Creación del usuario",
+                    "imagen": "/ImagenNoticias/Destacada/Paso-1-1-768x954.jpg",
+                    "lista": [
+                        "Elija el tipo de documento.",
+                        "Cédula: Ingrese el número de identificación, fecha de nacimiento y de vencimiento, al igual que el número consecutivo.",
+                        "Dimex: Ingrese el número de identificación, fecha de nacimiento y de vencimiento.",
+                        "NITE: Ingrese el número de identificación y fecha de vencimiento."
+                    ]
+                },
+                {
+                    "titulo": "Paso 2",
+                    "subtitulo": "Ingrese los datos",
+                    "imagen": "/ImagenNoticias/Destacada/Paso-2-768x1127.jpg",
+                    "lista": [
+                        "Ingrese su número de teléfono celular y correo electrónico a la plataforma.",
+                        "Realice el proceso de verificación con los códigos enviados a ambos datos.",
+                        "Acepte las condiciones generales de uso del Portal Tributario."
+                    ]
+                },
+                {
+                    "titulo": "Paso 3",
+                    "subtitulo": "Verificación final",
+                    "imagen": "/ImagenNoticias/Destacada/Paso-3-1466x1536.jpg",
+                    "lista": [
+                        "Verificación Final: Nuevamente, recibirá un código a su correo electrónico.",
+                        "Dar clic en el botón azul de generar contraseña para recibir la clave temporal, con una duración de 24 horas, para ingresar por primera vez.",
+                        "En el momento que ingrese, debe cambiar la contraseña de su usuario."
+                    ]
+                },
+                {
+                    "titulo": "Paso 4",
+                    "subtitulo": "Ingreso al sistema",
+                    "imagen": "/ImagenNoticias/Destacada/Paso-4-768x1303.jpg",
+                    "lista": [
+                        "Ingrese los datos de número de identificación y contraseña.",
+                        "Anote el código de verificación que recibirá al correo electrónico.",
+                        "Elija la cuenta a la que va a ingresar, en casos de tener autorización para ingresar a cuentas de terceros."
+                    ]
+                },
+                {
+                    "titulo": "Paso 5",
+                    "subtitulo": "Registro Único Tributario",
+                    "imagen": "/ImagenNoticias/Destacada/Paso-5-1536x1010.jpg",
+                    "lista": [
+                        "Al ingresar por primera vez, debe presentar la declaración de actualización de datos.",
+                        "Si la información que fue transferida es correcta marque la casilla en la parte superior “Información no requiere cambios”.",
+                        "En caso de ser una inscripción nueva deberá llenar los espacios.",
+                        "Incluye: datos de identificación, domicilio fiscal, actividades económicas, sucursales, régimen tributario y obligaciones, facturación, documentos adicionales."
+                    ]
+                },
+                {
+                    "titulo": "Paso 6",
+                    "subtitulo": "Pantalla de inicio",
+                    "imagen": "/ImagenNoticias/Destacada/Paso-6-1536x697.jpg",
+                    "lista": [
+                        "En la pantalla inicial podrá observar inconsistencias señaladas por la administración en procedimientos que realizó.",
+                        "Al igual que deudas pendientes, borradores de solicitudes y trámites.",
+                        "Accesos directos a los apartados para realizar pagos, declaraciones, solicitudes o expedientes, buzón electrónico, cuenta tributaria y “Tico Factura”."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "migracion-tribu2",
+            "titulo": "¿Cómo agregar al contador en Tribu-CR?",
+            "fecha": "2025-07-05",
+            "categoria": "Guía Práctica",
+            "destacada": true,
+            "prioridad": "Media",
+            "resumen": "Guía completa para migrar de ATV al nuevo sistema",
+            "portada": "/ImagenNoticias/Destacada/Tribu-CR-empezara-800x533.jpg",
+            "contenido": "El sistema Tribu-CR permite a los contribuyentes autorizar a terceros, como contadores o colaboradores, para realizar diversos trámites tributarios.\n\nEntre las acciones que se pueden delegar se encuentran: pagos, emisión de certificados, presentación de solicitudes, declaraciones, recepción de notificaciones, atención xde procedimientos, permisos de fiscalización, facturación, gestión del registro único tributario, evaluaciones de servicio y solicitud de citas ante la Administración Tributaria.\n\nAl otorgar la autorización, los contribuyentes pueden definir a qué elementos específicos se dará acceso.",
+            "pasos": [
+                {
+                    "titulo": "Paso 1",
+                    "subtitulo": "Identificación",
+                    "imagen": "/ImagenNoticias/Destacada/Screenshot-2025-06-04-at-22.22.06.png",
+                    "lista": [
+                    ]
+                },
+                {
+                    "titulo": "Paso 2",
+                    "subtitulo": "Permisos",
+                    "imagen": "/ImagenNoticias/Destacada/Screenshot-2025-06-04-at-22.22.13.png",
+                    "lista": [
+                    ]
+                },
+                {
+                    "titulo": "Paso 3",
+                    "subtitulo": "Finalizar",
+                    "imagen": "/ImagenNoticias/Destacada/Screenshot-2025-06-04-at-22.22.24.png",
+                    "lista": [
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "migracion-tribu3",
+            "titulo": "Cambios en declaración del IVA quedan para 2026",
+            "fecha": "2025-07-05",
+            "categoria": "Guía Práctica",
+            "destacada": true,
+            "prioridad": "Media",
+            "resumen": "Guía completa para migrar de ATV al nuevo sistema",
+            "portada": "/ImagenNoticias/Destacada/Hacienda-digita-ISSAC-VILLALTA-2-800x533.jpg",
+            "contenido": "El atraso en la implementación de Tribu-CR, la nueva plataforma para el pago de impuestos, aplazó también la fecha para los cambios en la declaración del IVA.\n\nSe suponía que sería este 2025 que se pondría en marcha la nueva versión con el prellenado, pero ahora se hará hasta mediados de 2026.\n\nRamos recordó que Tribu-CR es un proyecto en constante evolución, por lo que su lanzamiento en agosto no representa el cierre del proceso, sino apenas el inicio de una serie de mejoras continuas en el sistema tributario nacional, ya que es un sistema que contará con 27 módulos, pero inicialmente serán 8.\n\nA partir de agosto, todos los contribuyentes deberán acceder a la Oficina Virtual (OVI). Los contribuyentes deberán crear una cuenta en el sistema, proceso que incluye la validación del número consecutivo ubicado al dorso de la cédula de identidad. Este número está disponible en las cédulas emitidas o renovadas a partir de setiembre de 2016.",
+            "pasos": [
+                {
+                    "titulo": "“El comprobante electrónico versión 4.4 entra en vigor de manera obligatoria en octubre. Nosotros vamos a necesitar por lo menos 3 meses para analizar toda la información y proponer algunas mejoras para poner a disposición de los contribuyentes por segmentos”, dijo Mario Ramos, director general de Tributación, al programa Asiento Extra.",
+                    "subtitulo": "Esto debido a que se debe procesar la información de la nueva versión de factura electrónica.",
+                    "imagen": "/ImagenNoticias/Destacada/Grafico-Tribu-CR-3-768x944.jpg",
+                    "lista": [
+                    ]
+                },
+                {
+                    "titulo": "",
+                    "subtitulo": "Este no solo servirá para que los usuarios realicen sus trámites fiscales, sino que también será utilizado de forma interna por los funcionarios de la Dirección General de Tributación para mejorar el control fiscal.\n\nOriginalmente estaba previsto que comenzara a operar en junio de este año, pero el Ministerio de Hacienda decidió posponer su lanzamiento.\n\nLa nueva fecha de inicio estaría prevista para la primera semana de agosto. “Podría ser por ahí del 5 de agosto para que no choque con el feriado”, explicó Ramos.",
+                    "imagen": "/ImagenNoticias/Destacada/Screenshot-2025-04-27-at-21.37.48.png",
+                    "lista": [
+                    ]
+                }
+            ]
+        }
+    ]
+}

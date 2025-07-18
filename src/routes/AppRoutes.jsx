@@ -18,7 +18,7 @@ const RegistroDeMarca = lazy(() => import("../Components/RegistroDeMarca.jsx"));
 const NotFound = lazy(() => import("../Components/NotFound.jsx"));
 const PrivacyPolicy = lazy(() => import("../page/PrivacyPolicy.jsx"));
 const NoticiaDestacada = lazy(() => import("../Components/NoticiaDestacada.jsx"));
-const NoticiaDestacadaDetalle = lazy(() => import("../page/NoticiaDestacadaDetalle.jsx"));
+const NoticiaDestacadaDetalle = lazy(() => import("../page/NoticiasDestacadas/NoticiaDestacadaDetalle.jsx"));
 
 // Loader mejorado con animación profesional
 const LoadingIndicator = () => (

@@ -89,10 +89,9 @@ const FooterFinanzas = () => {
                         <ul className="space-y-3">
                             {[
                                 "Auditoría Financiera",
-                                "Consultoría Fiscal",
+                                "Sistemas de Facturación",
                                 "Análisis de Estados Financieros",
                                 "Implementación ERP",
-                                "Due Diligence",
                                 "Planificación Financiera"
                             ].map((service, index) => (
                                 <li key={index}>
