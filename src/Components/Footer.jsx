@@ -123,7 +123,6 @@ const FooterFinanzas = () => {
                                 { text: "Sobre Nosotros", icon: "🏢", href: "#sobre-nosotros" },
                                 { text: "Nuestro Equipo", icon: "👥", href: "/nosotros" },
                                 { text: "Casos de Estudio", icon: "📑", href: "#casos-estudio" },
-                                { text: "Testimonios", icon: "💬", href: "#testimonios" },
                                 { text: "Blog Financiero", icon: "📚", href: "/noticias" },
                                 { text: "Preguntas Frecuentes", icon: "❓", href: "#faq" }
                             ].map((link, index) => (

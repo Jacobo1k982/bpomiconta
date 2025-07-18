@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { FaArrowUpRightFromSquare } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
@@ -12,7 +12,6 @@ const CarouselServicios = ({
 }) => {
     const [current, setCurrent] = useState(0);
     const containerRef = useRef(null);
-    const [hoveredCard, setHoveredCard] = useState(null);
 
     useEffect(() => {
         if (containerRef.current) {
@@ -29,7 +28,7 @@ const CarouselServicios = ({
         <section className="py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
             <div className="max-w-7xl mx-auto">
                 {/* Encabezado */}
-                <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 md:mb-12 gap-4 md:gap-6">
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-10 md:mb-12 gap-4 md:gap-6">
                     <motion.span
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -70,8 +69,8 @@ const CarouselServicios = ({
                 {/* Carrusel móvil */}
                 <div className="md:hidden relative">
                     <div
-                        className="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar pb-4"
                         ref={containerRef}
+                        className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar pb-4"
                         role="region"
                         aria-label="Carrusel de servicios"
                     >
@@ -84,35 +83,32 @@ const CarouselServicios = ({
                                 viewport={{ once: true, margin: "0px 0px -50px 0px" }}
                                 className="min-w-[85vw] snap-start bg-white rounded-xl shadow-md flex-shrink-0 border border-gray-100 overflow-hidden"
                             >
-                                <div className="aspect-video relative">
+                                <div className="relative w-full h-48 overflow-hidden">
                                     <img
                                         src={item.imagen}
                                         alt={item.titulo}
-                                        className="w-full h-full object-cover"
+                                        className="absolute inset-0 w-full h-full object-cover"
                                         loading="lazy"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-t-xl" />
                                 </div>
-                                <div className="p-5">
-                                    <h3 className="text-lg font-bold mb-2 text-gray-800">{item.titulo}</h3>
-                                    <p className="text-gray-600 text-sm mb-4 line-clamp-4">{item.descripcion}</p>
-                                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                        <Link
-                                            to={item.link}
-                                            className="inline-flex items-center gap-1.5 text-blue-600 font-medium hover:text-blue-800 transition-colors text-sm"
-                                            aria-label={`Ir a ${item.titulo}`}
-                                        >
-                                            Saber más
-                                            <FaArrowUpRightFromSquare className="w-3 h-3" />
-                                        </Link>
-                                    </motion.div>
+                                <div className="p-4">
+                                    <h3 className="text-base font-semibold text-gray-800 mb-2">{item.titulo}</h3>
+                                    <p className="text-sm text-gray-600 line-clamp-3 mb-3">{item.descripcion}</p>
+                                    <Link
+                                        to={item.link}
+                                        className="inline-flex items-center gap-1.5 text-blue-600 font-medium hover:text-blue-800 transition-colors text-sm"
+                                    >
+                                        Saber más
+                                        <FaArrowUpRightFromSquare className="w-3 h-3" />
+                                    </Link>
                                 </div>
                             </motion.div>
                         ))}
                     </div>
 
-                    {/* Indicadores carrusel móvil */}
-                    <div className="flex justify-center mt-6 gap-2">
+                    {/* Indicadores */}
+                    <div className="flex justify-center mt-5 gap-2">
                         {data.map((_, index) => (
                             <button
                                 key={index}
@@ -136,26 +132,25 @@ const CarouselServicios = ({
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4, delay: index * 0.1 }}
                             viewport={{ once: true }}
-                            className="relative group bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all overflow-hidden"
-                            onMouseEnter={() => setHoveredCard(index)}
-                            onMouseLeave={() => setHoveredCard(null)}
+                            className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all"
                         >
-                            <div className="aspect-video overflow-hidden relative">
+                            <div className="relative w-full h-48 md:h-56 overflow-hidden">
                                 <img
                                     src={item.imagen}
                                     alt={item.titulo}
-                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                    className="absolute inset-0 w-full h-full object-cover"
                                     loading="lazy"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-t-xl" />
                             </div>
                             <div className="p-6">
-                                <h3 className="text-lg font-bold mb-2 text-gray-800 group-hover:text-blue-600 transition-colors">{item.titulo}</h3>
-                                <p className="text-gray-600 text-sm mb-4 line-clamp-4">{item.descripcion}</p>
+                                <h3 className="text-lg font-semibold text-gray-800 mb-2 hover:text-blue-600 transition-colors">
+                                    {item.titulo}
+                                </h3>
+                                <p className="text-sm text-gray-600 mb-3 line-clamp-3">{item.descripcion}</p>
                                 <Link
                                     to={item.link}
                                     className="inline-flex items-center gap-1.5 text-blue-600 font-medium hover:text-blue-800 transition-colors text-sm"
-                                    aria-label={`Ir a ${item.titulo}`}
                                 >
                                     Saber más
                                     <FaArrowUpRightFromSquare className="w-3 h-3" />
