@@ -31,9 +31,8 @@ const SERVICES = [
         path: "/servicios/gestion_inventario"
     },
 ];
-
 const NAV_LINKS = [
-    { name: "Sobre Nosotros", path: "/about" },
+    { name: "Sobre Nosotros", path: "/nosotros" },
     { name: "Noticias", path: "/noticias" },
     { name: "Contacto", path: "/contacto" }
 ];
@@ -47,23 +46,23 @@ const ServicesDropdown = ({ services, isOpen, onClose }) => (
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -10, scale: 0.95 }}
                 transition={{
-                    duration: 0.2,
+                    duration: 0.3,
                     type: "spring",
                     stiffness: 300,
                     damping: 25
                 }}
-                className="absolute z-20 left-0 mt-2 w-64 origin-top-right rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none overflow-hidden"
+                className="absolute z-50 left-0 mt-3 w-72 origin-top-right rounded-2xl bg-white/90 backdrop-blur-xl shadow-2xl ring-1 ring-black/5 focus:outline-none overflow-hidden border border-white/20"
             >
-                <div className="py-2">
+                <div className="py-3">
                     {services.map((service, index) => (
                         <Link
                             key={index}
                             to={service.path}
-                            className="flex items-center px-5 py-3 text-sm text-gray-700 hover:bg-gradient-to-r from-blue-50 to-teal-50 hover:text-blue-700 transition-all duration-200 group"
+                            className="flex items-center px-6 py-4 text-sm text-slate-700 hover:bg-gradient-to-r from-cyan-50/80 to-blue-50/80 hover:text-cyan-700 transition-all duration-200 group border-b border-slate-100/50 last:border-0"
                             onClick={onClose}
                         >
-                            <span className="mr-3 text-lg group-hover:scale-110 transition-transform">{service.icon}</span>
-                            <span className="font-medium">{service.name}</span>
+                            <span className="mr-4 text-xl group-hover:scale-110 transition-transform">{service.icon}</span>
+                            <span className="font-semibold">{service.name}</span>
                         </Link>
                     ))}
                 </div>
@@ -86,54 +85,73 @@ const MobileMenu = ({ isOpen, onClose }) => {
                     transition={{ duration: 0.2 }}
                     className="md:hidden fixed inset-0 z-40"
                 >
-                    {/* Backdrop */}
+                    {/* Backdrop con efecto de vidrio */}
                     <motion.div
-                        className="fixed inset-0 bg-black/30 backdrop-blur-sm"
+                        className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm"
                         onClick={onClose}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                     />
 
-                    {/* Panel */}
+                    {/* Panel con animación mejorada */}
                     <motion.div
-                        initial={{ x: "100%" }}
-                        animate={{ x: 0 }}
-                        exit={{ x: "100%" }}
+                        initial={{ x: "100%", opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        exit={{ x: "100%", opacity: 0 }}
                         transition={{
                             type: "spring",
                             damping: 25,
-                            stiffness: 200
+                            stiffness: 200,
+                            duration: 0.3
                         }}
-                        className="relative ml-auto w-80 max-w-sm h-full bg-white shadow-2xl"
+                        className="relative ml-auto w-80 max-w-sm h-full bg-gradient-to-b from-slate-900 to-slate-800 shadow-2xl"
                     >
                         <div className="flex flex-col h-full">
-                            <div className="px-6 py-5 border-b border-gray-100 flex justify-end">
+                            {/* Header del menú móvil */}
+                            <div className="px-6 py-5 border-b border-slate-700/50 flex justify-between items-center">
+                                <div className="flex items-center">
+                                    <div className="p-2 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-500 shadow-lg">
+                                        <img
+                                            src={logoFinanzas}
+                                            alt="Logo Finanzas"
+                                            className="h-8 w-auto"
+                                        />
+                                    </div>
+                                    <span className="ml-3 text-xl font-bold text-white">
+                                        BPO<span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-400">MICONTA</span>
+                                    </span>
+                                </div>
                                 <button
                                     onClick={onClose}
-                                    className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                                    className="p-2 rounded-lg hover:bg-slate-700/50 transition-colors"
                                 >
-                                    <svg className="h-6 w-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg className="h-6 w-6 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                                     </svg>
                                 </button>
                             </div>
 
+                            {/* Contenido del menú */}
                             <div className="flex-1 overflow-y-auto py-6 px-4">
-                                <div className="space-y-1">
-                                    <div className="border-b border-gray-100 pb-4">
+                                <div className="space-y-2">
+                                    {/* Dropdown de Servicios */}
+                                    <div className="border border-slate-700/30 rounded-xl bg-slate-800/50 backdrop-blur-sm">
                                         <button
                                             onClick={() => setDropdownOpen(!dropdownOpen)}
-                                            className="w-full flex justify-between items-center text-gray-800 hover:text-blue-600 px-3 py-3 rounded-xl text-base font-semibold transition-colors"
+                                            className="w-full flex justify-between items-center text-slate-200 hover:text-cyan-300 px-4 py-4 rounded-xl text-base font-semibold transition-colors"
                                         >
-                                            <span>Servicios</span>
+                                            <div className="flex items-center">
+                                                <span className="mr-3 text-lg">💼</span>
+                                                <span>Servicios</span>
+                                            </div>
                                             <motion.svg
-                                                className="h-5 w-5 text-gray-500"
+                                                className="h-5 w-5 text-slate-400"
                                                 fill="none"
                                                 stroke="currentColor"
                                                 viewBox="0 0 24 24"
                                                 animate={{ rotate: dropdownOpen ? 180 : 0 }}
-                                                transition={{ duration: 0.2 }}
+                                                transition={{ duration: 0.3 }}
                                             >
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                                             </motion.svg>
@@ -148,15 +166,15 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                                     transition={{ duration: 0.3 }}
                                                     className="overflow-hidden"
                                                 >
-                                                    <div className="pl-2 pt-2 space-y-1">
+                                                    <div className="pb-2 px-2 space-y-1">
                                                         {SERVICES.map((service, index) => (
                                                             <Link
                                                                 key={index}
                                                                 to={service.path}
-                                                                className="flex items-center text-gray-600 hover:text-blue-600 hover:bg-blue-50 px-4 py-3 rounded-lg text-sm font-medium transition-all"
+                                                                className="flex items-center text-slate-300 hover:text-cyan-300 hover:bg-cyan-900/20 px-4 py-3 rounded-lg text-sm font-medium transition-all"
                                                                 onClick={onClose}
                                                             >
-                                                                <span className="mr-3">{service.icon}</span>
+                                                                <span className="mr-3 text-lg">{service.icon}</span>
                                                                 {service.name}
                                                             </Link>
                                                         ))}
@@ -166,11 +184,12 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                         </AnimatePresence>
                                     </div>
 
+                                    {/* Links de navegación */}
                                     {NAV_LINKS.map((link, index) => (
                                         <Link
                                             key={index}
                                             to={link.path}
-                                            className="block text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-4 py-3 rounded-xl text-base font-medium transition-colors"
+                                            className="block text-slate-300 hover:text-cyan-300 hover:bg-cyan-900/20 px-4 py-4 rounded-xl text-base font-medium transition-colors border border-slate-700/30 bg-slate-800/50 backdrop-blur-sm"
                                             onClick={onClose}
                                         >
                                             {link.name}
@@ -179,13 +198,17 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                 </div>
                             </div>
 
-                            <div className="p-6 border-t border-gray-100">
+                            {/* Botón de acción en el footer */}
+                            <div className="p-6 border-t border-slate-700/50">
                                 <motion.button
-                                    whileHover={{ scale: 1.02 }}
+                                    whileHover={{
+                                        scale: 1.02,
+                                        boxShadow: "0 10px 25px -5px rgba(6, 182, 212, 0.3), 0 8px 10px -6px rgba(6, 182, 212, 0.3)"
+                                    }}
                                     whileTap={{ scale: 0.98 }}
-                                    className="w-full bg-gradient-to-r from-blue-600 to-teal-600 text-white px-4 py-3.5 rounded-xl text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                                    className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 text-white px-4 py-4 rounded-xl text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300"
                                 >
-                                    Consultor Gratis
+                                    Consultoría Gratis
                                 </motion.button>
                             </div>
                         </div>
@@ -209,7 +232,6 @@ const NavbarFinanzas = () => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
         };
-
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
@@ -221,7 +243,6 @@ const NavbarFinanzas = () => {
                 setDropdownOpen(null);
             }
         };
-
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
@@ -237,34 +258,36 @@ const NavbarFinanzas = () => {
 
     return (
         <>
-            <nav className={`fixed w-full z-30 transition-all duration-300 ${scrolled
-                    ? 'bg-white/95 backdrop-blur-md py-2 shadow-md border-b border-gray-100'
-                    : 'bg-transparent py-4'
+            <nav className={`fixed w-full z-30 transition-all duration-500 ${scrolled
+                    ? 'bg-white/90 backdrop-blur-xl py-3 shadow-xl border-b border-slate-200/30'
+                    : 'bg-transparent py-5'
                 }`}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center">
-                        {/* Logo */}
+                        {/* Logo con efecto mejorado */}
                         <motion.div
                             whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.98 }}
                             onClick={handleLogoClick}
                             className="flex-shrink-0 flex items-center cursor-pointer"
                         >
-                            <div className="flex items-center">
-                                <div className={`p-1.5 rounded-lg shadow-lg transition-all duration-300 ${scrolled ? 'bg-gradient-to-br from-blue-600 to-teal-500' : 'bg-white/80'
+                            <div className="flex items-center group">
+                                <div className={`p-2 rounded-xl shadow-xl transition-all duration-300 ${scrolled
+                                        ? 'bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:shadow-cyan-500/20'
+                                        : 'bg-white/90 group-hover:shadow-white/20'
                                     }`}>
                                     <img
                                         src={logoFinanzas}
                                         alt="Logo Finanzas"
-                                        className="h-10 w-auto"
+                                        className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
                                     />
                                 </div>
                                 <div className="ml-3 flex flex-col">
-                                    <span className={`text-2xl font-bold transition-colors duration-300 ${scrolled ? 'text-gray-900' : 'text-white'
+                                    <span className={`text-2xl font-bold transition-colors duration-300 ${scrolled ? 'text-slate-900' : 'text-white'
                                         }`}>
-                                        BPO<span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-500">MICONTA</span>
+                                        BPO<span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-500">MICONTA</span>
                                     </span>
-                                    <span className={`text-xs transition-colors duration-300 ${scrolled ? 'text-gray-500' : 'text-blue-100'
+                                    <span className={`text-xs transition-colors duration-300 ${scrolled ? 'text-slate-500' : 'text-blue-100'
                                         }`}>
                                         Soluciones financieras integrales
                                     </span>
@@ -272,24 +295,24 @@ const NavbarFinanzas = () => {
                             </div>
                         </motion.div>
 
-                        {/* Menú desktop */}
-                        <div className="hidden md:flex items-center space-x-1">
+                        {/* Menú desktop con estilo mejorado */}
+                        <div className="hidden md:flex items-center space-x-2">
                             <div className="relative" ref={dropdownRef}>
                                 <button
                                     onClick={() => toggleDropdown('services')}
-                                    className={`px-4 py-2.5 text-sm font-semibold flex items-center rounded-lg transition-all duration-300 ${scrolled
-                                            ? 'text-gray-700 hover:bg-gray-100'
+                                    className={`px-5 py-3 text-sm font-bold flex items-center rounded-xl transition-all duration-300 ${scrolled
+                                            ? 'text-slate-700 hover:bg-slate-100/80'
                                             : 'text-white/90 hover:bg-white/10'
-                                        }`}
+                                        } ${dropdownOpen === 'services' ? (scrolled ? 'bg-slate-100/80' : 'bg-white/10') : ''}`}
                                 >
                                     Servicios
                                     <motion.svg
-                                        className="ml-1.5 h-4 w-4"
+                                        className="ml-2 h-4 w-4"
                                         fill="none"
                                         stroke="currentColor"
                                         viewBox="0 0 24 24"
                                         animate={{ rotate: dropdownOpen === 'services' ? 180 : 0 }}
-                                        transition={{ duration: 0.2 }}
+                                        transition={{ duration: 0.3 }}
                                     >
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                                     </motion.svg>
@@ -305,8 +328,8 @@ const NavbarFinanzas = () => {
                                 <Link
                                     key={index}
                                     to={link.path}
-                                    className={`px-4 py-2.5 text-sm font-semibold rounded-lg transition-all duration-300 ${scrolled
-                                            ? 'text-gray-700 hover:bg-gray-100'
+                                    className={`px-5 py-3 text-sm font-bold rounded-xl transition-all duration-300 ${scrolled
+                                            ? 'text-slate-700 hover:bg-slate-100/80'
                                             : 'text-white/90 hover:bg-white/10'
                                         }`}
                                 >
@@ -315,21 +338,24 @@ const NavbarFinanzas = () => {
                             ))}
 
                             <motion.button
-                                whileHover={{ scale: 1.05 }}
+                                whileHover={{
+                                    scale: 1.05,
+                                    boxShadow: "0 10px 25px -5px rgba(6, 182, 212, 0.3), 0 8px 10px -6px rgba(6, 182, 212, 0.3)"
+                                }}
                                 whileTap={{ scale: 0.95 }}
-                                className="ml-2 bg-gradient-to-r from-blue-600 to-teal-600 text-white px-5 py-2.5 rounded-lg text-sm font-semibold shadow-md hover:shadow-lg transition-all duration-300"
+                                className="ml-3 bg-gradient-to-r from-cyan-600 to-blue-600 text-white px-6 py-3 rounded-xl text-sm font-bold shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm border border-cyan-400/30"
                             >
-                                Consultor Gratis
+                                Consultoría Gratis
                             </motion.button>
                         </div>
 
-                        {/* Botón móvil */}
+                        {/* Botón móvil con estilo mejorado */}
                         <div className="md:hidden flex items-center">
                             <motion.button
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                                className={`p-2.5 rounded-lg transition-colors ${scrolled
-                                        ? 'text-gray-700 hover:bg-gray-100'
+                                className={`p-3 rounded-xl transition-colors ${scrolled
+                                        ? 'text-slate-700 hover:bg-slate-100/80'
                                         : 'text-white hover:bg-white/10'
                                     }`}
                                 aria-label="Toggle menu"
