@@ -98,7 +98,7 @@ const OtrosServicios = () => {
                         data={otrosServiciosData}
                         titulo=""
                         etiqueta="Contabilidad"
-                        linkGeneral="/servicios"
+                        linkGeneral="/Servicios"
                     />
                 </motion.div>
 

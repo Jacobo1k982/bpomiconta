@@ -11,7 +11,7 @@ const NewsSection = lazy(() => import("../Components/Noticias.jsx"));
 const NewsDetail = lazy(() => import("../page/NoticiaDetalle.jsx"));
 const AboutUs = lazy(() => import("../Components/QuienesSomos.jsx"));
 const AccountingAdvisory = lazy(() => import("../Components/ContabilidadFinanciera.jsx"));
-const OtherServices = lazy(() => import("../page/OtrosServicios.jsx"));
+const OtherServices = lazy(() => import("../Components/RegistroDeMarca.jsx"));
 const InventoryManagement = lazy(() => import("../Components/GestionInventario.jsx"));
 const ImplementacionERP = lazy(() => import("../Components/ImplementacionERP.jsx"));
 const RegistroDeMarca = lazy(() => import("../Components/RegistroDeMarca.jsx"));
@@ -19,6 +19,8 @@ const NotFound = lazy(() => import("../Components/NotFound.jsx"));
 const PrivacyPolicy = lazy(() => import("../page/PrivacyPolicy.jsx"));
 const NoticiaDestacada = lazy(() => import("../Components/NoticiaDestacada.jsx"));
 const NoticiaDestacadaDetalle = lazy(() => import("../page/NoticiasDestacadas/NoticiaDestacadaDetalle.jsx"));
+const CarouselServicios = lazy(() => import("../Components/CarouselServicios.jsx"));
+const PreguntasFrecuentesContabilidad = lazy(() => import("../page/Footer/PreguntasFrecuentesContabilidad.jsx"));
 
 // Loader mejorado con animación profesional
 const LoadingIndicator = () => (
@@ -59,7 +61,7 @@ const AppRoutes = () => {
                                 <HomeHero />
                                 <NoticiaDestacada />
                                 <FinanceDivider />
-                                <OtherServices />
+                                <CarouselServicios />
                             </div>
                         }
                     />
@@ -67,20 +69,22 @@ const AppRoutes = () => {
                     {/* Rutas de contenido */}
                     <Route path="/noticias" element={<NewsSection />} />
                     <Route path="/noticias/:id" element={<NewsDetail />} />
-                    <Route path="/politica-privacidad" component={PrivacyPolicy} />
+                    <Route path="/politica-privacidad" component={<PrivacyPolicy />} />
                     <Route path="/noticias-destacadas/:id" element={<NoticiaDestacadaDetalle />} />
-"
+                    <Route path="/pre_frecuentes" element={<PreguntasFrecuentesContabilidad />} />
 
                     {/* Rutas de servicios */}
                     <Route path="/servicios/asesoria-contable" element={<AccountingAdvisory />} />
                     <Route path="/servicios/gestion_inventario" element={<InventoryManagement />} />
+                    <Route path="/Servicios/otros_servicios" element={<OtherServices />} />
+                    <Route path="/servicios/contabilidad-financiera" element={<AccountingAdvisory />} />
+                    <Route path="/servicios/erp" element={<ImplementacionERP />} />
+                    <Route path="/Servicios/registro_marca" element={<RegistroDeMarca />} />
 
                     {/* Rutas corporativas */}
                     <Route path="/nosotros" element={<AboutUs />} />
                     <Route path="/contacto" element={<Contactanos />} />
-                    <Route path="/servicios/contabilidad-financiera" element={<AccountingAdvisory />} />
-                    <Route path="/servicios/erp" element={<ImplementacionERP />} />
-                    <Route patah="/servicios/registro_marca" element={<RegistroDeMarca />} />
+                    
 
                     {/* Redirección para rutas obsoletas */}
                     <Route path="/about" element={<Navigate to="/nosotros" replace />} />

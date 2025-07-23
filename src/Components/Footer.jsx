@@ -129,7 +129,7 @@ const FooterFinanzas = () => {
                                 { text: "Nuestro Equipo", icon: "👥", href: "/nosotros" },
                                 { text: "Casos de Estudio", icon: "📑", href: "#casos-estudio" },
                                 { text: "Blog Financiero", icon: "📚", href: "/noticias" },
-                                { text: "Preguntas Frecuentes", icon: "❓", href: "#faq" }
+                                { text: "Preguntas Frecuentes", icon: "❓", href: "/pre_frecuentes" }
                             ].map((link, index) => (
                                 <li key={index}>
                                     <motion.a
