@@ -37,7 +37,7 @@ const RegistroDeMarca = () => {
         }
     ];
 
-    const requisitos2024 = [
+    const requisitos2025 = [
         "Formulario de solicitud debidamente completado (Disponible en www.registronacional.go.cr)",
         "Representación gráfica clara de la marca (mínimo 5x5 cm, máximo 8x8 cm)",
         "Lista de productos/servicios según Clasificación de Niza (11ª edición)",
@@ -140,10 +140,10 @@ const RegistroDeMarca = () => {
                     >
                         <div className="flex items-center mb-6">
                             <div className="w-3 h-3 bg-cyan-500 rounded-full mr-3"></div>
-                            <h2 className="text-2xl font-bold text-slate-100">Requisitos 2024</h2>
+                            <h2 className="text-2xl font-bold text-slate-100">Requisitos 2025</h2>
                         </div>
                         <ul className="space-y-4">
-                            {requisitos2024.map((requisito, index) => (
+                            {requisitos2025.map((requisito, index) => (
                                 <li key={index} className="flex items-start group">
                                     <div className="flex-shrink-0 mt-1.5 mr-4">
                                         <div className="w-2 h-2 rounded-full bg-cyan-500/70 group-hover:bg-cyan-400 transition-colors"></div>
@@ -193,7 +193,7 @@ const RegistroDeMarca = () => {
                             </svg>
                         </div>
                         <div>
-                            <h3 className="text-lg font-bold text-cyan-100 mb-2">Actualización Importante 2024</h3>
+                            <h3 className="text-lg font-bold text-cyan-100 mb-2">Actualización Importante 2025</h3>
                             <p className="text-cyan-200">
                                 Desde enero 2024, el Registro Nacional implementó el <strong className="text-white">Trámite en Línea</strong> para solicitudes de marca,
                                 reduciendo tiempos de espera. Consulte los nuevos requisitos técnicos para presentación digital en
