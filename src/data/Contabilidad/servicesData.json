@@ -7,27 +7,27 @@
             {
                 "name": "Contabilidad Financiera",
                 "description": "Ideal para conocer la salud financiera del negocio.",
-                "path": "/servicios/contabilidad-financiera/libros-contables"
+                "path": "/contabilidad-financiera"
             },
             {
                 "name": "Contabilidad Fiscal o Tributaria",
                 "description": "Declaraciones de impuestos mensuales y anuales.",
-                "path": "/servicios/contabilidad-financiera/estados-financieros"
+                "path": "/contabilidad-fiscal"
             },
             {
                 "name": "Contabilidad de Costos",
                 "description": "Ideal para empresas industriales, talleres o negocios que fabrican productos.",
-                "path": "/servicios/contabilidad-financiera/conciliaciones-bancarias"
+                "path": "/contabilidad-costos"
             },
             {
                 "name": "Contabilidad Gerencial",
                 "description": "Herramienta estratégica para planificar el crecimiento.",
-                "path": "/servicios/contabilidad-financiera/conciliaciones-bancarias"
+                "path": "/contabilidad-gerencial"
             },
             {
                 "name": "Contabilidad Administrativa",
                 "description": "Análisis de márgenes de utilidad, presupuestos, puntos de equilibrio.",
-                "path": "/servicios/contabilidad-financiera/conciliaciones-bancarias"
+                "path": "/contabilidad-administrativa"
             },
             {
                 "name": "Contabilidad para Pymes o Simplificada",
@@ -37,7 +37,7 @@
             {
                 "name": "Facturación Electrónica y Control de Comprobantes",
                 "description": "Implementación y gestión de sistemas de facturación electrónica (por ejemplo, ATV en Costa Rica).",
-                "path": "/servicios/contabilidad-financiera/conciliaciones-bancarias"
+                "path": "/facturas-electronicas"
             },
             {
                 "name": "Outsourcing Contable",

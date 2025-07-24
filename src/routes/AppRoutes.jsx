@@ -11,7 +11,6 @@ const HomeHero = lazy(() => import("../Components/Hero.jsx"));
 const NewsSection = lazy(() => import("../Components/Noticias.jsx"));
 const NewsDetail = lazy(() => import("../page/NoticiaDetalle.jsx"));
 const AboutUs = lazy(() => import("../Components/QuienesSomos.jsx"));
-const AccountingAdvisory = lazy(() => import("../Components/ContabilidadFinanciera.jsx"));
 const RegistroMarca = lazy(() => import("../Components/RegistroDeMarca.jsx"));
 const InventoryManagement = lazy(() => import("../Components/GestionInventario.jsx"));
 const ImplementacionERP = lazy(() => import("../Components/ImplementacionERP.jsx"));
@@ -22,6 +21,14 @@ const NoticiaDestacadaDetalle = lazy(() => import("../page/NoticiasDestacadas/No
 const CarouselServicios = lazy(() => import("../Components/CarouselServicios.jsx"));
 const PreguntasFrecuentesContabilidad = lazy(() => import("../page/Footer/PreguntasFrecuentesContabilidad.jsx"));
 const SistemasFacturacion = lazy(() => import("../Components/Contabilidad/SistemasFacturacion.jsx"));
+const ContabilidadFinanciera = lazy(() => import("../Components/Contabilidad/ContabilidadFinanciera.jsx"));
+const ContabilidadFiscal = lazy(() => import("../Components/Contabilidad/ContabilidadFiscal.jsx"));
+const ContabilidadCostos = lazy(() => import("../Components/Contabilidad/ContabilidadCostos.jsx"));
+const ContabilidadGerencial = lazy(() => import("../Components/Contabilidad/ContabilidadGerencial.jsx"));
+const ContabilidadAdministrativa = lazy(() => import("../Components/Contabilidad/ContabilidadAdministrativa.jsx"));
+const FacturacionElectronica = lazy(() => import("../Components/Contabilidad/FacturacionElectronica.jsx"));
+
+
 
 // Loader mejorado con animación profesional
 const LoadingIndicator = () => (
@@ -75,14 +82,18 @@ const AppRoutes = () => {
                     <Route path="/pre_frecuentes" element={<PreguntasFrecuentesContabilidad />} />
 
                     {/* Rutas de servicios */}
-                    <Route path="/servicios/asesoria-contable" element={<AccountingAdvisory />} />
                     <Route path="/servicios/gestion_inventario" element={<InventoryManagement />} />
                     <Route path="/Servicios/otros_servicios" element={<OtherServices />} />
-                    <Route path="/servicios/contabilidad-financiera" element={<AccountingAdvisory />} />
                     <Route path="/servicios/erp" element={<ImplementacionERP />} />
                     <Route path="/Servicios/registro_marca" element={<RegistroMarca />} />
                     <Route path="/sistemas-facturacion" element={<SistemasFacturacion />} />
-
+                    <Route path="/contabilidad-financiera" element={<ContabilidadFinanciera />} />
+                    <Route path="/contabilidad-fiscal" element={<ContabilidadFiscal />} />
+                    <Route path="/contabilidad-costos" element={<ContabilidadCostos />} />
+                    <Route path="/contabilidad-gerencial" element={<ContabilidadGerencial />} />
+                    <Route path="/contabilidad-administrativa" element={<ContabilidadAdministrativa />} />"
+                    <Route path="/facturas-electronicas" element={<FacturacionElectronica />} />"
+ 
                     {/* Rutas corporativas */}
                     <Route path="/nosotros" element={<AboutUs />} />
                     <Route path="/contacto" element={<Contactanos />} />
