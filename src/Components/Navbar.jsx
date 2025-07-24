@@ -2,42 +2,15 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import logoFinanzas from '/Imagen/Navbar/icon.png';
+import SERVICES from '../data/Contabilidad/servicesData.json';
 
-// Constantes para datos estáticos
-const SERVICES = [
-    {
-        name: "Contabilidad Financiera",
-        icon: "📊",
-        path: "/servicios/contabilidad-financiera"
-    },
-    {
-        name: "Sistemas de Facturación",
-        icon: "🖥️",
-        path: "/servicios/consultoria-fiscal"
-    },
-    {
-        name: "Análisis de Estados Financieros",
-        icon: "📈",
-        path: "/servicios/analisis-financiero"
-    },
-    {
-        name: "Implementación ERP",
-        icon: "🖥️",
-        path: "/servicios/erp"
-    },
-    {
-        name: "Inventario y Logística",
-        icon: "📦",
-        path: "/servicios/gestion_inventario"
-    },
-];
 const NAV_LINKS = [
     { name: "Sobre Nosotros", path: "/nosotros" },
     { name: "Noticias", path: "/noticias" },
     { name: "Contacto", path: "/contacto" }
 ];
 
-// Componente para el dropdown de servicios
+// Componente para el dropdown de servicios (con subcategorías escalonadas)
 const ServicesDropdown = ({ services, isOpen, onClose }) => (
     <AnimatePresence>
         {isOpen && (
@@ -51,19 +24,11 @@ const ServicesDropdown = ({ services, isOpen, onClose }) => (
                     stiffness: 300,
                     damping: 25
                 }}
-                className="absolute z-50 left-0 mt-3 w-72 origin-top-right rounded-2xl bg-white/90 backdrop-blur-xl shadow-2xl ring-1 ring-black/5 focus:outline-none overflow-hidden border border-white/20"
+                className="absolute z-50 left-0 mt-3 w-80 origin-top-right rounded-2xl bg-white/90 backdrop-blur-xl shadow-2xl ring-1 ring-black/5 focus:outline-none overflow-hidden border border-white/20"
             >
                 <div className="py-3">
                     {services.map((service, index) => (
-                        <Link
-                            key={index}
-                            to={service.path}
-                            className="flex items-center px-6 py-4 text-sm text-slate-700 hover:bg-gradient-to-r from-cyan-50/80 to-blue-50/80 hover:text-cyan-700 transition-all duration-200 group border-b border-slate-100/50 last:border-0"
-                            onClick={onClose}
-                        >
-                            <span className="mr-4 text-xl group-hover:scale-110 transition-transform">{service.icon}</span>
-                            <span className="font-semibold">{service.name}</span>
-                        </Link>
+                        <ServiceItem key={index} service={service} onClose={onClose} />
                     ))}
                 </div>
             </motion.div>
@@ -71,9 +36,85 @@ const ServicesDropdown = ({ services, isOpen, onClose }) => (
     </AnimatePresence>
 );
 
-// Componente para el menú móvil
+// Componente para cada servicio (con subcategorías anidadas)
+const ServiceItem = ({ service, onClose }) => {
+    const [isSubOpen, setIsSubOpen] = useState(false);
+
+    if (service.subcategories) {
+        return (
+            <div className="group">
+                {/* Servicio principal con subcategorías */}
+                <button
+                    onClick={() => setIsSubOpen(!isSubOpen)}
+                    className="flex items-center justify-between w-full px-6 py-4 text-sm text-slate-700 hover:bg-gradient-to-r from-cyan-50/80 to-blue-50/80 hover:text-cyan-700 transition-all duration-200 border-b border-slate-100/50"
+                >
+                    <div className="flex items-center">
+                        <span className="mr-4 text-xl">{service.icon}</span>
+                        <span className="font-semibold">{service.name}</span>
+                    </div>
+                    <motion.svg
+                        className="h-4 w-4 text-slate-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        animate={{ rotate: isSubOpen ? 180 : 0 }}
+                        transition={{ duration: 0.2 }}
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                    </motion.svg>
+                </button>
+
+                {/* Subcategorías con animación escalonada */}
+                <AnimatePresence>
+                    {isSubOpen && (
+                        <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="overflow-hidden"
+                        >
+                            <div className="pl-12 pr-4 pb-2 space-y-1">
+                                {service.subcategories.map((sub, subIndex) => (
+                                    <Link
+                                        key={subIndex}
+                                        to={sub.path}
+                                        className="block px-4 py-3 text-xs text-slate-600 hover:bg-cyan-50/80 hover:text-cyan-700 rounded-lg transition-all duration-200 border-l-2 border-cyan-200/50 hover:border-cyan-400"
+                                        onClick={onClose}
+                                    >
+                                        <div className="font-medium">{sub.name}</div>
+                                        <div className="text-xs opacity-75 mt-1">{sub.description}</div>
+                                    </Link>
+                                ))}
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
+        );
+    }
+
+    // Servicio sin subcategorías
+    return (
+        <Link
+            to={service.path}
+            className="flex items-center px-6 py-4 text-sm text-slate-700 hover:bg-gradient-to-r from-cyan-50/80 to-blue-50/80 hover:text-cyan-700 transition-all duration-200 group border-b border-slate-100/50 last:border-0"
+            onClick={onClose}
+        >
+            <span className="mr-4 text-xl group-hover:scale-110 transition-transform">{service.icon}</span>
+            <span className="font-semibold">{service.name}</span>
+        </Link>
+    );
+};
+
+// Componente para el menú móvil (con subcategorías escalonadas)
 const MobileMenu = ({ isOpen, onClose }) => {
-    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [servicesOpen, setServicesOpen] = useState(false);
+    const [subOpenIndex, setSubOpenIndex] = useState(null);
+
+    const toggleSubcategories = (index) => {
+        setSubOpenIndex(subOpenIndex === index ? null : index);
+    };
 
     return (
         <AnimatePresence>
@@ -93,7 +134,6 @@ const MobileMenu = ({ isOpen, onClose }) => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                     />
-
                     {/* Panel con animación mejorada */}
                     <motion.div
                         initial={{ x: "100%", opacity: 0 }}
@@ -131,14 +171,13 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                     </svg>
                                 </button>
                             </div>
-
                             {/* Contenido del menú */}
                             <div className="flex-1 overflow-y-auto py-6 px-4">
                                 <div className="space-y-2">
                                     {/* Dropdown de Servicios */}
                                     <div className="border border-slate-700/30 rounded-xl bg-slate-800/50 backdrop-blur-sm">
                                         <button
-                                            onClick={() => setDropdownOpen(!dropdownOpen)}
+                                            onClick={() => setServicesOpen(!servicesOpen)}
                                             className="w-full flex justify-between items-center text-slate-200 hover:text-cyan-300 px-4 py-4 rounded-xl text-base font-semibold transition-colors"
                                         >
                                             <div className="flex items-center">
@@ -150,15 +189,14 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                                 fill="none"
                                                 stroke="currentColor"
                                                 viewBox="0 0 24 24"
-                                                animate={{ rotate: dropdownOpen ? 180 : 0 }}
+                                                animate={{ rotate: servicesOpen ? 180 : 0 }}
                                                 transition={{ duration: 0.3 }}
                                             >
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                                             </motion.svg>
                                         </button>
-
                                         <AnimatePresence>
-                                            {dropdownOpen && (
+                                            {servicesOpen && (
                                                 <motion.div
                                                     initial={{ height: 0, opacity: 0 }}
                                                     animate={{ height: "auto", opacity: 1 }}
@@ -168,22 +206,71 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                                 >
                                                     <div className="pb-2 px-2 space-y-1">
                                                         {SERVICES.map((service, index) => (
-                                                            <Link
-                                                                key={index}
-                                                                to={service.path}
-                                                                className="flex items-center text-slate-300 hover:text-cyan-300 hover:bg-cyan-900/20 px-4 py-3 rounded-lg text-sm font-medium transition-all"
-                                                                onClick={onClose}
-                                                            >
-                                                                <span className="mr-3 text-lg">{service.icon}</span>
-                                                                {service.name}
-                                                            </Link>
+                                                            <div key={index}>
+                                                                {service.subcategories ? (
+                                                                    // Servicio con subcategorías en móvil
+                                                                    <div>
+                                                                        <button
+                                                                            onClick={() => toggleSubcategories(index)}
+                                                                            className="flex items-center justify-between w-full text-slate-300 hover:text-cyan-300 hover:bg-cyan-900/20 px-4 py-3 rounded-lg text-sm font-medium transition-all"
+                                                                        >
+                                                                            <div className="flex items-center">
+                                                                                <span className="mr-3 text-lg">{service.icon}</span>
+                                                                                {service.name}
+                                                                            </div>
+                                                                            <motion.svg
+                                                                                className="h-4 w-4 text-slate-400"
+                                                                                fill="none"
+                                                                                stroke="currentColor"
+                                                                                viewBox="0 0 24 24"
+                                                                                animate={{ rotate: subOpenIndex === index ? 180 : 0 }}
+                                                                                transition={{ duration: 0.2 }}
+                                                                            >
+                                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                                                                            </motion.svg>
+                                                                        </button>
+                                                                        <AnimatePresence>
+                                                                            {subOpenIndex === index && (
+                                                                                <motion.div
+                                                                                    initial={{ height: 0, opacity: 0 }}
+                                                                                    animate={{ height: "auto", opacity: 1 }}
+                                                                                    exit={{ height: 0, opacity: 0 }}
+                                                                                    transition={{ duration: 0.3 }}
+                                                                                    className="overflow-hidden pl-8 pr-2 pb-2 space-y-1"
+                                                                                >
+                                                                                    {service.subcategories.map((sub, subIndex) => (
+                                                                                        <Link
+                                                                                            key={subIndex}
+                                                                                            to={sub.path}
+                                                                                            className="block text-slate-400 hover:text-cyan-300 hover:bg-cyan-900/20 px-4 py-2.5 rounded-lg text-xs transition-all"
+                                                                                            onClick={onClose}
+                                                                                        >
+                                                                                            <div className="font-medium">{sub.name}</div>
+                                                                                            <div className="text-xs opacity-75 mt-1">{sub.description}</div>
+                                                                                        </Link>
+                                                                                    ))}
+                                                                                </motion.div>
+                                                                            )}
+                                                                        </AnimatePresence>
+                                                                    </div>
+                                                                ) : (
+                                                                    // Servicio sin subcategorías en móvil
+                                                                    <Link
+                                                                        to={service.path}
+                                                                        className="flex items-center text-slate-300 hover:text-cyan-300 hover:bg-cyan-900/20 px-4 py-3 rounded-lg text-sm font-medium transition-all"
+                                                                        onClick={onClose}
+                                                                    >
+                                                                        <span className="mr-3 text-lg">{service.icon}</span>
+                                                                        {service.name}
+                                                                    </Link>
+                                                                )}
+                                                            </div>
                                                         ))}
                                                     </div>
                                                 </motion.div>
                                             )}
                                         </AnimatePresence>
                                     </div>
-
                                     {/* Links de navegación */}
                                     {NAV_LINKS.map((link, index) => (
                                         <Link
@@ -197,10 +284,10 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                     ))}
                                 </div>
                             </div>
-
                             {/* Botón de acción en el footer */}
                             <div className="p-6 border-t border-slate-700/50">
                                 <motion.button
+                                    onClick={() => navigate('/contacto')}
                                     whileHover={{
                                         scale: 1.02,
                                         boxShadow: "0 10px 25px -5px rgba(6, 182, 212, 0.3), 0 8px 10px -6px rgba(6, 182, 212, 0.3)"
@@ -259,8 +346,8 @@ const NavbarFinanzas = () => {
     return (
         <>
             <nav className={`fixed w-full z-30 transition-all duration-500 ${scrolled
-                    ? 'bg-white/90 backdrop-blur-xl py-3 shadow-xl border-b border-slate-200/30'
-                    : 'bg-transparent py-5'
+                ? 'bg-white/90 backdrop-blur-xl py-3 shadow-xl border-b border-slate-200/30'
+                : 'bg-transparent py-5'
                 }`}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center">
@@ -273,8 +360,8 @@ const NavbarFinanzas = () => {
                         >
                             <div className="flex items-center group">
                                 <div className={`p-2 rounded-xl shadow-xl transition-all duration-300 ${scrolled
-                                        ? 'bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:shadow-cyan-500/20'
-                                        : 'bg-white/90 group-hover:shadow-white/20'
+                                    ? 'bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:shadow-cyan-500/20'
+                                    : 'bg-white/90 group-hover:shadow-white/20'
                                     }`}>
                                     <img
                                         src={logoFinanzas}
@@ -294,15 +381,14 @@ const NavbarFinanzas = () => {
                                 </div>
                             </div>
                         </motion.div>
-
                         {/* Menú desktop con estilo mejorado */}
                         <div className="hidden md:flex items-center space-x-2">
                             <div className="relative" ref={dropdownRef}>
                                 <button
                                     onClick={() => toggleDropdown('services')}
                                     className={`px-5 py-3 text-sm font-bold flex items-center rounded-xl transition-all duration-300 ${scrolled
-                                            ? 'text-slate-700 hover:bg-slate-100/80'
-                                            : 'text-white/90 hover:bg-white/10'
+                                        ? 'text-slate-700 hover:bg-slate-100/80'
+                                        : 'text-white/90 hover:bg-white/10'
                                         } ${dropdownOpen === 'services' ? (scrolled ? 'bg-slate-100/80' : 'bg-white/10') : ''}`}
                                 >
                                     Servicios
@@ -323,20 +409,18 @@ const NavbarFinanzas = () => {
                                     onClose={() => setDropdownOpen(null)}
                                 />
                             </div>
-
                             {NAV_LINKS.map((link, index) => (
                                 <Link
                                     key={index}
                                     to={link.path}
                                     className={`px-5 py-3 text-sm font-bold rounded-xl transition-all duration-300 ${scrolled
-                                            ? 'text-slate-700 hover:bg-slate-100/80'
-                                            : 'text-white/90 hover:bg-white/10'
+                                        ? 'text-slate-700 hover:bg-slate-100/80'
+                                        : 'text-white/90 hover:bg-white/10'
                                         }`}
                                 >
                                     {link.name}
                                 </Link>
                             ))}
-
                             <motion.button
                                 whileHover={{
                                     scale: 1.05,
@@ -348,15 +432,14 @@ const NavbarFinanzas = () => {
                                 Consultoría Gratis
                             </motion.button>
                         </div>
-
                         {/* Botón móvil con estilo mejorado */}
                         <div className="md:hidden flex items-center">
                             <motion.button
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                                 className={`p-3 rounded-xl transition-colors ${scrolled
-                                        ? 'text-slate-700 hover:bg-slate-100/80'
-                                        : 'text-white hover:bg-white/10'
+                                    ? 'text-slate-700 hover:bg-slate-100/80'
+                                    : 'text-white hover:bg-white/10'
                                     }`}
                                 aria-label="Toggle menu"
                             >
@@ -372,7 +455,6 @@ const NavbarFinanzas = () => {
                     </div>
                 </div>
             </nav>
-
             <MobileMenu
                 isOpen={mobileMenuOpen}
                 onClose={() => setMobileMenuOpen(false)}

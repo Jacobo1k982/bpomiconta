@@ -21,7 +21,7 @@ const Contactanos = () => {
     };
 
     return (
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900 overflow-hidden">
+        <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900 overflow-hidden pt-40">
             {/* Elementos decorativos de fondo mejorados */}
             <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute top-20 left-10 w-64 h-64 bg-blue-500 rounded-full filter blur-3xl opacity-10"></div>

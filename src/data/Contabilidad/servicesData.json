@@ -1,0 +1,49 @@
+[
+    {
+        "name": "Contabilidad Financiera",
+        "icon": "📊",
+        "path": "/servicios/contabilidad-financiera",
+        "subcategories": [
+            {
+                "name": "Libros Contables",
+                "description": "Registro sistemático de operaciones financieras",
+                "path": "/servicios/contabilidad-financiera/libros-contables"
+            },
+            {
+                "name": "Estados Financieros",
+                "description": "Informes periódicos de situación financiera",
+                "path": "/servicios/contabilidad-financiera/estados-financieros"
+            },
+            {
+                "name": "Conciliaciones Bancarias",
+                "description": "Verificación de registros bancarios y contables",
+                "path": "/servicios/contabilidad-financiera/conciliaciones-bancarias"
+            }
+        ]
+    },
+    {
+        "name": "Sistemas de Facturación",
+        "icon": "🧾",
+        "path": "/servicios/consultoria-fiscal"
+    },
+    {
+        "name": "Análisis de Estados Financieros",
+        "icon": "📈",
+        "path": "/servicios/analisis-financiero"
+    },
+    {
+        "name": "Implementación ERP",
+        "icon": "🖥️",
+        "path": "/servicios/erp"
+    },
+    {
+        "name": "Inventario y Logística",
+        "icon": "📦",
+        "path": "/servicios/gestion_inventario"
+    },
+    {
+        "name": "Registro de Marca",
+        "icon": "🗃️",
+        "path": "/Servicios/registro_marca"
+    }
+]

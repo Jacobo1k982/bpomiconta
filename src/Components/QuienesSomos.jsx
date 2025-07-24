@@ -34,7 +34,7 @@ const QuienesSomos = () => {
     };
 
     return (
-        <section className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900 text-white">
+        <section className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900 text-white pt-20">
             {/* Efecto de partículas decorativas */}
             <div className="absolute inset-0 overflow-hidden opacity-10">
                 {[...Array(10)].map((_, i) => (

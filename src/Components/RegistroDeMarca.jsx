@@ -56,7 +56,7 @@ const RegistroDeMarca = () => {
     ];
 
     return (
-        <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-900 via-blue-900 to-slate-900 overflow-hidden">
+        <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-900 via-blue-900 to-slate-900 overflow-hidden pt-40">
             {/* Efecto de fondo con textura sutil */}
             <div className="absolute inset-0 opacity-5">
                 <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/crissxcross.png')]"></div>

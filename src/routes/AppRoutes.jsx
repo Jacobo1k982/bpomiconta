@@ -88,7 +88,6 @@ const AppRoutes = () => {
 
                     {/* Redirección para rutas obsoletas */}
                     <Route path="/about" element={<Navigate to="/nosotros" replace />} />
-                    <Route path="/contact" element={<Navigate to="/contacto" replace />} />
 
                     {/* Ruta comodín para 404 */}
                     <Route path="*" element={<NotFound />} />

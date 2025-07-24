@@ -27,7 +27,7 @@ const GestionInventario = () => {
     ];
 
     return (
-        <section className="relative overflow-hidden py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900">
+        <section className="relative overflow-hidden py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900 pt-40">
             {/* Efecto de partículas */}
             <div className="absolute inset-0 opacity-10 pointer-events-none">
                 {[...Array(12)].map((_, i) => (

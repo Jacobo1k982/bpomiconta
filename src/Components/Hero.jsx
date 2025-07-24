@@ -17,7 +17,7 @@ const HeroFinanzas = () => {
     ];
 
     return (
-        <section className="relative min-h-screen flex items-center bg-gradient-to-br from-gray-900 via-blue-900/90 to-indigo-900 text-white overflow-hidden">
+        <section className="relative min-h-screen flex items-center bg-gradient-to-br from-gray-900 via-blue-900/90 to-indigo-900 text-white overflow-hidden pt-10">
             {/* Animated background elements */}
             <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute top-1/4 -left-40 w-[500px] h-[500px] bg-blue-500 rounded-full filter blur-3xl opacity-10 animate-pulse"></div>
