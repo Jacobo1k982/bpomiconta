@@ -1,22 +1,52 @@
 [
     {
-        "name": "Contabilidad Financiera",
+        "name": "Contabilidad",
         "icon": "📊",
         "path": "/servicios/contabilidad-financiera",
         "subcategories": [
             {
-                "name": "Libros Contables",
-                "description": "Registro sistemático de operaciones financieras",
+                "name": "Contabilidad Financiera",
+                "description": "Ideal para conocer la salud financiera del negocio.",
                 "path": "/servicios/contabilidad-financiera/libros-contables"
             },
             {
-                "name": "Estados Financieros",
-                "description": "Informes periódicos de situación financiera",
+                "name": "Contabilidad Fiscal o Tributaria",
+                "description": "Declaraciones de impuestos mensuales y anuales.",
                 "path": "/servicios/contabilidad-financiera/estados-financieros"
             },
             {
-                "name": "Conciliaciones Bancarias",
-                "description": "Verificación de registros bancarios y contables",
+                "name": "Contabilidad de Costos",
+                "description": "Ideal para empresas industriales, talleres o negocios que fabrican productos.",
+                "path": "/servicios/contabilidad-financiera/conciliaciones-bancarias"
+            },
+            {
+                "name": "Contabilidad Gerencial",
+                "description": "Herramienta estratégica para planificar el crecimiento.",
+                "path": "/servicios/contabilidad-financiera/conciliaciones-bancarias"
+            },
+            {
+                "name": "Contabilidad Administrativa",
+                "description": "Análisis de márgenes de utilidad, presupuestos, puntos de equilibrio.",
+                "path": "/servicios/contabilidad-financiera/conciliaciones-bancarias"
+            },
+            {
+                "name": "Contabilidad para Pymes o Simplificada",
+                "description": "Plan básico: ingresos y gastos + conciliaciones + declaración mensual.",
+                "path": "/servicios/contabilidad-financiera/conciliaciones-bancarias"
+            },
+            {
+                "name": "Facturación Electrónica y Control de Comprobantes",
+                "description": "Implementación y gestión de sistemas de facturación electrónica (por ejemplo, ATV en Costa Rica).",
+                "path": "/servicios/contabilidad-financiera/conciliaciones-bancarias"
+            },
+            {
+                "name": "Outsourcing Contable",
+                "description": "Externalización total o parcial de la contabilidad.",
+                "path": "/servicios/contabilidad-financiera/conciliaciones-bancarias"
+            },
+            {
+                "name": "Asesoría para Emprendedores",
+                "description": "Guías para organizar finanzas personales y del negocio.",
                 "path": "/servicios/contabilidad-financiera/conciliaciones-bancarias"
             }
         ]
@@ -24,12 +54,7 @@
     {
         "name": "Sistemas de Facturación",
         "icon": "🧾",
-        "path": "/servicios/consultoria-fiscal"
-    },
-    {
-        "name": "Análisis de Estados Financieros",
-        "icon": "📈",
-        "path": "/servicios/analisis-financiero"
+        "path": "/sistemas-facturacion"
     },
     {
         "name": "Implementación ERP",

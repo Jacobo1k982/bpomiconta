@@ -23,7 +23,7 @@ const Noticias = () => {
     };
 
     return (
-        <section className="relative bg-gradient-to-b from-gray-900 to-blue-900 text-white py-20 px-4 sm:px-6 lg:px-8 py-40">
+        <section className="relative bg-gradient-to-b from-gray-900 to-blue-900 text-white py-20 px-4 sm:px-6 lg:px-8 pt-40">
             {/* Efecto de fondo */}
             <div className="absolute inset-0 overflow-hidden opacity-10">
                 {[...Array(12)].map((_, i) => (

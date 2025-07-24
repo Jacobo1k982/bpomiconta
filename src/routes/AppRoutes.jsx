@@ -21,6 +21,7 @@ const NoticiaDestacada = lazy(() => import("../Components/NoticiaDestacada.jsx")
 const NoticiaDestacadaDetalle = lazy(() => import("../page/NoticiasDestacadas/NoticiaDestacadaDetalle.jsx"));
 const CarouselServicios = lazy(() => import("../Components/CarouselServicios.jsx"));
 const PreguntasFrecuentesContabilidad = lazy(() => import("../page/Footer/PreguntasFrecuentesContabilidad.jsx"));
+const SistemasFacturacion = lazy(() => import("../Components/Contabilidad/SistemasFacturacion.jsx"));
 
 // Loader mejorado con animación profesional
 const LoadingIndicator = () => (
@@ -80,6 +81,7 @@ const AppRoutes = () => {
                     <Route path="/servicios/contabilidad-financiera" element={<AccountingAdvisory />} />
                     <Route path="/servicios/erp" element={<ImplementacionERP />} />
                     <Route path="/Servicios/registro_marca" element={<RegistroMarca />} />
+                    <Route path="/sistemas-facturacion" element={<SistemasFacturacion />} />
 
                     {/* Rutas corporativas */}
                     <Route path="/nosotros" element={<AboutUs />} />
