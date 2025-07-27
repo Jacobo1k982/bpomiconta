@@ -1,35 +1,76 @@
+// src/components/FooterFinanzas.tsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const FooterFinanzas = () => {
     return (
-        <footer className="relative bg-gradient-to-b from-gray-900 to-black text-gray-300 pt-20 pb-10 overflow-hidden">
-            {/* Decorative elements */}
+        <footer className="relative bg-gradient-to-b from-slate-900 via-slate-800 to-teal-900 text-gray-300 pt-20 pb-10 overflow-hidden">
+            {/* Decorative elements with consistent colors */}
             <div className="absolute top-0 left-0 right-0">
-                <div className="h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500"></div>
-                <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-16 text-gray-900">
+                <div className="h-1 bg-gradient-to-r from-teal-500 via-emerald-500 to-teal-400"></div>
+                <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-16 text-slate-900">
                     <path
                         d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
                         opacity=".25"
-                        fill="currentColor"
+                        fill="url(#footerGradient1)"
                     ></path>
                     <path
                         d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
                         opacity=".5"
-                        fill="currentColor"
+                        fill="url(#footerGradient2)"
                     ></path>
                     <path
                         d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
-                        fill="currentColor"
+                        fill="url(#footerGradient3)"
                     ></path>
+                    <defs>
+                        <linearGradient id="footerGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stopColor="rgb(20, 184, 166)" /> {/* teal-500 */}
+                            <stop offset="50%" stopColor="rgb(16, 185, 129)" /> {/* emerald-500 */}
+                            <stop offset="100%" stopColor="rgb(20, 184, 166)" /> {/* teal-500 */}
+                        </linearGradient>
+                        <linearGradient id="footerGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stopColor="rgb(20, 184, 166)" /> {/* teal-500 */}
+                            <stop offset="50%" stopColor="rgb(16, 185, 129)" /> {/* emerald-500 */}
+                            <stop offset="100%" stopColor="rgb(20, 184, 166)" /> {/* teal-500 */}
+                        </linearGradient>
+                        <linearGradient id="footerGradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stopColor="rgb(20, 184, 166)" /> {/* teal-500 */}
+                            <stop offset="50%" stopColor="rgb(16, 185, 129)" /> {/* emerald-500 */}
+                            <stop offset="100%" stopColor="rgb(20, 184, 166)" /> {/* teal-500 */}
+                        </linearGradient>
+                    </defs>
                 </svg>
             </div>
 
-            {/* Floating animated elements */}
-            <div className="absolute top-20 right-10 w-2 h-2 bg-blue-500 rounded-full opacity-20 animate-pulse"></div>
-            <div className="absolute top-40 left-20 w-1 h-1 bg-purple-500 rounded-full opacity-30 animate-ping"></div>
-            <div className="absolute bottom-40 right-1/4 w-1.5 h-1.5 bg-teal-500 rounded-full opacity-25 animate-pulse"></div>
+            {/* Floating animated elements with consistent colors - MÁS LENTAS */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                {[...Array(8)].map((_, i) => (
+                    <motion.div
+                        key={i}
+                        className="absolute rounded-full bg-gradient-to-r from-teal-400 to-emerald-400"
+                        initial={{
+                            x: `${Math.random() * 100}%`,
+                            y: `${Math.random() * 100}%`,
+                            width: `${Math.random() * 6 + 2}px`,
+                            height: `${Math.random() * 6 + 2}px`,
+                            opacity: 0.1
+                        }}
+                        animate={{
+                            y: [0, (Math.random() * 100 - 50)],
+                            x: [0, (Math.random() * 100 - 50)],
+                            opacity: [0.1, 0.2, 0.1]
+                        }}
+                        transition={{
+                            duration: Math.random() * 30 + 20, // Más lentas: 20-50 segundos
+                            repeat: Infinity,
+                            repeatType: 'reverse',
+                            ease: 'easeInOut'
+                        }}
+                    />
+                ))}
+            </div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -42,14 +83,14 @@ const FooterFinanzas = () => {
                         className="space-y-6"
                     >
                         <div className="flex items-center">
-                            <div className="bg-gradient-to-br from-blue-600 to-teal-500 p-1.5 rounded-lg shadow-lg">
+                            <div className="bg-gradient-to-br from-teal-600 to-emerald-500 p-1.5 rounded-lg shadow-lg">
                                 <img
                                     src="/Imagen/Navbar/icon.png"
                                     alt="FinCorp Logo"
                                     className="h-8 w-auto"
                                 />
                             </div>
-                            <span className="ml-3 text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-teal-400">
+                            <span className="ml-3 text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-300 to-emerald-300">
                                 BPO<span className="text-white">MICONTA</span>
                             </span>
                         </div>
@@ -66,7 +107,7 @@ const FooterFinanzas = () => {
                                     key={index}
                                     whileHover={{ y: -3, scale: 1.1 }}
                                     href="#"
-                                    className="text-gray-400 hover:text-blue-400 transition-all duration-300"
+                                    className="text-gray-400 hover:text-teal-300 transition-all duration-300"
                                 >
                                     <span className="sr-only">{social.name}</span>
                                     <div className="h-6 w-6 transition-transform duration-300 hover:rotate-6">
@@ -86,7 +127,7 @@ const FooterFinanzas = () => {
                         transition={{ duration: 0.6, delay: 0.1 }}
                         viewport={{ once: true }}
                     >
-                        <h3 className="text-lg font-semibold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-teal-400">
+                        <h3 className="text-lg font-semibold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-teal-300 to-emerald-300">
                             Servicios
                         </h3>
                         <ul className="space-y-3">
@@ -103,7 +144,7 @@ const FooterFinanzas = () => {
                                         href="#"
                                         className="text-gray-400 hover:text-white transition-colors flex items-start group"
                                     >
-                                        <svg className="h-4 w-4 mt-1 mr-2 text-blue-400 flex-shrink-0 group-hover:text-teal-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg className="h-4 w-4 mt-1 mr-2 text-teal-400 flex-shrink-0 group-hover:text-emerald-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
                                         </svg>
                                         <span className="group-hover:text-white transition-colors">{service}</span>
@@ -120,7 +161,7 @@ const FooterFinanzas = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         viewport={{ once: true }}
                     >
-                        <h3 className="text-lg font-semibold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-teal-400">
+                        <h3 className="text-lg font-semibold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-teal-300 to-emerald-300">
                             Enlaces Rápidos
                         </h3>
                         <ul className="space-y-3">
@@ -153,19 +194,19 @@ const FooterFinanzas = () => {
                         viewport={{ once: true }}
                         className="space-y-6"
                     >
-                        <h3 className="text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-teal-400">
+                        <h3 className="text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-teal-300 to-emerald-300">
                             Contacto
                         </h3>
                         <div className="space-y-4">
                             <div className="flex items-start group">
-                                <svg className="h-5 w-5 text-blue-400 mr-3 mt-0.5 flex-shrink-0 group-hover:text-teal-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="h-5 w-5 text-teal-400 mr-3 mt-0.5 flex-shrink-0 group-hover:text-emerald-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                 </svg>
                                 <p className="text-gray-400 group-hover:text-white transition-colors">Calle. Topo, Principal<br />Montes de Oca, San Pedro</p>
                             </div>
                             <div className="flex items-center group">
-                                <svg className="h-5 w-5 text-blue-400 mr-3 flex-shrink-0 group-hover:text-teal-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="h-5 w-5 text-teal-400 mr-3 flex-shrink-0 group-hover:text-emerald-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                                 </svg>
                                 <a href="tel:50664541700" className="text-gray-400 hover:text-white transition-colors group-hover:text-white">
@@ -173,7 +214,7 @@ const FooterFinanzas = () => {
                                 </a>
                             </div>
                             <div className="flex items-center group">
-                                <svg className="h-5 w-5 text-blue-400 mr-3 flex-shrink-0 group-hover:text-teal-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="h-5 w-5 text-teal-400 mr-3 flex-shrink-0 group-hover:text-emerald-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                                 </svg>
                                 <a href="mailto:jgutierrez@bpomiconta.com" className="text-gray-400 hover:text-white transition-colors group-hover:text-white">
@@ -181,24 +222,27 @@ const FooterFinanzas = () => {
                                 </a>
                             </div>
                         </div>
-
                         {/* Newsletter */}
                         <div className="pt-4">
-                            <h4 className="text-sm font-semibold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-teal-400 mb-3">
+                            <h4 className="text-sm font-semibold bg-clip-text text-transparent bg-gradient-to-r from-teal-300 to-emerald-300 mb-3">
                                 Suscríbete a nuestro boletín
                             </h4>
                             <form className="flex rounded-lg overflow-hidden shadow-lg">
                                 <input
                                     type="email"
                                     placeholder="Tu correo electrónico"
-                                    className="px-4 py-3 w-full bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                                    className="px-4 py-3 w-full bg-slate-800/50 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500 border border-slate-700/50 transition-all"
                                     required
                                 />
                                 <motion.button
-                                    whileHover={{ scale: 1.05 }}
+                                    whileHover={{
+                                        scale: 1.05,
+                                        boxShadow: "0 10px 25px -5px rgba(20, 184, 166, 0.3), 0 8px 10px -6px rgba(20, 184, 166, 0.3)"
+                                    }}
                                     whileTap={{ scale: 0.95 }}
                                     type="submit"
-                                    className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-5 py-3 transition-all duration-300 font-medium"
+                                    className="bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white px-5 py-3 transition-all duration-300 font-medium"
+                                    style={{ transformStyle: "preserve-3d" }}
                                 >
                                     Enviar
                                 </motion.button>
@@ -206,21 +250,20 @@ const FooterFinanzas = () => {
                         </div>
                     </motion.div>
                 </div>
-
                 {/* Divider */}
-                <div className="border-t border-gray-800 mt-12 pt-8">
+                <div className="border-t border-slate-700/50 mt-12 pt-8">
                     <div className="flex flex-col md:flex-row justify-between items-center">
                         <p className="text-gray-500 text-sm">
                             © {new Date().getFullYear()} <span className="font-medium">BPOMICONTA</span>. Todos los derechos reservados.
                         </p>
                         <div className="flex flex-wrap justify-center gap-4 md:gap-6 mt-4 md:mt-0">
-                            <Link to="/politica-privacidad" className="text-gray-500 hover:text-blue-400 text-sm transition-colors hover:underline">
+                            <Link to="/politica-privacidad" className="text-gray-500 hover:text-teal-400 text-sm transition-colors hover:underline">
                                 Política de Privacidad
                             </Link>
-                            <Link to="#" className="text-gray-500 hover:text-blue-400 text-sm transition-colors hover:underline">
+                            <Link to="#" className="text-gray-500 hover:text-teal-400 text-sm transition-colors hover:underline">
                                 Términos de Servicio
                             </Link>
-                            <Link to="#" className="text-gray-500 hover:text-blue-400 text-sm transition-colors hover:underline">
+                            <Link to="#" className="text-gray-500 hover:text-teal-400 text-sm transition-colors hover:underline">
                                 Mapa del Sitio
                             </Link>
                         </div>

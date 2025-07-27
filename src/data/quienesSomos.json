@@ -1,3 +1,4 @@
+
 [
     {
         "id": 1,
@@ -41,11 +42,11 @@
         "tipo": "lista",
         "titulo": "Nuestros Valores",
         "items": [
-            " Compromiso: Cada cliente es una prioridad, y su éxito también es el nuestro.",
-            " Transparencia: Nos guiamos por la ética profesional y la claridad en cada informe.",
-            " Responsabilidad: Cumplimos con precisión y puntualidad.",
-            " Atención personalizada: Escuchamos, entendemos y actuamos según las necesidades reales.",
-            " Actualización constante: Nos mantenemos al día con cambios contables, fiscales y tecnológicos."
+            "Compromiso: Cada cliente es una prioridad, y su éxito también es el nuestro.",
+            "Transparencia: Nos guiamos por la ética profesional y la claridad en cada informe.",
+            "Responsabilidad: Cumplimos con precisión y puntualidad.",
+            "Atención personalizada: Escuchamos, entendemos y actuamos según las necesidades reales.",
+            "Actualización constante: Nos mantenemos al día con cambios contables, fiscales y tecnológicos."
         ]
     },
     {

@@ -1,58 +1,262 @@
+// src/components/SobreNosotros.tsx
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import data from '../data/quienesSomos.json';
-import { FaArrowRight, FaChevronRight } from 'react-icons/fa';
-import { FiExternalLink } from 'react-icons/fi';
+import { motion } from 'framer-motion';
+import { FiArrowRight, FiTarget, FiEye, FiHeart, FiUsers, FiRefreshCw } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
-const QuienesSomos = () => {
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.15,
-                delayChildren: 0.3
-            }
+const SobreNosotros = () => {
+    // Datos simulados - en una implementación real, estos vendrían de un archivo JSON o API
+    const contenido = [
+        {
+            "id": 1,
+            "tipo": "titulo",
+            "texto": "¿Quiénes Somos?"
+        },
+        {
+            "id": 2,
+            "tipo": "parrafo",
+            "contenido": "En BPOMICONTA, somos una empresa especializada en la externalización de procesos contables, financieros y administrativos. Nuestro objetivo es proporcionar soluciones eficientes, confiables y personalizadas para pequeñas y medianas empresas."
+        },
+        {
+            "id": 2.1,
+            "tipo": "parrafo",
+            "contenido": "Desde el año 2019, hemos brindado servicios contables personalizados a pequeñas empresas, emprendedores y profesionales independientes. Somos una firma costarricense con un enfoque humano y una visión clara: ayudar a nuestros clientes a comprender sus finanzas, cumplir con sus obligaciones legales y tomar decisiones con mayor claridad."
+        },
+        {
+            "id": 2.2,
+            "tipo": "parrafo",
+            "contenido": "Nos especializamos en contabilidad financiera, guiándonos por las mejores prácticas y normativas vigentes, para garantizar registros precisos, informes claros y tranquilidad fiscal"
+        },
+        {
+            "id": 2.3,
+            "tipo": "parrafo",
+            "contenido": "En bpomiconta sabemos que la contabilidad no solo se trata de números, sino de comprender la historia financiera detrás de cada negocio. Trabajamos codo a codo con nuestros clientes, construyendo relaciones a largo plazo basadas en confianza, responsabilidad y atención personalizada."
+        },
+        {
+            "id": 3,
+            "tipo": "bloque",
+            "titulo": "Nuestra Misión",
+            "contenido": "Brindar servicios de contabilidad financiera confiables, personalizados y alineados con la normativa vigente, para apoyar a nuestros clientes en la gestión clara, ordenada y estratégica de sus finanzas",
+            "icon": <FiTarget className="text-teal-400 text-2xl" />
+        },
+        {
+            "id": 4,
+            "tipo": "bloque",
+            "titulo": "Nuestra Visión",
+            "contenido": "Ser reconocidos como una firma de confianza en Costa Rica por nuestro profesionalismo, cercanía y compromiso con el crecimiento de cada uno de nuestros clientes.",
+            "icon": <FiEye className="text-teal-400 text-2xl" />
+        },
+        {
+            "id": 5,
+            "tipo": "lista",
+            "titulo": "Nuestros Valores",
+            "items": [
+                " Compromiso: Cada cliente es una prioridad, y su éxito también es el nuestro.",
+                " Transparencia: Nos guiamos por la ética profesional y la claridad en cada informe.",
+                " Responsabilidad: Cumplimos con precisión y puntualidad.",
+                " Atención personalizada: Escuchamos, entendemos y actuamos según las necesidades reales.",
+                " Actualización constante: Nos mantenemos al día con cambios contables, fiscales y tecnológicos."
+            ],
+            "icon": <FiHeart className="text-teal-400 text-2xl" />
+        },
+        {
+            "id": 6,
+            "tipo": "imagen",
+            "imagen": "/quienes-somos/vision-mision.jpg",
+            "alt": "Equipo de trabajo",
+            "activo": false
+        },
+        {
+            "id": 7,
+            "tipo": "video",
+            "titulo": "Conócenos en 1 minuto",
+            "video": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            "activo": false
+        },
+        {
+            "id": 8,
+            "tipo": "link",
+            "titulo": "Ver más sobre nuestra historia",
+            "url": "https://www.bpomiconta.com/sobre-nosotros",
+            "activo": false,
+            "icon": <FiUsers className="text-teal-400" />
         }
-    };
+    ];
 
-    const itemVariants = {
-        hidden: { opacity: 0, y: 30 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 0.6,
-                ease: [0.6, -0.05, 0.01, 0.99]
-            }
+    // Función para renderizar cada bloque de contenido
+    const renderBloque = (bloque, index) => {
+        const delay = index * 0.1;
+
+        switch (bloque.tipo) {
+            case 'titulo':
+                return (
+                    <motion.h1
+                        key={bloque.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay }}
+                        viewport={{ once: true }}
+                        className="text-4xl md:text-5xl font-extrabold text-center mb-16"
+                    >
+                        <span className="block bg-clip-text text-transparent bg-gradient-to-r from-teal-300 to-emerald-400">
+                            {bloque.texto}
+                        </span>
+                    </motion.h1>
+                );
+
+            case 'parrafo':
+                return (
+                    <motion.p
+                        key={bloque.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay }}
+                        viewport={{ once: true }}
+                        className="text-lg text-gray-300 mb-6 leading-relaxed max-w-4xl mx-auto"
+                    >
+                        {bloque.contenido}
+                    </motion.p>
+                );
+
+            case 'bloque':
+                return (
+                    <motion.div
+                        key={bloque.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay }}
+                        viewport={{ once: true }}
+                        className="bg-gradient-to-br from-slate-800/40 to-teal-900/20 backdrop-blur-sm p-6 rounded-2xl border border-slate-700/50 hover:border-teal-400/50 transition-all duration-300"
+                        style={{ transformStyle: "preserve-3d" }}
+                        whileHover={{
+                            y: -5,
+                            scale: 1.02,
+                            rotateX: 3,
+                            rotateY: 3
+                        }}
+                    >
+                        <div className="flex items-start gap-4">
+                            <div className="flex-shrink-0 mt-1 p-3 rounded-xl bg-slate-700/50 border border-slate-600/50">
+                                {bloque.icon}
+                            </div>
+                            <div>
+                                <h3 className="text-xl font-bold text-white mb-3">{bloque.titulo}</h3>
+                                <p className="text-gray-300">{bloque.contenido}</p>
+                            </div>
+                        </div>
+                    </motion.div>
+                );
+
+            case 'lista':
+                return (
+                    <motion.div
+                        key={bloque.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay }}
+                        viewport={{ once: true }}
+                        className="bg-gradient-to-br from-slate-800/40 to-teal-900/20 backdrop-blur-sm p-6 rounded-2xl border border-slate-700/50"
+                    >
+                        <div className="flex items-start gap-4 mb-5">
+                            <div className="flex-shrink-0 mt-1 p-3 rounded-xl bg-slate-700/50 border border-slate-600/50">
+                                {bloque.icon}
+                            </div>
+                            <h3 className="text-xl font-bold text-white">{bloque.titulo}</h3>
+                        </div>
+                        <ul className="space-y-4">
+                            {bloque.items.map((item, i) => (
+                                <motion.li
+                                    key={i}
+                                    initial={{ opacity: 0, x: -10 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: delay + (i * 0.05) }}
+                                    viewport={{ once: true }}
+                                    className="flex items-start group"
+                                >
+                                    <div className="flex-shrink-0 mt-2 mr-4">
+                                        <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-teal-400 to-emerald-400 group-hover:scale-125 transition-transform"></div>
+                                    </div>
+                                    <span className="text-gray-300">{item}</span>
+                                </motion.li>
+                            ))}
+                        </ul>
+                    </motion.div>
+                );
+
+            case 'link':
+                return (
+                    <motion.div
+                        key={bloque.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay }}
+                        viewport={{ once: true }}
+                        className="text-center"
+                    >
+                        <Link
+                            to={bloque.url}
+                            className="inline-flex items-center gap-3 bg-gradient-to-r from-teal-600 to-emerald-600 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all group"
+                            style={{ transformStyle: "preserve-3d" }}
+                            whileHover={{
+                                scale: 1.05,
+                                boxShadow: "0 20px 25px -5px rgba(20, 184, 166, 0.3), 0 10px 10px -5px rgba(20, 184, 166, 0.2)",
+                                rotateX: 5,
+                                rotateY: 5
+                            }}
+                            whileTap={{ scale: 0.98 }}
+                        >
+                            <span>{bloque.titulo}</span>
+                            <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                    </motion.div>
+                );
+
+            default:
+                return null;
         }
-    };
-
-    const fadeIn = {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { duration: 0.8 } }
     };
 
     return (
-        <section className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900 text-white pt-20">
-            {/* Efecto de partículas decorativas */}
-            <div className="absolute inset-0 overflow-hidden opacity-10">
+        <div className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900 text-white overflow-hidden pt-24">
+            {/* Elementos decorativos de fondo */}
+            <div className="absolute inset-0 overflow-hidden">
+                <div className="absolute top-20 left-10 w-64 h-64 bg-teal-500 rounded-full filter blur-3xl opacity-10"></div>
+                <div className="absolute bottom-20 right-10 w-72 h-72 bg-emerald-500 rounded-full filter blur-3xl opacity-10"></div>
+                {/* Patrón geométrico sutil */}
+                <svg className="absolute inset-0 w-full h-full opacity-5" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <path
+                        d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"
+                        fill="url(#aboutGradient)"
+                    />
+                    <defs>
+                        <linearGradient id="aboutGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="rgb(20, 184, 166)" /> {/* teal-500 */}
+                            <stop offset="100%" stopColor="rgb(16, 185, 129)" /> {/* emerald-500 */}
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+
+            {/* Partículas flotantes */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 {[...Array(10)].map((_, i) => (
                     <motion.div
                         key={i}
-                        className="absolute rounded-full bg-blue-400"
+                        className="absolute rounded-full bg-gradient-to-r from-teal-400 to-emerald-400"
                         initial={{
-                            x: Math.random() * 100 + '%',
-                            y: Math.random() * 100 + '%',
-                            width: Math.random() * 10 + 5 + 'px',
-                            height: Math.random() * 10 + 5 + 'px'
+                            x: `${Math.random() * 100}%`,
+                            y: `${Math.random() * 100}%`,
+                            width: `${Math.random() * 6 + 2}px`,
+                            height: `${Math.random() * 6 + 2}px`,
+                            opacity: 0.1
                         }}
                         animate={{
-                            y: [null, (Math.random() * 100 - 50) + 'px'],
-                            opacity: [0.3, 0.8, 0.3]
+                            y: [0, (Math.random() * 100 - 50)],
+                            x: [0, (Math.random() * 100 - 50)],
+                            opacity: [0.1, 0.2, 0.1]
                         }}
                         transition={{
-                            duration: Math.random() * 10 + 10,
+                            duration: Math.random() * 30 + 20,
                             repeat: Infinity,
                             repeatType: 'reverse',
                             ease: 'easeInOut'
@@ -61,222 +265,13 @@ const QuienesSomos = () => {
                 ))}
             </div>
 
-            <div className="relative max-w-7xl mx-auto px-6 py-24 sm:px-8 lg:px-12">
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    variants={containerVariants}
-                    viewport={{ once: true, margin: "-100px" }}
-                    className="space-y-16"
-                >
-                    {data.map((item) => {
-                        if (item.activo === false) return null;
-
-                        switch (item.tipo) {
-                            case 'titulo':
-                                return (
-                                    <motion.div key={item.id} variants={itemVariants} className="text-center">
-                                        <motion.h2
-                                            className="text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-teal-400 pb-4"
-                                            initial={{ opacity: 0, y: 40 }}
-                                            whileInView={{ opacity: 1, y: 0 }}
-                                            transition={{ duration: 0.8, delay: 0.2 }}
-                                            viewport={{ once: true }}
-                                        >
-                                            {item.texto}
-                                        </motion.h2>
-                                        <motion.div
-                                            className="mx-auto h-1 bg-gradient-to-r from-transparent via-blue-400 to-transparent w-1/3 my-6"
-                                            initial={{ scaleX: 0 }}
-                                            whileInView={{ scaleX: 1 }}
-                                            transition={{ duration: 1, delay: 0.5 }}
-                                            viewport={{ once: true }}
-                                        />
-                                    </motion.div>
-                                );
-
-                            case 'parrafo':
-                                return (
-                                    <motion.div key={item.id} variants={itemVariants} className="max-w-4xl mx-auto">
-                                        <motion.p
-                                            className="text-xl md:text-2xl leading-relaxed text-blue-100 text-center font-light"
-                                            initial={{ opacity: 0 }}
-                                            whileInView={{ opacity: 1 }}
-                                            transition={{ duration: 1, delay: 0.4 }}
-                                            viewport={{ once: true }}
-                                        >
-                                            {item.contenido}
-                                        </motion.p>
-                                    </motion.div>
-                                );
-
-                            case 'bloque':
-                                return (
-                                    <motion.div
-                                        key={item.id}
-                                        variants={itemVariants}
-                                        className="relative group overflow-hidden"
-                                    >
-                                        <div className="absolute inset-0 bg-gradient-to-br from-blue-700/20 to-indigo-900/20 rounded-2xl"></div>
-                                        <div className="relative bg-white/5 backdrop-blur-lg border border-white/10 p-10 rounded-2xl shadow-2xl">
-                                            <motion.h3
-                                                className="text-3xl font-semibold text-blue-300 mb-6"
-                                                initial={{ opacity: 0, x: -20 }}
-                                                whileInView={{ opacity: 1, x: 0 }}
-                                                transition={{ duration: 0.6, delay: 0.3 }}
-                                                viewport={{ once: true }}
-                                            >
-                                                {item.titulo}
-                                            </motion.h3>
-                                            <motion.p
-                                                className="text-blue-100 text-lg leading-relaxed"
-                                                initial={{ opacity: 0 }}
-                                                whileInView={{ opacity: 1 }}
-                                                transition={{ duration: 0.8, delay: 0.5 }}
-                                                viewport={{ once: true }}
-                                            >
-                                                {item.contenido}
-                                            </motion.p>
-                                        </div>
-                                    </motion.div>
-                                );
-
-                            case 'lista':
-                                return (
-                                    <motion.div
-                                        key={item.id}
-                                        variants={itemVariants}
-                                        className="relative overflow-hidden rounded-2xl"
-                                    >
-                                        <div className="absolute inset-0 bg-gradient-to-br from-blue-800/30 to-indigo-900/30 rounded-2xl"></div>
-                                        <div className="relative bg-white/5 backdrop-blur-lg border border-white/10 p-10 rounded-2xl shadow-2xl">
-                                            <motion.h3
-                                                className="text-3xl font-semibold text-blue-300 mb-8"
-                                                initial={{ opacity: 0 }}
-                                                whileInView={{ opacity: 1 }}
-                                                transition={{ duration: 0.6, delay: 0.3 }}
-                                                viewport={{ once: true }}
-                                            >
-                                                {item.titulo}
-                                            </motion.h3>
-                                            <ul className="space-y-5">
-                                                {item.items.map((val, index) => (
-                                                    <motion.li
-                                                        key={index}
-                                                        className="flex items-start"
-                                                        initial={{ opacity: 0, x: -10 }}
-                                                        whileInView={{ opacity: 1, x: 0 }}
-                                                        transition={{
-                                                            duration: 0.5,
-                                                            delay: 0.1 * index + 0.4
-                                                        }}
-                                                        viewport={{ once: true, margin: "-50px" }}
-                                                    >
-                                                        <div className="flex-shrink-0 mt-1.5">
-                                                            <div className="h-7 w-7 rounded-full bg-blue-500/30 flex items-center justify-center">
-                                                                <FaChevronRight className="text-blue-300 text-xs" />
-                                                            </div>
-                                                        </div>
-                                                        <p className="ml-4 text-blue-100 text-lg">{val}</p>
-                                                    </motion.li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    </motion.div>
-                                );
-
-                            case 'imagen':
-                                return (
-                                    <motion.div
-                                        key={item.id}
-                                        variants={itemVariants}
-                                        className="relative group overflow-hidden rounded-3xl shadow-2xl"
-                                    >
-                                        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-indigo-900/40 z-10"></div>
-                                        <motion.img
-                                            src={item.imagen}
-                                            alt={item.alt || ''}
-                                            className="w-full h-auto max-h-[600px] object-cover transform transition-transform duration-1000 group-hover:scale-110"
-                                            initial={{ opacity: 0 }}
-                                            whileInView={{ opacity: 1 }}
-                                            transition={{ duration: 1 }}
-                                            viewport={{ once: true }}
-                                        />
-                                        <motion.div
-                                            className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 to-transparent z-20"
-                                            initial={{ opacity: 0, y: 20 }}
-                                            whileInView={{ opacity: 1, y: 0 }}
-                                            transition={{ duration: 0.8, delay: 0.5 }}
-                                            viewport={{ once: true }}
-                                        >
-                                            <h4 className="text-xl font-medium text-white">{item.titulo || ' '}</h4>
-                                        </motion.div>
-                                    </motion.div>
-                                );
-
-                            case 'video':
-                                return (
-                                    <motion.div
-                                        key={item.id}
-                                        variants={itemVariants}
-                                        className="relative aspect-w-16 aspect-h-9 rounded-3xl overflow-hidden shadow-2xl group"
-                                    >
-                                        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 to-indigo-900/50 z-10"></div>
-                                        <iframe
-                                            src={item.video}
-                                            title={item.titulo}
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowFullScreen
-                                            className="w-full h-full object-cover transform transition-transform duration-1000 group-hover:scale-110"
-                                        />
-                                        <motion.div
-                                            className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 to-transparent z-20"
-                                            initial={{ opacity: 0, y: 20 }}
-                                            whileInView={{ opacity: 1, y: 0 }}
-                                            transition={{ duration: 0.8, delay: 0.5 }}
-                                            viewport={{ once: true }}
-                                        >
-                                            <h4 className="text-xl font-medium text-white">{item.titulo}</h4>
-                                        </motion.div>
-                                    </motion.div>
-                                );
-
-                            case 'link':
-                                return (
-                                    <motion.div
-                                        key={item.id}
-                                        variants={itemVariants}
-                                        className="text-center pt-8"
-                                    >
-                                        <motion.a
-                                            href={item.url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-3 text-lg font-medium group relative"
-                                            initial={{ opacity: 0 }}
-                                            whileInView={{ opacity: 1 }}
-                                            transition={{ duration: 0.8, delay: 0.6 }}
-                                            viewport={{ once: true }}
-                                        >
-                                            <span className="relative overflow-hidden">
-                                                <span className="inline-block bg-gradient-to-r from-blue-300 to-teal-400 bg-clip-text text-transparent">
-                                                    {item.titulo}
-                                                </span>
-                                                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-300 transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
-                                            </span>
-                                            <FiExternalLink className="text-blue-300 group-hover:text-teal-300 transition-colors duration-300" />
-                                        </motion.a>
-                                    </motion.div>
-                                );
-
-                            default:
-                                return null;
-                        }
-                    })}
-                </motion.div>
+            <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+                <div className="space-y-16">
+                    {contenido.map((bloque, index) => renderBloque(bloque, index))}
+                </div>
             </div>
-        </section>
+        </div>
     );
 };
 
-export default QuienesSomos;
+export default SobreNosotros;

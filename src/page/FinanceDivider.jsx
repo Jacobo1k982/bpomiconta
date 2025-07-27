@@ -1,3 +1,4 @@
+// src/components/FinanceHorizontalDivider.tsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import {
@@ -7,43 +8,43 @@ import { FaColonSign, FaPercent } from 'react-icons/fa6';
 
 const FinanceHorizontalDivider = () => {
     const financialTerms = [
-        { text: "Inversión", icon: <FaChartLine className="text-cyan-300 drop-shadow-sm" /> },
-        { text: "Finanzas", icon: <FaMoneyBillWave className="text-cyan-300 drop-shadow-sm" /> },
-        { text: "Contabilidad", icon: <FaColonSign className="text-cyan-300 drop-shadow-sm" /> },
-        { text: "Ahorro", icon: <FaPiggyBank className="text-cyan-300 drop-shadow-sm" /> },
-        { text: "Crédito", icon: <FaHandHoldingUsd className="text-cyan-300 drop-shadow-sm" /> },
-        { text: "ROI", icon: <FaPercent className="text-cyan-300 drop-shadow-sm" /> },
-        { text: "Global", icon: <FaGlobe className="text-cyan-300 drop-shadow-sm" /> }
+        { text: "Inversión", icon: <FaChartLine className="text-teal-300 drop-shadow-sm" /> },
+        { text: "Finanzas", icon: <FaMoneyBillWave className="text-teal-300 drop-shadow-sm" /> },
+        { text: "Contabilidad", icon: <FaColonSign className="text-teal-300 drop-shadow-sm" /> },
+        { text: "Ahorro", icon: <FaPiggyBank className="text-teal-300 drop-shadow-sm" /> },
+        { text: "Crédito", icon: <FaHandHoldingUsd className="text-teal-300 drop-shadow-sm" /> },
+        { text: "ROI", icon: <FaPercent className="text-teal-300 drop-shadow-sm" /> },
+        { text: "Global", icon: <FaGlobe className="text-teal-300 drop-shadow-sm" /> }
     ];
 
     return (
-        <div className="relative h-20 md:h-24 w-full overflow-hidden bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 backdrop-blur-md rounded-xl shadow-2xl border border-slate-700/50">
-            {/* Efecto de brillo moderno */}
+        <div className="relative h-20 md:h-24 w-full overflow-hidden bg-gradient-to-r from-slate-900 via-slate-800 to-teal-900 backdrop-blur-md rounded-xl shadow-2xl border border-slate-700/50">
+            {/* Efecto de brillo moderno con colores coherentes */}
             <motion.div
                 className="absolute inset-0 opacity-20"
                 initial={{ x: '-100%' }}
                 animate={{ x: '100%' }}
                 transition={{
-                    duration: 8,
+                    duration: 12, // Más lento
                     ease: "easeInOut",
                     repeat: Infinity,
                     repeatType: "reverse"
                 }}
                 style={{
-                    background: 'linear-gradient(90deg, transparent, rgba(103, 232, 249, 0.6), transparent)'
+                    background: 'linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.6), transparent)' // teal-500
                 }}
             />
 
-            {/* Degradado de fondo animado */}
+            {/* Degradado de fondo animado con colores coherentes */}
             <motion.div
                 className="absolute top-0 left-0 w-[200%] h-full"
                 style={{
-                    background: 'linear-gradient(90deg, rgba(6, 78, 130, 0.3), rgba(12, 117, 194, 0.5), rgba(6, 78, 130, 0.3))'
+                    background: 'linear-gradient(90deg, rgba(20, 184, 166, 0.3), rgba(16, 185, 129, 0.5), rgba(20, 184, 166, 0.3))' // teal-500, emerald-500
                 }}
                 initial={{ x: '0%' }}
                 animate={{ x: '-50%' }}
                 transition={{
-                    duration: 30,
+                    duration: 40, // Más lento
                     ease: "linear",
                     repeat: Infinity
                 }}
@@ -55,19 +56,22 @@ const FinanceHorizontalDivider = () => {
                                 {financialTerms.map((term, idx) => (
                                     <motion.div
                                         key={`${i}-${idx}`}
-                                        className="flex items-center gap-3 text-slate-100 font-semibold text-sm md:text-base whitespace-nowrap backdrop-blur-sm px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300"
+                                        className="flex items-center gap-3 text-gray-200 font-semibold text-sm md:text-base whitespace-nowrap backdrop-blur-sm px-4 py-2 rounded-lg bg-slate-800/30 border border-slate-700/50 hover:bg-slate-700/50 transition-all duration-300"
                                         whileHover={{
                                             scale: 1.05,
-                                            y: -2
+                                            y: -2,
+                                            rotateX: 5,
+                                            rotateY: 5
                                         }}
                                         transition={{
                                             type: "spring",
                                             stiffness: 400,
                                             damping: 10
                                         }}
+                                        style={{ transformStyle: "preserve-3d" }}
                                     >
                                         <span className="tracking-wide">{term.text}</span>
-                                        <div className="text-2xl p-1 rounded-full bg-slate-800/50">
+                                        <div className="text-2xl p-1 rounded-full bg-slate-700/50 border border-slate-600/50">
                                             {term.icon}
                                         </div>
                                     </motion.div>

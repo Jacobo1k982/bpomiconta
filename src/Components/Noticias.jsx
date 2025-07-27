@@ -1,3 +1,4 @@
+// src/components/Noticias.tsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -23,13 +24,13 @@ const Noticias = () => {
     };
 
     return (
-        <section className="relative bg-gradient-to-b from-gray-900 to-blue-900 text-white py-20 px-4 sm:px-6 lg:px-8 pt-40">
-            {/* Efecto de fondo */}
+        <section className="relative bg-gradient-to-b from-slate-900 via-slate-800 to-teal-900 text-white py-20 px-4 sm:px-6 lg:px-8 pt-40">
+            {/* Efecto de fondo con colores coherentes - MÁS LENTAS */}
             <div className="absolute inset-0 overflow-hidden opacity-10">
-                {[...Array(12)].map((_, i) => (
+                {[...Array(10)].map((_, i) => (
                     <motion.div
                         key={i}
-                        className="absolute rounded-full bg-blue-400"
+                        className="absolute rounded-full bg-teal-400"
                         initial={{
                             x: Math.random() * 100 + '%',
                             y: Math.random() * 100 + '%',
@@ -41,7 +42,7 @@ const Noticias = () => {
                             opacity: [0.3, 0.8, 0.3]
                         }}
                         transition={{
-                            duration: Math.random() * 15 + 10,
+                            duration: Math.random() * 30 + 20, // Más lentas: 20-50 segundos
                             repeat: Infinity,
                             repeatType: 'reverse',
                             ease: 'easeInOut'
@@ -59,10 +60,10 @@ const Noticias = () => {
                     viewport={{ once: true, margin: "-50px" }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-teal-400 mb-6">
+                    <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-300 to-emerald-400 mb-6">
                         Noticias Recientes
                     </h2>
-                    <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-teal-400 mx-auto"></div>
+                    <div className="w-24 h-1 bg-gradient-to-r from-teal-400 to-emerald-500 mx-auto"></div>
                 </motion.div>
 
                 {/* Grid de noticias */}
@@ -77,7 +78,16 @@ const Noticias = () => {
                             custom={index}
                             className="group"
                         >
-                            <div className="h-full bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 flex flex-col transform hover:-translate-y-2">
+                            <motion.div
+                                whileHover={{
+                                    y: -5,
+                                    scale: 1.02,
+                                    rotateX: 3,
+                                    rotateY: 3
+                                }}
+                                className="h-full bg-slate-800/40 backdrop-blur-sm border border-slate-700/50 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 flex flex-col transform"
+                                style={{ transformStyle: "preserve-3d" }}
+                            >
                                 {/* Imagen con overlay */}
                                 <div className="relative overflow-hidden aspect-video">
                                     <img
@@ -87,7 +97,7 @@ const Noticias = () => {
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
                                     <div className="absolute top-4 right-4">
-                                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-600/90 text-white">
+                                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-teal-600/90 to-emerald-600/90 text-white border border-teal-500/30">
                                             <FaRegClock className="mr-1" />
                                             {noticia.fecha}
                                         </span>
@@ -97,8 +107,8 @@ const Noticias = () => {
                                 {/* Contenido */}
                                 <div className="p-6 flex flex-col flex-grow">
                                     <div className="flex-grow">
-                                        <h3 className="text-xl font-semibold text-white mb-3">{noticia.titulo}</h3>
-                                        <p className="text-blue-100 mb-6">{noticia.resumen}</p>
+                                        <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-teal-200 transition-colors">{noticia.titulo}</h3>
+                                        <p className="text-gray-300 mb-6">{noticia.resumen}</p>
                                     </div>
 
                                     {/* Botón según tipo */}
@@ -108,7 +118,7 @@ const Noticias = () => {
                                                 href={noticia.pdf}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="inline-flex items-center gap-2 text-blue-300 hover:text-white font-medium transition-colors"
+                                                className="inline-flex items-center gap-2 text-teal-300 hover:text-white font-medium transition-colors"
                                             >
                                                 <FaFilePdf className="flex-shrink-0" />
                                                 Ver documento
@@ -117,7 +127,7 @@ const Noticias = () => {
                                         ) : noticia.link ? (
                                             <Link
                                                 to={noticia.link}
-                                                className="inline-flex items-center gap-2 text-blue-300 hover:text-white font-medium transition-colors"
+                                                className="inline-flex items-center gap-2 text-teal-300 hover:text-white font-medium transition-colors"
                                             >
                                                 <FaArrowRight className="flex-shrink-0" />
                                                 Leer más
@@ -128,7 +138,7 @@ const Noticias = () => {
                                                 href={noticia.video}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="inline-flex items-center gap-2 text-blue-300 hover:text-white font-medium transition-colors"
+                                                className="inline-flex items-center gap-2 text-teal-300 hover:text-white font-medium transition-colors"
                                             >
                                                 <FaVideo className="flex-shrink-0" />
                                                 Ver video
@@ -137,7 +147,7 @@ const Noticias = () => {
                                         ) : null}
                                     </motion.div>
                                 </div>
-                            </div>
+                            </motion.div>
                         </motion.div>
                     ))}
                 </div>
