@@ -43,8 +43,7 @@ const FooterFinanzas = () => {
                     </defs>
                 </svg>
             </div>
-
-            {/* Floating animated elements with consistent colors - MÁS LENTAS */}
+            {/* Floating animated elements with consistent colors - MÁS LENTAS Y CON PARPADEO */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 {[...Array(8)].map((_, i) => (
                     <motion.div
@@ -60,7 +59,7 @@ const FooterFinanzas = () => {
                         animate={{
                             y: [0, (Math.random() * 100 - 50)],
                             x: [0, (Math.random() * 100 - 50)],
-                            opacity: [0.1, 0.2, 0.1]
+                            opacity: [0.1, 0.3, 0.1] // Efecto de parpadeo más pronunciado
                         }}
                         transition={{
                             duration: Math.random() * 30 + 20, // Más lentas: 20-50 segundos
@@ -71,7 +70,6 @@ const FooterFinanzas = () => {
                     />
                 ))}
             </div>
-
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                     {/* Column 1 - Logo and description */}
@@ -105,7 +103,7 @@ const FooterFinanzas = () => {
                             ].map((social, index) => (
                                 <motion.a
                                     key={index}
-                                    whileHover={{ y: -3, scale: 1.1 }}
+                                    whileHover={{ y: -3, scale: 1.15, rotate: 5 }} // Efecto de rotación añadido
                                     href="#"
                                     className="text-gray-400 hover:text-teal-300 transition-all duration-300"
                                 >
@@ -119,7 +117,6 @@ const FooterFinanzas = () => {
                             ))}
                         </div>
                     </motion.div>
-
                     {/* Column 2 - Services */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -140,7 +137,7 @@ const FooterFinanzas = () => {
                             ].map((service, index) => (
                                 <li key={index}>
                                     <motion.a
-                                        whileHover={{ x: 5 }}
+                                        whileHover={{ x: 8 }} // Desplazamiento aumentado
                                         href="#"
                                         className="text-gray-400 hover:text-white transition-colors flex items-start group"
                                     >
@@ -153,7 +150,6 @@ const FooterFinanzas = () => {
                             ))}
                         </ul>
                     </motion.div>
-
                     {/* Column 3 - Quick Links */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -174,7 +170,7 @@ const FooterFinanzas = () => {
                             ].map((link, index) => (
                                 <li key={index}>
                                     <motion.a
-                                        whileHover={{ x: 5 }}
+                                        whileHover={{ x: 8 }} // Desplazamiento aumentado
                                         href={link.href}
                                         className="text-gray-400 hover:text-white transition-colors flex items-center group"
                                     >
@@ -185,7 +181,6 @@ const FooterFinanzas = () => {
                             ))}
                         </ul>
                     </motion.div>
-
                     {/* Column 4 - Contact */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -227,24 +222,27 @@ const FooterFinanzas = () => {
                             <h4 className="text-sm font-semibold bg-clip-text text-transparent bg-gradient-to-r from-teal-300 to-emerald-300 mb-3">
                                 Suscríbete a nuestro boletín
                             </h4>
-                            <form className="flex rounded-lg overflow-hidden shadow-lg">
+                            <form className="flex rounded-lg overflow-hidden shadow-lg backdrop-blur-sm border border-slate-700/50">
                                 <input
                                     type="email"
                                     placeholder="Tu correo electrónico"
-                                    className="px-4 py-3 w-full bg-slate-800/50 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500 border border-slate-700/50 transition-all"
+                                    className="px-4 py-3 w-full bg-slate-800/50 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all"
                                     required
                                 />
+                                {/* Botón del boletín con efecto shine mejorado */}
                                 <motion.button
                                     whileHover={{
-                                        scale: 1.05,
+                                        scale: 1.03, // Escala ligeramente reducida
                                         boxShadow: "0 10px 25px -5px rgba(20, 184, 166, 0.3), 0 8px 10px -6px rgba(20, 184, 166, 0.3)"
                                     }}
-                                    whileTap={{ scale: 0.95 }}
+                                    whileTap={{ scale: 0.98 }}
                                     type="submit"
-                                    className="bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white px-5 py-3 transition-all duration-300 font-medium"
+                                    className="relative overflow-hidden bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white px-5 py-3 transition-all duration-300 font-medium group"
                                     style={{ transformStyle: "preserve-3d" }}
                                 >
-                                    Enviar
+                                    <span className="relative z-10">Enviar</span>
+                                    <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+                                    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></span>
                                 </motion.button>
                             </form>
                         </div>
@@ -253,7 +251,7 @@ const FooterFinanzas = () => {
                 {/* Divider */}
                 <div className="border-t border-slate-700/50 mt-12 pt-8">
                     <div className="flex flex-col md:flex-row justify-between items-center">
-                        <p className="text-gray-500 text-sm">
+                        <p className="text-gray-500 text-sm transition-colors hover:text-gray-300">
                             © {new Date().getFullYear()} <span className="font-medium">BPOMICONTA</span>. Todos los derechos reservados.
                         </p>
                         <div className="flex flex-wrap justify-center gap-4 md:gap-6 mt-4 md:mt-0">

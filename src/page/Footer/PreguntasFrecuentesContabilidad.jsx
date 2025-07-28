@@ -1,3 +1,4 @@
+// src/components/PreguntasFrecuentesContabilidad.tsx
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaChevronDown, FaCalculator, FaReceipt, FaBalanceScale, FaBuilding, FaUserTie } from 'react-icons/fa';
@@ -12,7 +13,7 @@ const PreguntasFrecuentesContabilidad = () => {
     const faqs = [
         {
             category: "General",
-            icon: <FaCalculator className="text-cyan-400 text-xl" />,
+            icon: <FaCalculator className="text-teal-400 text-xl" />, // Cambiado a teal-400
             questions: [
                 {
                     question: "¿Qué es la contabilidad y por qué es importante para mi empresa?",
@@ -30,7 +31,7 @@ const PreguntasFrecuentesContabilidad = () => {
         },
         {
             category: "Obligaciones Tributarias",
-            icon: <FaReceipt className="text-cyan-400 text-xl" />,
+            icon: <FaReceipt className="text-teal-400 text-xl" />, // Cambiado a teal-400
             questions: [
                 {
                     question: "¿Qué declaraciones tributarias debo presentar mensualmente?",
@@ -48,7 +49,7 @@ const PreguntasFrecuentesContabilidad = () => {
         },
         {
             category: "Estados Financieros",
-            icon: <FaBalanceScale className="text-cyan-400 text-xl" />,
+            icon: <FaBalanceScale className="text-teal-400 text-xl" />, // Cambiado a teal-400
             questions: [
                 {
                     question: "¿Qué estados financieros básicos debo preparar mensualmente?",
@@ -66,7 +67,7 @@ const PreguntasFrecuentesContabilidad = () => {
         },
         {
             category: "Regímenes Especiales",
-            icon: <FaBuilding className="text-cyan-400 text-xl" />,
+            icon: <FaBuilding className="text-teal-400 text-xl" />, // Cambiado a teal-400
             questions: [
                 {
                     question: "¿Qué es el Régimen Simplificado y quién puede acogerse?",
@@ -84,7 +85,7 @@ const PreguntasFrecuentesContabilidad = () => {
         },
         {
             category: "Servicios Profesionales",
-            icon: <FaUserTie className="text-cyan-400 text-xl" />,
+            icon: <FaUserTie className="text-teal-400 text-xl" />, // Cambiado a teal-400
             questions: [
                 {
                     question: "¿Qué documentos debo conservar para cumplir con requisitos fiscales?",
@@ -103,48 +104,46 @@ const PreguntasFrecuentesContabilidad = () => {
     ];
 
     return (
-        <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-900 via-blue-900 to-slate-900 overflow-hidden">
-            {/* Efecto de fondo con textura sutil */}
-            <div className="absolute inset-0 opacity-5">
+        <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-900 via-slate-800 to-teal-900 overflow-hidden">
+            {/* Efecto de fondo con textura sutil y colores coherentes */}
+            <div className="absolute inset-0 opacity-3"> {/* Opacidad reducida */}
                 <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
             </div>
-
-            {/* Brillo animado sutil en el fondo */}
+            {/* Brillo animado sutil en el fondo - Mejorado */}
             <motion.div
-                className="absolute inset-0 opacity-10"
+                className="absolute inset-0 opacity-5" // Opacidad reducida
                 initial={{ x: '-100%' }}
                 animate={{ x: '100%' }}
                 transition={{
-                    duration: 12,
+                    duration: 20, // Más lento
                     ease: "easeInOut",
                     repeat: Infinity,
                     repeatType: "reverse"
                 }}
                 style={{
-                    background: 'linear-gradient(90deg, transparent, rgba(103, 232, 249, 0.3), transparent)'
+                    background: 'linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.2), transparent)' // Color teal-500 con menos opacidad
                 }}
             />
-
-            {/* Partículas animadas mejoradas */}
+            {/* Partículas animadas mejoradas - CON PARPADEO Y MÁS VARIACIÓN */}
             <div className="absolute inset-0 overflow-hidden">
-                {[...Array(12)].map((_, i) => (
+                {[...Array(15)].map((_, i) => ( // Más partículas
                     <motion.div
                         key={i}
-                        className="absolute rounded-full bg-gradient-to-r from-cyan-400/20 to-blue-500/20"
+                        className="absolute rounded-full bg-gradient-to-r from-teal-400/20 to-emerald-400/20" // Colores coherentes
                         initial={{
                             x: Math.random() * 100 + '%',
                             y: Math.random() * 100 + '%',
-                            width: Math.random() * 20 + 10 + 'px',
-                            height: Math.random() * 20 + 10 + 'px'
+                            width: Math.random() * 25 + 5 + 'px', // Mayor variación de tamaño
+                            height: Math.random() * 25 + 5 + 'px'
                         }}
                         animate={{
-                            y: [null, (Math.random() * 200 - 100) + 'px'],
-                            x: [null, (Math.random() * 100 - 50) + 'px'],
-                            opacity: [0.1, 0.3, 0.1],
-                            scale: [1, 1.2, 1]
+                            y: [null, (Math.random() * 300 - 150) + 'px'], // Mayor rango de movimiento
+                            x: [null, (Math.random() * 200 - 100) + 'px'],
+                            opacity: [0.1, 0.4, 0.1], // Parpadeo más pronunciado
+                            scale: [1, 1.3, 1] // Escala ligeramente mayor
                         }}
                         transition={{
-                            duration: Math.random() * 20 + 15,
+                            duration: Math.random() * 30 + 20, // Duraciones más lentas y variadas: 20-50s
                             repeat: Infinity,
                             repeatType: 'reverse',
                             ease: 'easeInOut'
@@ -152,9 +151,8 @@ const PreguntasFrecuentesContabilidad = () => {
                     />
                 ))}
             </div>
-
             <div className="relative max-w-7xl mx-auto">
-                {/* Encabezado con estilo moderno */}
+                {/* Encabezado con estilo moderno y colores coherentes */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -166,25 +164,22 @@ const PreguntasFrecuentesContabilidad = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.3 }}
-                        className="inline-block mb-6 px-4 py-2 bg-cyan-500/10 border border-cyan-400/20 rounded-full text-cyan-300 font-semibold tracking-widest text-sm uppercase backdrop-blur-sm"
+                        className="inline-block mb-6 px-4 py-2 bg-teal-500/10 border border-teal-400/20 rounded-full text-teal-300 font-semibold tracking-widest text-sm uppercase backdrop-blur-sm" // Colores coherentes
                     >
                         Guía Contable Completa
                     </motion.span>
-
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-blue-300 to-teal-300">
+                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-emerald-300 to-teal-300"> {/* Colores coherentes */}
                             Preguntas Frecuentes de Contabilidad
                         </span>
                     </h1>
-
                     <div className="max-w-4xl mx-auto">
                         <p className="text-xl text-slate-300 mb-4">
                             Respuestas claras a las dudas más comunes sobre contabilidad, tributación y gestión financiera para tu empresa en Costa Rica
                         </p>
-                        <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full"></div>
+                        <div className="w-24 h-1 bg-gradient-to-r from-teal-500 to-emerald-500 mx-auto rounded-full"></div> {/* Colores coherentes */}
                     </div>
                 </motion.div>
-
                 {/* FAQ Sections */}
                 <div className="space-y-8">
                     {faqs.map((category, categoryIndex) => (
@@ -194,49 +189,60 @@ const PreguntasFrecuentesContabilidad = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
                             viewport={{ once: true }}
-                            className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl shadow-xl overflow-hidden"
+                            className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300" // Sombra mejorada en hover
                         >
-                            <div className="bg-gradient-to-r from-cyan-900/30 to-blue-900/30 p-6 border-b border-slate-700/50">
+                            {/* Header de categoría con degradado coherente */}
+                            <div className="bg-gradient-to-r from-teal-900/20 to-emerald-900/20 p-6 border-b border-slate-700/50"> {/* Colores coherentes */}
                                 <div className="flex items-center">
-                                    <div className="mr-4 p-2 rounded-lg bg-slate-700/50">
+                                    {/* Icono con efecto hover */}
+                                    <motion.div
+                                        whileHover={{ scale: 1.15, rotate: 5 }} // Efecto de escala y rotación
+                                        className="mr-4 p-3 rounded-xl bg-slate-700/50 backdrop-blur-sm border border-slate-600/30 shadow-md" // Mejor estilo del contenedor del icono
+                                    >
                                         {category.icon}
-                                    </div>
+                                    </motion.div>
                                     <h2 className="text-2xl font-bold text-slate-100">
                                         {category.category}
                                     </h2>
                                 </div>
                             </div>
-
                             <div className="p-6">
                                 <div className="space-y-4">
                                     {category.questions.map((faq, index) => (
-                                        <div key={index} className="border border-slate-700/30 rounded-xl overflow-hidden hover:border-cyan-500/30 transition-colors duration-300">
-                                            <button
+                                        <div key={index} className="border border-slate-700/30 rounded-xl overflow-hidden hover:border-teal-500/50 transition-colors duration-300"> {/* Borde hover coherente */}
+                                            {/* Botón de pregunta con efecto lift y shine */}
+                                            <motion.button
+                                                whileHover={{ y: -3, backgroundColor: "rgba(30, 41, 59, 0.6)" }} // Efecto lift y cambio de fondo
+                                                whileTap={{ scale: 0.99 }}
                                                 onClick={() => toggleAccordion(`${categoryIndex}-${index}`)}
-                                                className="w-full p-6 text-left flex justify-between items-center bg-slate-800/30 hover:bg-slate-800/50 transition-colors duration-300"
+                                                className="w-full p-6 text-left flex justify-between items-center bg-slate-800/30 transition-colors duration-300 relative overflow-hidden group" // Overflow hidden para el efecto shine
+                                                style={{ transformStyle: "preserve-3d" }}
                                             >
-                                                <span className="text-lg font-semibold text-slate-200 pr-4">
+                                                <span className="text-lg font-semibold text-slate-200 pr-4 z-10">
                                                     {faq.question}
                                                 </span>
+                                                {/* Efecto Shine en el botón de pregunta */}
+                                                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out z-0"></span>
                                                 <motion.div
                                                     animate={{ rotate: activeIndex === `${categoryIndex}-${index}` ? 180 : 0 }}
                                                     transition={{ duration: 0.3 }}
-                                                    className="flex-shrink-0 text-cyan-400"
+                                                    className="flex-shrink-0 text-teal-400 z-10" // Color coherente
                                                 >
                                                     <FaChevronDown />
                                                 </motion.div>
-                                            </button>
-
+                                            </motion.button>
+                                            {/* Panel de respuesta del acordeón mejorado */}
                                             <AnimatePresence>
                                                 {activeIndex === `${categoryIndex}-${index}` && (
                                                     <motion.div
-                                                        initial={{ height: 0, opacity: 0 }}
-                                                        animate={{ height: 'auto', opacity: 1 }}
-                                                        exit={{ height: 0, opacity: 0 }}
-                                                        transition={{ duration: 0.3 }}
+                                                        initial={{ height: 0, opacity: 0, scaleX: 0.98 }} // Inicial con escala horizontal
+                                                        animate={{ height: 'auto', opacity: 1, scaleX: 1 }} // Animación de escala horizontal
+                                                        exit={{ height: 0, opacity: 0, scaleX: 0.98 }}
+                                                        transition={{ duration: 0.4 }} // Duración ajustada
                                                         className="overflow-hidden"
+                                                        style={{ originX: 0.5 }} // Origen de la escala en el centro
                                                     >
-                                                        <div className="p-6 bg-slate-900/50 border-t border-slate-700/30">
+                                                        <div className="p-6 bg-slate-900/60 border-t border-slate-700/30 backdrop-blur-sm"> {/* Fondo y borde mejorados */}
                                                             <p className="text-slate-300 leading-relaxed">
                                                                 {faq.answer}
                                                             </p>
@@ -251,8 +257,7 @@ const PreguntasFrecuentesContabilidad = () => {
                         </motion.div>
                     ))}
                 </div>
-
-                {/* CTA Final */}
+                {/* CTA Final mejorado con efecto shine */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -260,22 +265,26 @@ const PreguntasFrecuentesContabilidad = () => {
                     viewport={{ once: true }}
                     className="text-center mt-16"
                 >
-                    <div className="bg-gradient-to-r from-cyan-900/30 to-blue-900/30 border-l-4 border-cyan-500 p-8 rounded-r-xl backdrop-blur-sm">
+                    <div className="bg-gradient-to-r from-teal-900/20 to-emerald-900/20 border-l-4 border-teal-500 p-8 rounded-r-xl backdrop-blur-sm shadow-lg"> {/* Degradado y sombra mejorados */}
                         <h3 className="text-2xl md:text-3xl font-bold text-slate-100 mb-4">
                             ¿Tienes otras preguntas sobre contabilidad?
                         </h3>
                         <p className="text-slate-300 mb-6 max-w-2xl mx-auto">
                             Nuestros expertos contables están listos para resolver tus dudas específicas y ofrecerte soluciones personalizadas para tu negocio.
                         </p>
+                        {/* Botón CTA con efecto shine mejorado */}
                         <motion.button
                             whileHover={{
                                 scale: 1.05,
-                                boxShadow: "0 20px 25px -5px rgba(6, 182, 212, 0.3), 0 10px 10px -6px rgba(6, 182, 212, 0.3)"
+                                boxShadow: "0 20px 25px -5px rgba(20, 184, 166, 0.3), 0 10px 10px -6px rgba(20, 184, 166, 0.3)" // Sombra coherente
                             }}
-                            whileTap={{ scale: 0.95 }}
-                            className="bg-gradient-to-r from-cyan-600 to-blue-600 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
+                            whileTap={{ scale: 0.98 }}
+                            className="relative overflow-hidden bg-gradient-to-r from-teal-600 to-emerald-600 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 group" // Clases base del botón
+                            style={{ transformStyle: "preserve-3d" }}
                         >
-                            Consulta Gratuita con un Experto
+                            <span className="relative z-10">Consulta Gratuita con un Experto</span>
+                            <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+                            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></span>
                         </motion.button>
                     </div>
                 </motion.div>

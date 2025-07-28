@@ -11,7 +11,9 @@ const NAV_LINKS = [
     { name: "Contacto", path: "/contacto" }
 ];
 
-// Componente para el dropdown de servicios (con subcategorías escalonadas)
+// --- Componentes auxiliares (ServicesDropdown, ServiceItem, MobileMenu) ---
+// (Mantienen su funcionalidad base, con estilos mejorados)
+
 const ServicesDropdown = ({ services, isOpen, onClose }) => (
     <AnimatePresence>
         {isOpen && (
@@ -25,7 +27,7 @@ const ServicesDropdown = ({ services, isOpen, onClose }) => (
                     stiffness: 300,
                     damping: 25
                 }}
-                className="absolute z-50 left-0 mt-3 w-80 origin-top-right rounded-2xl bg-slate-800/90 backdrop-blur-xl shadow-2xl ring-1 ring-black/5 focus:outline-none overflow-hidden border border-slate-700/50"
+                className="absolute z-50 left-0 mt-3 w-80 origin-top-right rounded-2xl bg-slate-800/90 backdrop-blur-xl shadow-2xl ring-1 ring-black/10 focus:outline-none overflow-hidden border border-slate-700/50"
                 style={{ transformStyle: "preserve-3d" }}
             >
                 <div className="py-3">
@@ -38,14 +40,11 @@ const ServicesDropdown = ({ services, isOpen, onClose }) => (
     </AnimatePresence>
 );
 
-// Componente para cada servicio (con subcategorías anidadas)
 const ServiceItem = ({ service, onClose }) => {
     const [isSubOpen, setIsSubOpen] = useState(false);
-
     if (service.subcategories) {
         return (
             <div className="group">
-                {/* Servicio principal con subcategorías */}
                 <button
                     onClick={() => setIsSubOpen(!isSubOpen)}
                     className="flex items-center justify-between w-full px-6 py-4 text-sm text-gray-200 hover:bg-gradient-to-r from-slate-700/50 to-slate-600/50 hover:text-teal-300 transition-all duration-200 border-b border-slate-700/30"
@@ -66,7 +65,6 @@ const ServiceItem = ({ service, onClose }) => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                     </motion.svg>
                 </button>
-                {/* Subcategorías con animación escalonada */}
                 <AnimatePresence>
                     {isSubOpen && (
                         <motion.div
@@ -96,7 +94,6 @@ const ServiceItem = ({ service, onClose }) => {
             </div>
         );
     }
-    // Servicio sin subcategorías
     return (
         <Link
             to={service.path}
@@ -110,7 +107,6 @@ const ServiceItem = ({ service, onClose }) => {
     );
 };
 
-// Componente para el menú móvil (con subcategorías escalonadas)
 const MobileMenu = ({ isOpen, onClose }) => {
     const [servicesOpen, setServicesOpen] = useState(false);
     const [subOpenIndex, setSubOpenIndex] = useState(null);
@@ -130,7 +126,6 @@ const MobileMenu = ({ isOpen, onClose }) => {
                     transition={{ duration: 0.2 }}
                     className="md:hidden fixed inset-0 z-40"
                 >
-                    {/* Backdrop con efecto de vidrio */}
                     <motion.div
                         className="fixed inset-0 bg-slate-900/70 backdrop-blur-sm"
                         onClick={onClose}
@@ -138,7 +133,6 @@ const MobileMenu = ({ isOpen, onClose }) => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                     />
-                    {/* Panel con animación mejorada */}
                     <motion.div
                         initial={{ x: "100%", opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
@@ -153,7 +147,6 @@ const MobileMenu = ({ isOpen, onClose }) => {
                         style={{ transformStyle: "preserve-3d" }}
                     >
                         <div className="flex flex-col h-full">
-                            {/* Header del menú móvil */}
                             <div className="px-6 py-5 border-b border-slate-700/50 flex justify-between items-center">
                                 <div className="flex items-center">
                                     <div className="p-2 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-500 shadow-lg">
@@ -176,10 +169,8 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                     </svg>
                                 </button>
                             </div>
-                            {/* Contenido del menú */}
                             <div className="flex-1 overflow-y-auto py-6 px-4">
                                 <div className="space-y-2">
-                                    {/* Dropdown de Servicios */}
                                     <div className="border border-slate-700/30 rounded-xl bg-slate-800/50 backdrop-blur-sm">
                                         <button
                                             onClick={() => setServicesOpen(!servicesOpen)}
@@ -213,7 +204,6 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                                         {SERVICES.map((service, index) => (
                                                             <div key={index}>
                                                                 {service.subcategories ? (
-                                                                    // Servicio con subcategorías en móvil
                                                                     <div>
                                                                         <button
                                                                             onClick={() => toggleSubcategories(index)}
@@ -259,7 +249,6 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                                                         </AnimatePresence>
                                                                     </div>
                                                                 ) : (
-                                                                    // Servicio sin subcategorías en móvil
                                                                     <Link
                                                                         to={service.path}
                                                                         className="flex items-center text-gray-300 hover:text-teal-300 hover:bg-teal-900/20 px-4 py-3 rounded-lg text-sm font-medium transition-all"
@@ -276,7 +265,6 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                             )}
                                         </AnimatePresence>
                                     </div>
-                                    {/* Links de navegación */}
                                     {NAV_LINKS.map((link, index) => (
                                         <Link
                                             key={index}
@@ -289,7 +277,6 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                     ))}
                                 </div>
                             </div>
-                            {/* Botón de acción en el footer */}
                             <div className="p-6 border-t border-slate-700/50">
                                 <motion.button
                                     onClick={() => navigate('/contacto')}
@@ -298,10 +285,12 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                         boxShadow: "0 10px 25px -5px rgba(20, 184, 166, 0.3), 0 8px 10px -6px rgba(20, 184, 166, 0.3)"
                                     }}
                                     whileTap={{ scale: 0.98 }}
-                                    className="w-full bg-gradient-to-r from-teal-600 to-emerald-600 text-white px-4 py-4 rounded-xl text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300"
+                                    className="w-full relative overflow-hidden bg-gradient-to-r from-teal-600 to-emerald-600 text-white px-4 py-4 rounded-xl text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 group"
                                     style={{ transformStyle: "preserve-3d" }}
                                 >
-                                    Consultoría Gratis
+                                    <span className="relative z-10">Consultoría Gratis</span>
+                                    <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+                                    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></span>
                                 </motion.button>
                             </div>
                         </div>
@@ -312,7 +301,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
     );
 };
 
-// Componente principal Navbar
+// --- Componente Principal NavbarFinanzas ---
 const NavbarFinanzas = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(null);
@@ -320,7 +309,6 @@ const NavbarFinanzas = () => {
     const dropdownRef = useRef(null);
     const navigate = useNavigate();
 
-    // Detectar scroll para cambiar estilo del navbar
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
@@ -329,7 +317,6 @@ const NavbarFinanzas = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Cerrar dropdown al hacer clic fuera
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -349,6 +336,21 @@ const NavbarFinanzas = () => {
         setDropdownOpen(dropdownOpen === menu ? null : menu);
     };
 
+    // Función para aplicar el efecto shine a los botones del menú
+    const MenuButtonShineEffect = ({ children, isActive = false, ...props }) => (
+        <div className="relative group overflow-hidden rounded-xl" {...props}>
+            <div className={`px-5 py-3 text-sm font-bold flex items-center rounded-xl transition-all duration-300 ${scrolled
+                ? (isActive ? 'bg-slate-800/60' : 'text-gray-200 hover:bg-slate-800/50')
+                : (isActive ? 'bg-slate-800/40' : 'text-gray-200 hover:bg-slate-800/30')
+                }`}
+                style={{ transformStyle: "preserve-3d" }}
+            >
+                {children}
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></span>
+            </div>
+        </div>
+    );
+
     return (
         <>
             <nav className={`fixed w-full z-30 transition-all duration-500 ${scrolled
@@ -357,7 +359,6 @@ const NavbarFinanzas = () => {
                 }`}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center">
-                        {/* Logo con efecto mejorado */}
                         <motion.div
                             whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.98 }}
@@ -388,16 +389,13 @@ const NavbarFinanzas = () => {
                                 </div>
                             </div>
                         </motion.div>
-                        {/* Menú desktop con estilo mejorado */}
+
                         <div className="hidden md:flex items-center space-x-2">
                             <div className="relative" ref={dropdownRef}>
-                                <button
+                                {/* Botón Servicios con efecto shine y highlight */}
+                                <MenuButtonShineEffect
+                                    isActive={dropdownOpen === 'services'}
                                     onClick={() => toggleDropdown('services')}
-                                    className={`px-5 py-3 text-sm font-bold flex items-center rounded-xl transition-all duration-300 ${scrolled
-                                        ? 'text-gray-200 hover:bg-slate-800/50'
-                                        : 'text-gray-200 hover:bg-slate-800/30'
-                                        } ${dropdownOpen === 'services' ? (scrolled ? 'bg-slate-800/50' : 'bg-slate-800/30') : ''}`}
-                                    style={{ transformStyle: "preserve-3d" }}
                                 >
                                     Servicios
                                     <motion.svg
@@ -410,39 +408,40 @@ const NavbarFinanzas = () => {
                                     >
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                                     </motion.svg>
-                                </button>
+                                </MenuButtonShineEffect>
                                 <ServicesDropdown
                                     services={SERVICES}
                                     isOpen={dropdownOpen === 'services'}
                                     onClose={() => setDropdownOpen(null)}
                                 />
                             </div>
+                            {/* Links de navegación con efecto shine */}
                             {NAV_LINKS.map((link, index) => (
-                                <Link
-                                    key={index}
-                                    to={link.path}
-                                    className={`px-5 py-3 text-sm font-bold rounded-xl transition-all duration-300 ${scrolled
-                                        ? 'text-gray-200 hover:bg-slate-800/50'
-                                        : 'text-gray-200 hover:bg-slate-800/30'
-                                        }`}
-                                    style={{ transformStyle: "preserve-3d" }}
-                                >
-                                    {link.name}
-                                </Link>
+                                <MenuButtonShineEffect key={index} asChild>
+                                    <Link
+                                        to={link.path}
+                                        style={{ transformStyle: "preserve-3d" }}
+                                    >
+                                        {link.name}
+                                    </Link>
+                                </MenuButtonShineEffect>
                             ))}
+                            {/* Botón de acción con efecto shine mejorado */}
                             <motion.button
                                 whileHover={{
                                     scale: 1.05,
                                     boxShadow: "0 10px 25px -5px rgba(20, 184, 166, 0.3), 0 8px 10px -6px rgba(20, 184, 166, 0.3)"
                                 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="ml-3 bg-gradient-to-r from-teal-600 to-emerald-600 text-white px-6 py-3 rounded-xl text-sm font-bold shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm border border-teal-400/30"
+                                className="ml-3 relative overflow-hidden bg-gradient-to-r from-teal-600 to-emerald-600 text-white px-6 py-3 rounded-xl text-sm font-bold shadow-lg hover:shadow-xl transition-all duration-300 group backdrop-blur-sm border border-teal-400/30"
                                 style={{ transformStyle: "preserve-3d" }}
                             >
-                                Consultoría Gratis
+                                <span className="relative z-10">Consultoría Gratis</span>
+                                <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+                                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></span>
                             </motion.button>
                         </div>
-                        {/* Botón móvil con estilo mejorado */}
+
                         <div className="md:hidden flex items-center">
                             <motion.button
                                 whileTap={{ scale: 0.95 }}
