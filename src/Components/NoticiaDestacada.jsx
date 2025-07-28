@@ -192,7 +192,7 @@ const NoticiaDestacada = () => {
                                 <div className="relative pb-[56.25%] h-0 rounded-xl overflow-hidden bg-slate-800 border border-slate-700/50">
                                     {/* Componente de Video Real */}
                                     <ReactPlayer
-                                        url="/NoticiasDestacadas/new.mp4"
+                                        url="/new.mp4"
                                         width="100%"
                                         height="100%"
                                         controls={true}
