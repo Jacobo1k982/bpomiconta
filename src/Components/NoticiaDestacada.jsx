@@ -192,19 +192,13 @@ const NoticiaDestacada = () => {
                                 <div className="relative pb-[56.25%] h-0 rounded-xl overflow-hidden bg-slate-800 border border-slate-700/50">
                                     {/* Componente de Video Real */}
                                     <ReactPlayer
-                                        // ====>>>> CAMBIA ESTA URL POR LA URL DE TU VIDEO <<<<====
-                                        url="/NoticiasDestacadas/video.mp4" // Ejemplo con un video de YouTube
+                                        url="/NoticiasDestacadas/new.mp4"
                                         width="100%"
                                         height="100%"
-                                        controls={true} // Muestra los controles de reproducción
-                                        light={false} // false para mostrar directamente el video, true para imagen de portada
+                                        controls={true}
+                                        light={false}
                                         playing={false}
                                         className="absolute inset-0 rounded-xl overflow-hidden"
-                                        config={{
-                                            youtube: {
-                                                playerVars: { showinfo: 1 } // Muestra información del video en YouTube
-                                            }
-                                        }}
                                     />
                                 </div>
 

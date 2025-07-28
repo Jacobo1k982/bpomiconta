@@ -90,22 +90,19 @@
                     "titulo": "Paso 1",
                     "subtitulo": "Identificación",
                     "imagen": "/ImagenNoticias/Destacada/Screenshot-2025-06-04-at-22.22.06.png",
-                    "lista": [
-                    ]
+                    "lista": []
                 },
                 {
                     "titulo": "Paso 2",
                     "subtitulo": "Permisos",
                     "imagen": "/ImagenNoticias/Destacada/Screenshot-2025-06-04-at-22.22.13.png",
-                    "lista": [
-                    ]
+                    "lista": []
                 },
                 {
                     "titulo": "Paso 3",
                     "subtitulo": "Finalizar",
                     "imagen": "/ImagenNoticias/Destacada/Screenshot-2025-06-04-at-22.22.24.png",
-                    "lista": [
-                    ]
+                    "lista": []
                 }
             ]
         },
@@ -124,15 +121,13 @@
                     "titulo": "“El comprobante electrónico versión 4.4 entra en vigor de manera obligatoria en octubre. Nosotros vamos a necesitar por lo menos 3 meses para analizar toda la información y proponer algunas mejoras para poner a disposición de los contribuyentes por segmentos”, dijo Mario Ramos, director general de Tributación, al programa Asiento Extra.",
                     "subtitulo": "Esto debido a que se debe procesar la información de la nueva versión de factura electrónica.",
                     "imagen": "/ImagenNoticias/Destacada/Grafico-Tribu-CR-3-768x944.jpg",
-                    "lista": [
-                    ]
+                    "lista": []
                 },
                 {
                     "titulo": "",
                     "subtitulo": "Este no solo servirá para que los usuarios realicen sus trámites fiscales, sino que también será utilizado de forma interna por los funcionarios de la Dirección General de Tributación para mejorar el control fiscal.\n\nOriginalmente estaba previsto que comenzara a operar en junio de este año, pero el Ministerio de Hacienda decidió posponer su lanzamiento.\n\nLa nueva fecha de inicio estaría prevista para la primera semana de agosto. “Podría ser por ahí del 5 de agosto para que no choque con el feriado”, explicó Ramos.",
                     "imagen": "/ImagenNoticias/Destacada/Screenshot-2025-04-27-at-21.37.48.png",
-                    "lista": [
-                    ]
+                    "lista": []
                 }
             ]
         }

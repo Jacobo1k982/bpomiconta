@@ -1,13 +1,32 @@
 // src/components/NoticiaDestacadaDetalle.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiArrowLeft, FiCalendar, FiTag, FiClock, FiCheckCircle, FiExternalLink } from 'react-icons/fi';
+import {
+    FiArrowLeft,
+    FiCalendar,
+    FiTag,
+    FiClock,
+    FiCheckCircle,
+    FiExternalLink,
+    FiShare2,
+    FiHeart,
+    FiBookmark,
+    FiChevronDown,
+    FiPlay,
+    FiUser
+} from 'react-icons/fi';
 import { Link, useParams } from 'react-router-dom';
 import noticiasData2 from '../../data/NoticiasDestacadas/noticiasDestacadas.json';
+import ReactPlayer from 'react-player';
 
 const NoticiaDestacadaDetalle = () => {
     const { id } = useParams();
     const noticia = noticiasData2.noticias.find(n => n.id === id);
+
+    // Estados para interacciones
+    const [liked, setLiked] = useState(false);
+    const [bookmarked, setBookmarked] = useState(false);
+    const [showFullContent, setShowFullContent] = useState(false);
 
     if (!noticia) {
         return (
@@ -44,6 +63,28 @@ const NoticiaDestacadaDetalle = () => {
             </div>
         );
     }
+
+    // Función para compartir
+    const handleShare = async () => {
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: noticia.titulo,
+                    text: noticia.descripcion,
+                    url: window.location.href
+                });
+            } catch (err) {
+                console.log('Error al compartir:', err);
+            }
+        } else {
+            // Fallback para navegadores que no soportan Web Share API
+            navigator.clipboard.writeText(window.location.href);
+            alert('Enlace copiado al portapapeles');
+        }
+    };
+
+    // Contenido truncado para vista previa
+    const truncatedContent = noticia.contenido?.split(' ').slice(0, 50).join(' ') + '...';
 
     return (
         <motion.section
@@ -128,15 +169,32 @@ const NoticiaDestacadaDetalle = () => {
                     className="bg-gradient-to-br from-slate-800/40 to-teal-900/20 backdrop-blur-2xl rounded-3xl p-0.5 border border-slate-700/50 shadow-2xl overflow-hidden"
                     style={{ transformStyle: "preserve-3d" }}
                 >
-                    {/* Imagen de portada con efecto parallax */}
+                    {/* Imagen de portada o video con efecto parallax */}
                     <div className="relative w-full h-64 md:h-80 overflow-hidden rounded-t-3xl">
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
-                        <img
-                            src={noticia.portada}
-                            alt={`Portada: ${noticia.titulo}`}
-                            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                            loading="lazy"
-                        />
+
+                        {/* Mostrar video si existe, sino imagen */}
+                        {noticia.videoUrl ? (
+                            <div className="w-full h-full relative">
+                                <ReactPlayer
+                                    url={noticia.videoUrl}
+                                    width="100%"
+                                    height="100%"
+                                    controls={true}
+                                    light={true}
+                                    playing={false}
+                                    className="absolute inset-0"
+                                />
+                            </div>
+                        ) : (
+                            <img
+                                src={noticia.portada}
+                                alt={`Portada: ${noticia.titulo}`}
+                                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                                loading="lazy"
+                            />
+                        )}
+
                         {noticia.destacada && (
                             <div className="absolute top-5 right-5 bg-gradient-to-r from-green-600/80 to-teal-600/80 backdrop-blur-sm px-4 py-2 rounded-full border border-green-500/30 z-20">
                                 <span className="text-white font-semibold text-sm flex items-center gap-2">
@@ -145,6 +203,7 @@ const NoticiaDestacadaDetalle = () => {
                                 </span>
                             </div>
                         )}
+
                         <div className="absolute bottom-5 left-5 z-20">
                             <div className="bg-gradient-to-r from-teal-600/80 to-emerald-600/80 backdrop-blur-sm px-4 py-2 rounded-full border border-teal-500/30">
                                 <span className="text-white font-semibold text-sm">{noticia.categoria}</span>
@@ -180,6 +239,7 @@ const NoticiaDestacadaDetalle = () => {
                                     <span>Prioridad: {noticia.prioridad}</span>
                                 </div>
                             </div>
+
                             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-4">
                                 <span className="block bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-emerald-300 to-teal-100">
                                     {noticia.titulo?.split(' ').slice(0, -2).join(' ') || noticia.titulo}
@@ -188,6 +248,48 @@ const NoticiaDestacadaDetalle = () => {
                                     {noticia.titulo?.split(' ').slice(-2).join(' ')}
                                 </span>
                             </h1>
+
+                            {/* Autor y estadísticas */}
+                            <div className="flex flex-wrap items-center justify-between gap-4 mt-6 pt-4 border-t border-slate-700/30">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 flex items-center justify-center">
+                                        <FiUser className="text-white" />
+                                    </div>
+                                    <div>
+                                        <p className="text-white font-medium">Equipo Tribu-CR</p>
+                                        <p className="text-gray-400 text-sm">Publicado hace 2 días</p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-center gap-2">
+                                    <motion.button
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.9 }}
+                                        onClick={() => setLiked(!liked)}
+                                        className={`p-2 rounded-full ${liked ? 'bg-red-500/20 text-red-400' : 'bg-slate-700/50 text-gray-400'} hover:bg-red-500/30 transition-colors`}
+                                    >
+                                        <FiHeart className={liked ? 'fill-current' : ''} />
+                                    </motion.button>
+
+                                    <motion.button
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.9 }}
+                                        onClick={() => setBookmarked(!bookmarked)}
+                                        className={`p-2 rounded-full ${bookmarked ? 'bg-blue-500/20 text-blue-400' : 'bg-slate-700/50 text-gray-400'} hover:bg-blue-500/30 transition-colors`}
+                                    >
+                                        <FiBookmark className={bookmarked ? 'fill-current' : ''} />
+                                    </motion.button>
+
+                                    <motion.button
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.9 }}
+                                        onClick={handleShare}
+                                        className="p-2 rounded-full bg-slate-700/50 text-gray-400 hover:bg-teal-500/30 hover:text-teal-400 transition-colors"
+                                    >
+                                        <FiShare2 />
+                                    </motion.button>
+                                </div>
+                            </div>
                         </motion.div>
 
                         {/* Contenido principal */}
@@ -205,8 +307,44 @@ const NoticiaDestacadaDetalle = () => {
                                     viewport={{ once: true }}
                                     className="text-lg md:text-xl text-gray-300 leading-relaxed mb-10 first-letter:text-5xl first-letter:font-bold first-letter:text-teal-400 first-letter:mr-2 first-letter:float-left"
                                 >
-                                    {noticia.contenido}
+                                    {showFullContent ? noticia.contenido : truncatedContent}
+                                    {!showFullContent && noticia.contenido.split(' ').length > 50 && (
+                                        <button
+                                            onClick={() => setShowFullContent(true)}
+                                            className="ml-2 text-teal-400 hover:text-teal-300 font-semibold flex items-center gap-1 inline-flex"
+                                        >
+                                            Leer más
+                                            <FiChevronDown className="animate-bounce" />
+                                        </button>
+                                    )}
                                 </motion.p>
+                            )}
+
+                            {/* Video explicativo si existe */}
+                            {noticia.videoUrl && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.3 }}
+                                    viewport={{ once: true }}
+                                    className="my-12"
+                                >
+                                    <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                                        <FiPlay className="text-teal-400" />
+                                        Video Explicativo
+                                    </h3>
+                                    <div className="relative pb-[56.25%] h-0 rounded-2xl overflow-hidden bg-slate-800 border border-slate-700/50 shadow-2xl">
+                                        <ReactPlayer
+                                            url={noticia.videoUrl}
+                                            width="100%"
+                                            height="100%"
+                                            controls={true}
+                                            light={false}
+                                            playing={false}
+                                            className="absolute inset-0 rounded-2xl overflow-hidden"
+                                        />
+                                    </div>
+                                </motion.div>
                             )}
 
                             {/* Pasos dinámicos con diseño mejorado y coherente */}
@@ -262,6 +400,7 @@ const NoticiaDestacadaDetalle = () => {
                                                 <div className="absolute bottom-0 left-0 w-16 h-1 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full"></div>
                                             </motion.h2>
                                         )}
+
                                         {paso.subtitulo && (
                                             <motion.h3
                                                 initial={{ opacity: 0 }}
@@ -273,6 +412,7 @@ const NoticiaDestacadaDetalle = () => {
                                                 {paso.subtitulo}
                                             </motion.h3>
                                         )}
+
                                         {Array.isArray(paso.lista) && (
                                             <motion.ul
                                                 initial={{ opacity: 0 }}
