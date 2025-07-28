@@ -18,20 +18,28 @@ const FinanceHorizontalDivider = () => {
     ];
 
     return (
-        <div className="relative h-20 md:h-24 w-full overflow-hidden bg-gradient-to-r from-slate-900 via-slate-800 to-teal-900 backdrop-blur-md rounded-xl shadow-2xl border border-slate-700/50">
+        // Se eliminó bg-gradient-to-r y los colores de fondo, manteniendo solo backdrop-blur y border
+        <div className="relative h-20 md:h-24 w-full overflow-hidden backdrop-blur-md rounded-xl shadow-2xl border border-slate-700/50">
+            {/* Fondo con textura sutil de cubos - con opacidad muy baja o eliminada si se quiere completamente transparente */}
+            {/* Si quieres textura sutil: */}
+            {/* <div className="absolute inset-0 opacity-1">
+                <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+            </div> */}
+            {/* Si quieres completamente transparente sin textura, elimina este bloque */}
+
             {/* Efecto de brillo moderno con colores coherentes */}
             <motion.div
                 className="absolute inset-0 opacity-20"
                 initial={{ x: '-100%' }}
                 animate={{ x: '100%' }}
                 transition={{
-                    duration: 12, // Más lento
+                    duration: 12,
                     ease: "easeInOut",
                     repeat: Infinity,
                     repeatType: "reverse"
                 }}
                 style={{
-                    background: 'linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.6), transparent)' // teal-500
+                    background: 'linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.6), transparent)'
                 }}
             />
 
@@ -39,12 +47,12 @@ const FinanceHorizontalDivider = () => {
             <motion.div
                 className="absolute top-0 left-0 w-[200%] h-full"
                 style={{
-                    background: 'linear-gradient(90deg, rgba(20, 184, 166, 0.3), rgba(16, 185, 129, 0.5), rgba(20, 184, 166, 0.3))' // teal-500, emerald-500
+                    background: 'linear-gradient(90deg, rgba(20, 184, 166, 0.3), rgba(16, 185, 129, 0.5), rgba(20, 184, 166, 0.3))'
                 }}
                 initial={{ x: '0%' }}
                 animate={{ x: '-50%' }}
                 transition={{
-                    duration: 40, // Más lento
+                    duration: 40,
                     ease: "linear",
                     repeat: Infinity
                 }}
@@ -61,7 +69,8 @@ const FinanceHorizontalDivider = () => {
                                             scale: 1.05,
                                             y: -2,
                                             rotateX: 5,
-                                            rotateY: 5
+                                            rotateY: 5,
+                                            boxShadow: "0 10px 20px -5px rgba(20, 184, 166, 0.2), 0 5px 10px -5px rgba(20, 184, 166, 0.1)"
                                         }}
                                         transition={{
                                             type: "spring",
@@ -82,8 +91,36 @@ const FinanceHorizontalDivider = () => {
                 </div>
             </motion.div>
 
-            {/* Overlay sutil para profundidad */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-900/20 pointer-events-none"></div>
+            {/* Overlay sutil para profundidad - ajustado para fondo transparente */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-transparent pointer-events-none"></div>
+
+            {/* Partículas animadas mejoradas - CON PARPADEO Y MÁS VARIACIÓN y COLORES COHERENTES */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                {[...Array(8)].map((_, i) => (
+                    <motion.div
+                        key={i}
+                        className="absolute rounded-full bg-gradient-to-r from-teal-400/20 to-emerald-400/20"
+                        initial={{
+                            x: Math.random() * 100 + '%',
+                            y: Math.random() * 100 + '%',
+                            width: Math.random() * 15 + 3 + 'px',
+                            height: Math.random() * 15 + 3 + 'px'
+                        }}
+                        animate={{
+                            y: [null, (Math.random() * 100 - 50) + 'px'],
+                            x: [null, (Math.random() * 80 - 40) + 'px'],
+                            opacity: [0.1, 0.3, 0.1],
+                            scale: [1, 1.2, 1]
+                        }}
+                        transition={{
+                            duration: Math.random() * 20 + 15,
+                            repeat: Infinity,
+                            repeatType: 'reverse',
+                            ease: 'easeInOut'
+                        }}
+                    />
+                ))}
+            </div>
         </div>
     );
 };
