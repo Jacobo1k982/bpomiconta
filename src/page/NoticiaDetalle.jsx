@@ -12,34 +12,11 @@ const NoticiaDetalle = () => {
 
     if (!noticia) {
         return (
-            <div className="flex items-center justify-center min-h-screen text-white bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900">
-                <div className="text-center p-8">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-teal-600/20 to-emerald-600/20 mb-6">
-                        <svg className="w-8 h-8 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </div>
-                    <h2 className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-300 to-emerald-400 mb-3">
-                        Noticia no encontrada
-                    </h2>
-                    <p className="text-gray-300 max-w-md mx-auto mb-6">
-                        Lo sentimos, no pudimos encontrar la noticia que estás buscando.
-                    </p>
-                    <Link to="/noticias">
-                        <motion.button
-                            whileHover={{
-                                scale: 1.03,
-                                boxShadow: "0 10px 25px -5px rgba(20, 184, 166, 0.3), 0 8px 10px -6px rgba(20, 184, 166, 0.3)",
-                                rotateX: 5,
-                                rotateY: 5
-                            }}
-                            whileTap={{ scale: 0.98 }}
-                            className="inline-flex items-center gap-2 bg-gradient-to-r from-teal-600 to-emerald-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all"
-                            style={{ transformStyle: "preserve-3d" }}
-                        >
-                            <FiArrowLeft />
-                            Volver a noticias
-                        </motion.button>
+            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900 text-white">
+                <div className="text-center">
+                    <h2 className="text-2xl font-bold mb-4">Noticia no encontrada</h2>
+                    <Link to="/noticias" className="text-teal-400 hover:text-teal-300 underline">
+                        Volver a noticias
                     </Link>
                 </div>
             </div>
@@ -49,7 +26,6 @@ const NoticiaDetalle = () => {
     // Componente para manejar diferentes tipos de contenido
     const renderContentBlock = (bloque, index) => {
         const baseDelay = index * 0.1 + 0.3;
-
         switch (bloque.tipo) {
             case 'subtitulo':
                 return (
@@ -58,143 +34,122 @@ const NoticiaDetalle = () => {
                         initial={{ opacity: 0, x: -15 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ delay: baseDelay }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        className="text-2xl md:text-3xl font-extrabold text-white mb-6 mt-12 relative"
+                        viewport={{ once: true }}
+                        className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6"
                     >
-                        <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-r from-teal-300 to-emerald-400">
-                            {bloque.texto}
-                        </span>
-                        <div className="absolute bottom-0 left-0 w-20 h-1 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full"></div>
+                        {bloque.texto}
                     </motion.h2>
                 );
-
             case 'parrafo':
                 return (
                     <motion.p
                         key={index}
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
+                        initial={{ opacity: 0, y: 15 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: baseDelay }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        className="text-lg text-gray-300 leading-relaxed mb-6 first-letter:text-5xl first-letter:font-bold first-letter:text-teal-400 first-letter:mr-2 first-letter:float-left"
+                        viewport={{ once: true }}
+                        className="text-lg text-slate-200 mb-6 leading-relaxed"
                     >
                         {bloque.texto}
                     </motion.p>
                 );
-
             case 'lista':
                 return (
                     <motion.ul
                         key={index}
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
+                        initial={{ opacity: 0, y: 15 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: baseDelay }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        className="space-y-3 mb-6"
+                        viewport={{ once: true }}
+                        className="list-disc list-inside text-lg text-slate-200 mb-6 space-y-2 ml-4"
                     >
                         {bloque.items.map((item, i) => (
-                            <motion.li
-                                key={i}
-                                className="flex items-start group"
-                                initial={{ opacity: 0, x: -10 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                transition={{ delay: baseDelay + i * 0.05 }}
-                                viewport={{ once: true }}
-                            >
-                                <div className="flex-shrink-0 mt-2 mr-4">
-                                    <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-teal-400 to-emerald-400 group-hover:scale-125 transition-transform"></div>
-                                </div>
-                                <span className="text-lg text-gray-300 leading-relaxed">{item}</span>
-                            </motion.li>
+                            <li key={i} className="pl-2">{item}</li>
                         ))}
                     </motion.ul>
                 );
-
             case 'cita':
                 return (
-                    <motion.blockquote
+                    <motion.div
                         key={index}
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
+                        initial={{ opacity: 0, y: 15 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: baseDelay }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        className="relative border-l-4 border-gradient-to-b from-teal-500 to-emerald-500 pl-8 py-6 my-10 bg-gradient-to-br from-slate-800/40 to-teal-900/20 backdrop-blur-sm rounded-r-2xl border border-slate-700/50"
+                        viewport={{ once: true }}
+                        className="border-l-4 border-teal-500 pl-6 py-4 my-8 bg-slate-800/30 backdrop-blur-sm rounded-r-xl"
                     >
-                        <div className="absolute top-0 left-0 w-full h-full opacity-5">
-                            <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                                <path
-                                    d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"
-                                    fill="url(#quoteGradient)"
-                                />
-                                <defs>
-                                    <linearGradient id="quoteGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stopColor="rgb(20, 184, 166)" /> {/* teal-500 */}
-                                        <stop offset="100%" stopColor="rgb(16, 185, 129)" /> {/* emerald-500 */}
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                        </div>
-                        <FaQuoteLeft className="absolute top-6 left-8 text-teal-400/20 text-5xl" />
-                        <p className="text-xl md:text-2xl italic text-gray-200 relative z-10 leading-relaxed">
-                            {bloque.texto}
-                        </p>
-                        {bloque.autor && (
-                            <cite className="block mt-4 text-gray-400 not-italic relative z-10">
-                                — {bloque.autor}
-                            </cite>
-                        )}
-                    </motion.blockquote>
+                        <FaQuoteLeft className="text-teal-400 text-2xl mb-3" />
+                        <p className="text-xl italic text-slate-100">{bloque.texto}</p>
+                        {bloque.autor && <p className="text-teal-300 mt-3 font-medium">— {bloque.autor}</p>}
+                    </motion.div>
                 );
-
             default:
                 return null;
         }
     };
 
-    // Función para compartir en redes sociales
-    const shareOnSocial = (platform) => {
-        const url = encodeURIComponent(window.location.href);
-        const title = encodeURIComponent(noticia.titulo);
-
-        switch (platform) {
-            case 'whatsapp':
-                window.open(`https://wa.me/?text=${title}%20${url}`, '_blank');
-                break;
-            case 'linkedin':
-                window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
-                break;
-            case 'facebook':
-                window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
-                break;
-            default:
-                break;
-        }
-    };
-
     return (
-        <motion.div
-            className="bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900 text-white min-h-screen"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-        >
-            {/* Fondo decorativo con colores coherentes */}
+        <div className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900 text-white overflow-hidden pt-24">
+            {/* Fondo con textura sutil */}
+            <div className="absolute inset-0 opacity-3">
+                <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+            </div>
+            {/* Brillo animado sutil en el fondo - Mejorado y coherente */}
+            <motion.div
+                className="absolute inset-0 opacity-5"
+                initial={{ x: '-100%' }}
+                animate={{ x: '100%' }}
+                transition={{
+                    duration: 25,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatType: "reverse"
+                }}
+                style={{
+                    background: 'linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.2), transparent)'
+                }}
+            />
+            {/* Elementos decorativos de fondo mejorados */}
             <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute top-20 left-10 w-64 h-64 bg-teal-500 rounded-full filter blur-3xl opacity-10"></div>
-                <div className="absolute bottom-20 right-10 w-72 h-72 bg-emerald-500 rounded-full filter blur-3xl opacity-10"></div>
-                {/* Patrón geométrico sutil con gradientes coherentes */}
+                <div className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full filter blur-3xl opacity-10 animate-pulse-slow"></div>
+                <div className="absolute bottom-20 right-10 w-72 h-72 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full filter blur-3xl opacity-10 animate-pulse-slow-reverse"></div>
+                {/* Patrón geométrico sutil mejorado con degradado coherente */}
                 <svg className="absolute inset-0 w-full h-full opacity-5" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <path
-                        d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"
-                        fill="url(#geomGradient1)"
-                    />
+                    <path d="M0,0 L100,0 L100,100 Q50,80 0,100 Z" fill="url(#geomGradient1)" />
                     <defs>
                         <linearGradient id="geomGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="rgb(20, 184, 166)" /> {/* teal-500 */}
-                            <stop offset="100%" stopColor="rgb(16, 185, 129)" /> {/* emerald-500 */}
+                            <stop offset="0%" stopColor="rgb(20, 184, 166)" />
+                            <stop offset="100%" stopColor="rgb(16, 185, 129)" />
                         </linearGradient>
                     </defs>
                 </svg>
+            </div>
+            {/* Partículas flotantes mejoradas - CON PARPADEO Y MÁS VARIACIÓN y COLORES COHERENTES */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                {[...Array(15)].map((_, i) => (
+                    <motion.div
+                        key={i}
+                        className="absolute rounded-full bg-gradient-to-r from-teal-400/20 to-emerald-400/20"
+                        initial={{
+                            x: Math.random() * 100 + '%',
+                            y: Math.random() * 100 + '%',
+                            width: Math.random() * 25 + 5 + 'px',
+                            height: Math.random() * 25 + 5 + 'px'
+                        }}
+                        animate={{
+                            y: [null, (Math.random() * 300 - 150) + 'px'],
+                            x: [null, (Math.random() * 200 - 100) + 'px'],
+                            opacity: [0.1, 0.4, 0.1],
+                            scale: [1, 1.3, 1]
+                        }}
+                        transition={{
+                            duration: Math.random() * 30 + 20,
+                            repeat: Infinity,
+                            repeatType: 'reverse',
+                            ease: 'easeInOut'
+                        }}
+                    />
+                ))}
             </div>
 
             <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
@@ -205,85 +160,58 @@ const NoticiaDetalle = () => {
                     transition={{ delay: 0.2 }}
                     className="mb-8"
                 >
-                    <Link
-                        to="/noticias"
-                        className="group inline-flex items-center gap-3 text-gray-300 hover:text-white transition-colors"
+                    {/* Botón Volver a noticias con efecto shine mejorado */}
+                    <motion.div
+                        whileHover={{ scale: 1.03, boxShadow: "0 15px 25px -5px rgba(20, 184, 166, 0.3), 0 8px 10px -6px rgba(20, 184, 166, 0.3)" }} // Sombra coherente
+                        whileTap={{ scale: 0.98 }}
+                        className="inline-block relative overflow-hidden group rounded-xl" // Overflow hidden para el efecto shine y clase de redondeo
+                        style={{ transformStyle: "preserve-3d" }}
                     >
-                        <motion.div
-                            whileHover={{ x: -5 }}
-                            className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 hover:bg-slate-700/50 transition-all"
+                        <Link
+                            to="/noticias"
+                            className="inline-flex items-center gap-3 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white px-5 py-2.5 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 z-10 relative"
                         >
-                            <FiArrowLeft className="text-teal-400" />
-                        </motion.div>
-                        <span className="font-medium group-hover:underline">Volver a noticias</span>
-                    </Link>
+                            <FiArrowLeft className="mr-1" />
+                            Volver a noticias
+                        </Link>
+                        {/* Efecto Shine en el botón */}
+                        <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+                        <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></span>
+                    </motion.div>
                 </motion.div>
 
-                {/* Encabezado con etiquetas */}
+                {/* Metadatos con estilo mejorado y coherente */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
-                    className="mb-8"
+                    className="flex flex-wrap items-center gap-4 mb-6 text-slate-400"
                 >
-                    <div className="flex flex-wrap items-center gap-3 mb-6">
-                        <div className="flex items-center gap-2 bg-gradient-to-r from-teal-600/20 to-emerald-600/20 text-teal-300 px-3.5 py-1.5 rounded-full text-sm font-semibold border border-teal-500/30">
-                            <FiTag className="text-teal-400" />
-                            {noticia.categoria}
-                        </div>
-                        <div className="flex items-center gap-2 bg-gradient-to-r from-green-600/20 to-teal-600/20 text-green-300 px-3.5 py-1.5 rounded-full text-sm font-semibold border border-green-500/30">
-                            <FiClock className="text-green-400" />
-                            <span>{noticia.fecha}</span>
-                        </div>
+                    <div className="flex items-center">
+                        <FiCalendar className="mr-2 text-teal-400" />
+                        <span>{noticia.fecha}</span>
                     </div>
-
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight mb-6">
-                        <span className="block bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-emerald-300 to-teal-100">
-                            {noticia.titulo?.split(' ').slice(0, -2).join(' ') || noticia.titulo}
-                        </span>
-                        <span className="block mt-2 bg-clip-text text-transparent bg-gradient-to-r from-white to-teal-200">
-                            {noticia.titulo?.split(' ').slice(-2).join(' ')}
-                        </span>
-                    </h1>
-
-                    <div className="flex items-center gap-6 pt-4">
-                        <div className="flex items-center gap-2 text-gray-400">
-                            <FiCalendar className="text-teal-400" />
-                            <span>{noticia.fecha}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <motion.button
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.9 }}
-                                className="flex items-center gap-2 text-gray-400 hover:text-red-400 transition-colors"
-                            >
-                                <FiHeart className="text-teal-400" />
-                                <span className="text-sm font-medium">24</span>
-                            </motion.button>
-                        </div>
-                        <div className="flex items-center gap-3">
-                            <span className="text-sm text-gray-400">Compartir:</span>
-                            <div className="flex gap-2">
-                                {[
-                                    { platform: 'whatsapp', icon: <FaWhatsapp size={16} />, color: 'text-green-400 hover:bg-green-500/20' },
-                                    { platform: 'linkedin', icon: <FaLinkedin size={16} />, color: 'text-blue-400 hover:bg-blue-500/20' },
-                                    { platform: 'facebook', icon: <FaFacebookF size={16} />, color: 'text-blue-600 hover:bg-blue-600/20' }
-                                ].map((social, index) => (
-                                    <motion.button
-                                        key={index}
-                                        whileHover={{ scale: 1.1, y: -3 }}
-                                        whileTap={{ scale: 0.9 }}
-                                        onClick={() => shareOnSocial(social.platform)}
-                                        className={`flex items-center justify-center w-10 h-10 rounded-full bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 hover:border-transparent transition-all ${social.color}`}
-                                        aria-label={`Compartir en ${social.platform}`}
-                                    >
-                                        {social.icon}
-                                    </motion.button>
-                                ))}
-                            </div>
-                        </div>
+                    <div className="flex items-center">
+                        <FiClock className="mr-2 text-teal-400" />
+                        <span>{noticia.tiempoLectura} min lectura</span>
                     </div>
+                    {noticia.etiquetas && (
+                        <div className="flex items-center">
+                            <FiTag className="mr-2 text-teal-400" />
+                            <span>{noticia.etiquetas.join(', ')}</span>
+                        </div>
+                    )}
                 </motion.div>
+
+                {/* Título principal con estilo mejorado y coherente */}
+                <motion.h1
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 leading-tight"
+                >
+                    {noticia.titulo}
+                </motion.h1>
 
                 {/* Imagen principal con estilo mejorado y coherente */}
                 {noticia.imagen && (
@@ -295,64 +223,61 @@ const NoticiaDetalle = () => {
                         className="relative w-full h-64 md:h-96 overflow-hidden rounded-3xl shadow-2xl border border-slate-700/50 group mb-12"
                         style={{ transformStyle: "preserve-3d" }}
                     >
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
+                        {/* Overlay con degradado más suave y oscuro en la parte superior */}
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-transparent"></div>
                         <img
                             src={noticia.imagen}
-                            alt={`Imagen principal: ${noticia.titulo}`}
+                            alt={noticia.titulo}
                             className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                         />
-                        <div className="absolute bottom-6 left-6 z-20">
-                            <div className="bg-gradient-to-r from-teal-600/80 to-emerald-600/80 backdrop-blur-sm px-4 py-2 rounded-full border border-teal-500/30">
-                                <span className="text-white font-semibold text-sm">Destacado</span>
-                            </div>
-                        </div>
                     </motion.div>
                 )}
 
-                {/* Contenido dinámico con mejor tipografía y colores coherentes */}
+                {/* Contenido de la noticia */}
                 <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.6 }}
-                    className="prose prose-invert max-w-none"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                    viewport={{ once: true }}
                 >
-                    {Array.isArray(noticia.contenido) && noticia.contenido.map((bloque, index) =>
-                        renderContentBlock(bloque, index)
-                    )}
+                    {noticia.contenido.map((bloque, index) => renderContentBlock(bloque, index))}
                 </motion.div>
 
-                {/* PDF destacado con estilo mejorado y coherente */}
+                {/* PDF con estilo mejorado y coherente */}
                 {noticia.pdf && (
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.7 }}
                         viewport={{ once: true }}
-                        className="mt-12 p-6 rounded-2xl bg-gradient-to-br from-slate-800/40 to-teal-900/20 backdrop-blur-sm border border-slate-700/50 shadow-xl"
+                        className="mt-12 pt-6 border-t border-slate-700/50"
                     >
-                        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+                        <div className="flex items-center justify-between">
                             <div>
-                                <h3 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
-                                    <svg className="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                    </svg>
-                                    Documento relacionado
-                                </h3>
-                                <p className="text-gray-300">
-                                    Descarga el documento completo para obtener información detallada
-                                </p>
+                                <FiCheckCircle className="inline mr-2 text-teal-400" />
+                                <span className="text-lg font-semibold text-white">Documento Adicional</span>
+                                <p className="text-slate-400 mt-1">Descarga el PDF con información complementaria</p>
                             </div>
-                            <div>
+                            {/* Botón Descargar PDF con efecto shine mejorado */}
+                            <motion.div
+                                whileHover={{ scale: 1.03, boxShadow: "0 15px 25px -5px rgba(20, 184, 166, 0.3), 0 8px 10px -6px rgba(20, 184, 166, 0.3)" }} // Sombra coherente
+                                whileTap={{ scale: 0.98 }}
+                                className="relative overflow-hidden group rounded-lg" // Overflow hidden para el efecto shine
+                                style={{ transformStyle: "preserve-3d" }}
+                            >
                                 <a
                                     href={noticia.pdf}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white px-5 py-2.5 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all"
+                                    className="inline-flex items-center gap-2 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white px-5 py-2.5 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all z-10 relative"
                                 >
                                     <span>Descargar PDF</span>
                                     <FiExternalLink className="ml-1" />
                                 </a>
-                            </div>
+                                {/* Efecto Shine en el botón */}
+                                <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+                                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></span>
+                            </motion.div>
                         </div>
                     </motion.div>
                 )}
@@ -364,24 +289,25 @@ const NoticiaDetalle = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.8 }}
                         viewport={{ once: true }}
-                        className="mt-12 rounded-3xl overflow-hidden shadow-2xl border border-slate-700/50 relative"
+                        className="mt-12"
                     >
-                        <div className="absolute inset-0 bg-gradient-to-br from-slate-800/20 to-teal-900/20 z-10"></div>
-                        <div className="relative z-20 p-5 bg-gradient-to-r from-slate-800/80 to-slate-900/80">
-                            <h3 className="text-xl font-bold text-white flex items-center gap-2">
+                        <div className="flex items-center mb-6">
+                            <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-teal-600/20 to-emerald-600/20 mr-4">
                                 <svg className="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                 </svg>
-                                Video explicativo
-                            </h3>
+                            </div>
+                            <h3 className="text-2xl font-bold text-white">Video explicativo</h3>
                         </div>
-                        <iframe
-                            src={noticia.video}
-                            title="Video relacionado"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            className="w-full aspect-video bg-black"
-                        ></iframe>
+                        <div className="aspect-video bg-black rounded-2xl overflow-hidden shadow-xl border border-slate-700/50">
+                            <iframe
+                                src={noticia.video}
+                                title="Video relacionado"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                                className="w-full h-full"
+                            ></iframe>
+                        </div>
                     </motion.div>
                 )}
 
@@ -399,29 +325,42 @@ const NoticiaDetalle = () => {
                             <p className="text-gray-400">Ayúdanos compartiendo este artículo con tu red</p>
                         </div>
                         <div className="flex gap-3">
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="flex items-center gap-2 bg-gradient-to-r from-teal-600 to-emerald-600 text-white px-5 py-2.5 rounded-lg font-semibold shadow-md hover:shadow-lg transition-all"
-                                style={{ transformStyle: "preserve-3d" }}
-                            >
-                                <FiHeart className="text-white" />
-                                <span>Me gusta</span>
-                            </motion.button>
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="flex items-center gap-2 bg-slate-800/50 backdrop-blur-sm hover:bg-slate-700/50 text-white px-5 py-2.5 rounded-lg font-semibold border border-slate-700/50 transition-all"
-                                style={{ transformStyle: "preserve-3d" }}
-                            >
-                                <FiShare2 className="text-white" />
-                                <span>Compartir</span>
-                            </motion.button>
+                            {/* Botones de redes sociales con efecto hover mejorado */}
+                            {[{ name: 'WhatsApp', icon: <FaWhatsapp />, color: 'bg-green-500 hover:bg-green-600' },
+                            { name: 'LinkedIn', icon: <FaLinkedin />, color: 'bg-blue-600 hover:bg-blue-700' },
+                            { name: 'Facebook', icon: <FaFacebookF />, color: 'bg-blue-800 hover:bg-blue-900' }].map((social, index) => (
+                                <motion.button
+                                    key={index}
+                                    whileHover={{ scale: 1.1 }} // Efecto de escala aumentado
+                                    whileTap={{ scale: 0.95 }}
+                                    className={`${social.color} text-white p-3 rounded-full shadow-md transition-colors`}
+                                    aria-label={`Compartir en ${social.name}`}
+                                >
+                                    {social.icon}
+                                </motion.button>
+                            ))}
                         </div>
                     </div>
                 </motion.div>
             </div>
-        </motion.div>
+            {/* Animaciones CSS personalizadas */}
+            <style>{`
+                @keyframes pulse-slow {
+                    0%, 100% { opacity: 0.1; transform: scale(1); }
+                    50% { opacity: 0.2; transform: scale(1.05); }
+                }
+                @keyframes pulse-slow-reverse {
+                    0%, 100% { opacity: 0.1; transform: scale(1.05); }
+                    50% { opacity: 0.2; transform: scale(1); }
+                }
+                .animate-pulse-slow {
+                    animation: pulse-slow 12s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+                }
+                .animate-pulse-slow-reverse {
+                    animation: pulse-slow-reverse 15s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+                }
+            `}</style>
+        </div>
     );
 };
 

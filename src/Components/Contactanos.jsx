@@ -13,10 +13,7 @@ const Contactanos = () => {
         const asunto = e.target.asunto.value;
         const mensaje = e.target.mensaje.value;
         const telefono = "50687905876";
-        const texto = `Hola, soy *${nombre}*.
-Mi correo es: ${email}
-Asunto: ${asunto}
-Mensaje: ${mensaje}`;
+        const texto = `Hola, soy *${nombre}*.\n\nMi correo es: ${email}\nAsunto: ${asunto}\nMensaje: ${mensaje}`;
         const url = `https://wa.me/${telefono}?text=${encodeURIComponent(texto)}`;
         window.open(url, "_blank");
         e.target.reset();
@@ -24,18 +21,57 @@ Mensaje: ${mensaje}`;
         setTimeout(() => setEnviado(false), 4000);
     };
 
+    const contactInfo = [
+        {
+            icon: <FaPhone className="text-teal-400 text-2xl" />, // Tamaño aumentado y color coherente
+            title: "Teléfono",
+            info: "+506 (87) 905-876"
+        },
+        {
+            icon: <FaEnvelope className="text-teal-400 text-2xl" />,
+            title: "Email",
+            info: "jgutierrez@bpomiconta.com"
+        },
+        {
+            icon: <FaMapMarkerAlt className="text-teal-400 text-2xl" />,
+            title: "Dirección",
+            info: "Calle Topo, Principal\nMontes de Oca, San Pedro"
+        },
+        {
+            icon: <FaClock className="text-teal-400 text-2xl" />,
+            title: "Horario",
+            info: "Lun-Vie: 8:00 AM - 6:00 PM\nSáb: 9:00 AM - 1:00 PM"
+        }
+    ];
+
     return (
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900 overflow-hidden pt-40">
-            {/* Elementos decorativos de fondo mejorados con estilo coherente */}
+        <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900 text-white overflow-hidden pt-40">
+            {/* Fondo con textura sutil */}
+            <div className="absolute inset-0 opacity-3"> {/* Opacidad reducida */}
+                <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+            </div>
+            {/* Brillo animado sutil en el fondo - Mejorado y coherente */}
+            <motion.div
+                className="absolute inset-0 opacity-5" // Opacidad reducida
+                initial={{ x: '-100%' }}
+                animate={{ x: '100%' }}
+                transition={{
+                    duration: 25, // Más lento
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatType: "reverse"
+                }}
+                style={{
+                    background: 'linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.2), transparent)' // Color teal-500 con menos opacidad
+                }}
+            />
+            {/* Elementos decorativos de fondo mejorados */}
             <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute top-20 left-10 w-64 h-64 bg-teal-500 rounded-full filter blur-3xl opacity-10"></div>
-                <div className="absolute bottom-20 right-10 w-72 h-72 bg-emerald-500 rounded-full filter blur-3xl opacity-10"></div>
-                {/* Patrón geométrico sutil con colores coherentes */}
+                <div className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full filter blur-3xl opacity-10 animate-pulse-slow"></div>
+                <div className="absolute bottom-20 right-10 w-72 h-72 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full filter blur-3xl opacity-10 animate-pulse-slow-reverse"></div>
+                {/* Patrón geométrico sutil mejorado con degradado coherente */}
                 <svg className="absolute inset-0 w-full h-full opacity-5" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <path
-                        d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"
-                        fill="url(#contactGradient)"
-                    />
+                    <path d="M0,0 L100,0 L100,100 Q50,80 0,100 Z" fill="url(#contactGradient)" />
                     <defs>
                         <linearGradient id="contactGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                             <stop offset="0%" stopColor="rgb(20, 184, 166)" /> {/* teal-500 */}
@@ -44,27 +80,26 @@ Mensaje: ${mensaje}`;
                     </defs>
                 </svg>
             </div>
-
-            {/* Efecto de partículas decorativas - MÁS LENTAS y con colores coherentes */}
+            {/* Partículas animadas mejoradas - CON PARPADEO Y MÁS VARIACIÓN y COLORES COHERENTES */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 {[...Array(15)].map((_, i) => (
                     <motion.div
                         key={i}
-                        className="absolute rounded-full bg-gradient-to-r from-teal-400 to-emerald-400"
+                        className="absolute rounded-full bg-gradient-to-r from-teal-400/20 to-emerald-400/20" // Colores coherentes
                         initial={{
-                            x: `${Math.random() * 100}%`,
-                            y: `${Math.random() * 100}%`,
-                            width: `${Math.random() * 8 + 4}px`,
-                            height: `${Math.random() * 8 + 4}px`,
-                            opacity: 0.1
+                            x: Math.random() * 100 + '%',
+                            y: Math.random() * 100 + '%',
+                            width: Math.random() * 25 + 5 + 'px', // Mayor variación de tamaño
+                            height: Math.random() * 25 + 5 + 'px'
                         }}
                         animate={{
-                            y: [0, (Math.random() * 100 - 50)],
-                            x: [0, (Math.random() * 100 - 50)],
-                            opacity: [0.1, 0.3, 0.1]
+                            y: [null, (Math.random() * 300 - 150) + 'px'], // Mayor rango de movimiento
+                            x: [null, (Math.random() * 200 - 100) + 'px'],
+                            opacity: [0.1, 0.4, 0.1], // Parpadeo más pronunciado
+                            scale: [1, 1.3, 1] // Escala ligeramente mayor
                         }}
                         transition={{
-                            duration: Math.random() * 30 + 20, // Más lentas: 20-50 segundos
+                            duration: Math.random() * 30 + 20, // Duraciones más lentas y variadas: 20-50s
                             repeat: Infinity,
                             repeatType: 'reverse',
                             ease: 'easeInOut'
@@ -73,169 +108,85 @@ Mensaje: ${mensaje}`;
                 ))}
             </div>
 
-            <div className="relative max-w-6xl mx-auto">
+            <div className="relative max-w-7xl mx-auto">
+                {/* Encabezado con estilo moderno y colores coherentes */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16 md:mb-20"
+                    className="text-center mb-16"
                 >
                     <motion.span
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.1 }}
-                        viewport={{ once: true }}
-                        className="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold bg-gradient-to-r from-teal-500/10 to-emerald-500/10 text-teal-300 shadow-sm border border-teal-200/50 backdrop-blur-sm mb-6"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.3 }}
+                        className="inline-block mb-6 px-6 py-3 bg-teal-500/10 border border-teal-400/20 rounded-full text-teal-300 font-bold tracking-widest text-sm uppercase backdrop-blur-sm"
                     >
-                        <span className="w-2.5 h-2.5 bg-teal-400 rounded-full mr-2.5 animate-pulse"></span>
-                        Conéctate con nosotros
+                        CONTACTO DIRECTO
                     </motion.span>
-
-                    <motion.h2
-                        initial={{ opacity: 0, y: 15 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                        viewport={{ once: true }}
-                        className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6"
-                    >
-                        <span className="block bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-emerald-300 to-teal-100">
-                            Contacta a Nuestros
-                        </span>
-                        <span className="block mt-2 bg-clip-text text-transparent bg-gradient-to-r from-white to-teal-200">
-                            Expertos Financieros
-                        </span>
-                    </motion.h2>
-
-                    <motion.p
-                        initial={{ opacity: 0, y: 15 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.3 }}
-                        viewport={{ once: true }}
-                        className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed"
-                    >
-                        Completa el formulario y nos comunicaremos contigo inmediatamente vía WhatsApp para resolver tus consultas financieras.
-                    </motion.p>
+                    <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-emerald-300 to-teal-300 mb-6"> {/* Degradado coherente */}
+                        Estamos aquí para ayudarte
+                    </h2>
+                    <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+                        ¿Tienes preguntas? ¿Necesitas una cotización? ¿Quieres agendar una consulta? Ponte en contacto con nosotros.
+                    </p>
                 </motion.div>
 
-                <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
-                    {/* Información de contacto con estilo mejorado y coherente */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    {/* Información de contacto */}
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.7, delay: 0.2 }}
                         viewport={{ once: true }}
-                        className="bg-gradient-to-br from-slate-800/40 to-teal-900/20 backdrop-blur-2xl rounded-3xl p-0.5 border border-slate-700/50 shadow-2xl"
-                        style={{ transformStyle: "preserve-3d" }}
+                        className="space-y-6"
                     >
-                        <div className="bg-gradient-to-br from-slate-900/90 to-slate-800/40 rounded-3xl p-6 md:p-8 h-full">
-                            <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
-                                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-r from-teal-600/20 to-emerald-600/20 border border-teal-500/30">
-                                    <svg className="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                                    </svg>
-                                </div>
-                                Información de Contacto
-                            </h3>
-
-                            <div className="space-y-6">
-                                <motion.div
-                                    className="flex items-start group"
-                                    initial={{ opacity: 0, y: 15 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.3 }}
-                                    viewport={{ once: true }}
-                                >
-                                    <div className="flex-shrink-0 mt-1 mr-5">
-                                        <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r from-teal-600/20 to-emerald-600/20 border border-teal-500/30 group-hover:scale-105 transition-transform">
-                                            <FaClock className="text-teal-400" />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h4 className="text-lg font-bold text-white mb-1">Horario de Atención</h4>
-                                        <p className="text-gray-300">Lunes a Viernes, 8:00 AM - 5:00 PM</p>
-                                    </div>
-                                </motion.div>
-
-                                <motion.div
-                                    className="flex items-start group"
-                                    initial={{ opacity: 0, y: 15 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.4 }}
-                                    viewport={{ once: true }}
-                                >
-                                    <div className="flex-shrink-0 mt-1 mr-5">
-                                        <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r from-teal-600/20 to-emerald-600/20 border border-teal-500/30 group-hover:scale-105 transition-transform">
-                                            <FaEnvelope className="text-teal-400" />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h4 className="text-lg font-bold text-white mb-1">Correo Electrónico</h4>
-                                        <a href="mailto:jgutierrez@bpomiconta.com" className="text-gray-300 hover:text-teal-300 transition-colors">
-                                            jgutierrez@bpomiconta.com
-                                        </a>
-                                    </div>
-                                </motion.div>
-
-                                <motion.div
-                                    className="flex items-start group"
-                                    initial={{ opacity: 0, y: 15 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.5 }}
-                                    viewport={{ once: true }}
-                                >
-                                    <div className="flex-shrink-0 mt-1 mr-5">
-                                        <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r from-teal-600/20 to-emerald-600/20 border border-teal-500/30 group-hover:scale-105 transition-transform">
-                                            <FaPhone className="text-teal-400" />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h4 className="text-lg font-bold text-white mb-1">Teléfono</h4>
-                                        <a href="tel:+50687905876" className="text-gray-300 hover:text-teal-300 transition-colors">
-                                            +506 8790-5876
-                                        </a>
-                                    </div>
-                                </motion.div>
-
-                                <motion.div
-                                    className="flex items-start group"
-                                    initial={{ opacity: 0, y: 15 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.6 }}
-                                    viewport={{ once: true }}
-                                >
-                                    <div className="flex-shrink-0 mt-1 mr-5">
-                                        <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r from-teal-600/20 to-emerald-600/20 border border-teal-500/30 group-hover:scale-105 transition-transform">
-                                            <FaMapMarkerAlt className="text-teal-400" />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h4 className="text-lg font-bold text-white mb-1">Dirección</h4>
-                                        <p className="text-gray-300">
-                                            Calle Topo, Principal<br />
-                                            Montes de Oca, San Pedro
-                                        </p>
-                                    </div>
-                                </motion.div>
-                            </div>
-
-                            {/* Tarjeta de WhatsApp destacada */}
+                        {contactInfo.map((item, index) => (
                             <motion.div
-                                className="mt-8 p-5 rounded-2xl bg-gradient-to-r from-green-600/20 to-teal-600/20 border border-green-500/30"
+                                key={index}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.7 }}
+                                transition={{ delay: 0.1 * index + 0.3 }}
                                 viewport={{ once: true }}
+                                whileHover={{ y: -5, scale: 1.02 }} // Efecto lift y escala aumentados
+                                className="flex items-start p-6 rounded-2xl bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-lg border border-white/10 hover:border-teal-400/30 transition-all duration-300 shadow-lg hover:shadow-xl" // Fondo, borde y sombra mejorados
                             >
-                                <div className="flex items-center gap-3 mb-3">
-                                    <FaWhatsapp className="text-2xl text-green-400" />
-                                    <h4 className="text-lg font-bold text-white">Respuesta Inmediata</h4>
+                                <div className="flex-shrink-0 mr-6 p-3 rounded-xl bg-slate-800/50 backdrop-blur-sm border border-slate-700/30 shadow-md"> {/* Contenedor del icono mejorado */}
+                                    {item.icon}
                                 </div>
-                                <p className="text-green-200 text-sm">
-                                    Nuestro equipo responde tus mensajes de WhatsApp en menos de 2 horas en horario laboral.
-                                </p>
+                                <div>
+                                    <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                                    <p className="text-slate-300 whitespace-pre-line">{item.info}</p> {/* whitespace-pre-line para mantener saltos de línea */}
+                                </div>
                             </motion.div>
-                        </div>
+                        ))}
+
+                        {/* Botón de WhatsApp con estilo mejorado y efecto shine */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.6 }}
+                            viewport={{ once: true }}
+                            whileHover={{ y: -5, scale: 1.02 }} // Efecto lift y escala aumentados
+                            className="mt-8"
+                        >
+                            <motion.a
+                                whileHover={{ scale: 1.03, boxShadow: "0 15px 30px -8px rgba(34, 197, 94, 0.4), 0 5px 15px -5px rgba(34, 197, 94, 0.3)" }} // Sombra coherente con WhatsApp
+                                whileTap={{ scale: 0.98 }}
+                                href="https://wa.me/50687905876"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-4 w-full justify-center bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-6 py-4 rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group" // Overflow hidden para el efecto shine
+                                style={{ transformStyle: "preserve-3d" }}
+                            >
+                                <FaWhatsapp className="text-2xl" />
+                                <span className="relative z-10">Enviar mensaje por WhatsApp</span>
+                                {/* Efecto Shine en el botón de WhatsApp */}
+                                <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+                                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></span>
+                            </motion.a>
+                        </motion.div>
                     </motion.div>
 
                     {/* Formulario con estilo mejorado y coherente */}
@@ -244,119 +195,133 @@ Mensaje: ${mensaje}`;
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.7, delay: 0.3 }}
                         viewport={{ once: true }}
-                        className="bg-gradient-to-br from-slate-800/40 to-teal-900/20 backdrop-blur-2xl rounded-3xl p-0.5 border border-slate-700/50 shadow-2xl"
+                        className="bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-2xl rounded-3xl p-0.5 border border-white/10 shadow-2xl" // Sombra mejorada
                         style={{ transformStyle: "preserve-3d" }}
                     >
                         <div className="bg-gradient-to-br from-slate-900/90 to-slate-800/40 rounded-3xl p-6 md:p-8 h-full">
                             <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
-                                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-r from-teal-600/20 to-emerald-600/20 border border-teal-500/30">
-                                    <svg className="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                                    </svg>
-                                </div>
-                                Envíanos un Mensaje
+                                <FaComment className="text-teal-400" /> {/* Icono coherente */}
+                                Envíanos un mensaje
                             </h3>
-
-                            <motion.form
-                                onSubmit={handleSubmit}
-                                className="space-y-6"
-                            >
-                                <AnimatePresence>
-                                    {enviado && (
-                                        <motion.div
-                                            initial={{ opacity: 0, y: -20, height: 0 }}
-                                            animate={{ opacity: 1, y: 0, height: "auto" }}
-                                            exit={{ opacity: 0, y: -20, height: 0 }}
-                                            className="bg-gradient-to-r from-teal-600/90 to-emerald-600/90 text-white px-5 py-4 rounded-xl text-center flex items-center justify-center gap-3 shadow-lg"
-                                        >
-                                            <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                                            </svg>
-                                            <span className="font-medium">¡Mensaje preparado! Te redirigimos a WhatsApp...</span>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                    <div className="relative group">
-                                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-teal-300">
-                                            <FaUser className="text-base" />
+                            <form onSubmit={handleSubmit} className="space-y-6">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label htmlFor="nombre" className="block text-sm font-medium text-slate-300 mb-2">Nombre completo</label>
+                                        <div className="relative">
+                                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                <FaUser className="text-slate-500" />
+                                            </div>
+                                            <input
+                                                type="text"
+                                                id="nombre"
+                                                name="nombre"
+                                                required
+                                                className="w-full pl-10 pr-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">Correo electrónico</label>
+                                        <div className="relative">
+                                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                <FaEnvelope className="text-slate-500" />
+                                            </div>
+                                            <input
+                                                type="email"
+                                                id="email"
+                                                name="email"
+                                                required
+                                                className="w-full pl-10 pr-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label htmlFor="asunto" className="block text-sm font-medium text-slate-300 mb-2">Asunto</label>
+                                    <div className="relative">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <FaHeading className="text-slate-500" />
                                         </div>
                                         <input
                                             type="text"
-                                            name="nombre"
-                                            placeholder="Nombre completo"
+                                            id="asunto"
+                                            name="asunto"
                                             required
-                                            className="bg-slate-800/50 border border-slate-700/50 w-full pl-12 pr-4 py-3.5 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent transition-all group-hover:border-teal-400/30"
+                                            className="w-full pl-10 pr-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
                                         />
                                     </div>
-                                    <div className="relative group">
-                                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-teal-300">
-                                            <FaEnvelope className="text-base" />
+                                </div>
+                                <div>
+                                    <label htmlFor="mensaje" className="block text-sm font-medium text-slate-300 mb-2">Mensaje</label>
+                                    <div className="relative">
+                                        <div className="absolute top-3 left-3 pointer-events-none">
+                                            <FaComment className="text-slate-500" />
                                         </div>
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            placeholder="Correo electrónico"
+                                        <textarea
+                                            id="mensaje"
+                                            name="mensaje"
+                                            rows={5}
                                             required
-                                            className="bg-slate-800/50 border border-slate-700/50 w-full pl-12 pr-4 py-3.5 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent transition-all group-hover:border-teal-400/30"
-                                        />
+                                            className="w-full pl-10 pr-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all resize-none"
+                                        ></textarea>
                                     </div>
                                 </div>
-
-                                <div className="relative group">
-                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-teal-300">
-                                        <FaHeading className="text-base" />
-                                    </div>
-                                    <input
-                                        type="text"
-                                        name="asunto"
-                                        placeholder="Asunto de tu consulta"
-                                        required
-                                        className="bg-slate-800/50 border border-slate-700/50 w-full pl-12 pr-4 py-3.5 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent transition-all group-hover:border-teal-400/30"
-                                    />
-                                </div>
-
-                                <div className="relative group">
-                                    <div className="absolute top-4 left-4 text-teal-300">
-                                        <FaComment className="text-base" />
-                                    </div>
-                                    <textarea
-                                        rows="5"
-                                        name="mensaje"
-                                        placeholder="Describe tu consulta financiera..."
-                                        required
-                                        className="bg-slate-800/50 border border-slate-700/50 w-full pl-12 pr-4 py-3.5 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent resize-none transition-all group-hover:border-teal-400/30"
-                                    ></textarea>
-                                </div>
-
-                                <motion.button
-                                    type="submit"
-                                    whileHover={{
-                                        scale: 1.02,
-                                        boxShadow: "0 20px 25px -5px rgba(20, 184, 166, 0.3), 0 10px 10px -5px rgba(20, 184, 166, 0.2)",
-                                        rotateX: 5,
-                                        rotateY: 5
-                                    }}
+                                {/* Botón Enviar con estilo mejorado y efecto shine */}
+                                <motion.div
+                                    whileHover={{ scale: 1.02, boxShadow: "0 15px 30px -8px rgba(20, 184, 166, 0.4), 0 5px 15px -5px rgba(20, 184, 166, 0.3)" }} // Sombra coherente
                                     whileTap={{ scale: 0.98 }}
-                                    className="w-full bg-gradient-to-r from-teal-500 to-emerald-500 px-6 py-4 text-white font-bold rounded-xl text-lg flex items-center justify-center gap-3 hover:shadow-xl transition-all group"
+                                    className="relative overflow-hidden rounded-2xl group" // Overflow hidden para el efecto shine
                                     style={{ transformStyle: "preserve-3d" }}
                                 >
-                                    <FaWhatsapp className="text-xl group-hover:scale-110 transition-transform" />
-                                    <span>Enviar Consulta por WhatsApp</span>
-                                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                    </svg>
-                                </motion.button>
-
-                                <p className="text-center text-gray-400 text-sm">
-                                    Al enviar, serás redirigido a WhatsApp para continuar la conversación
-                                </p>
-                            </motion.form>
+                                    <button
+                                        type="submit"
+                                        className="w-full bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white px-6 py-4 rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 relative z-10"
+                                    >
+                                        Enviar Mensaje
+                                    </button>
+                                    {/* Efecto Shine en el botón de Enviar */}
+                                    <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+                                    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></span>
+                                </motion.div>
+                            </form>
                         </div>
                     </motion.div>
                 </div>
+
+                {/* Mensaje de confirmación con estilo mejorado */}
+                <AnimatePresence>
+                    {enviado && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            className="fixed bottom-8 right-8 z-50"
+                        >
+                            <div className="bg-gradient-to-r from-teal-600 to-emerald-600 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 backdrop-blur-md border border-teal-400/30">
+                                <div className="w-3 h-3 bg-white rounded-full animate-ping"></div>
+                                <span className="font-medium">Mensaje enviado. ¡Gracias por contactarnos!</span>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
+            {/* Animaciones CSS personalizadas */}
+            <style>{`
+                @keyframes pulse-slow {
+                    0%, 100% { opacity: 0.1; transform: scale(1); }
+                    50% { opacity: 0.2; transform: scale(1.05); }
+                }
+                @keyframes pulse-slow-reverse {
+                    0%, 100% { opacity: 0.1; transform: scale(1.05); }
+                    50% { opacity: 0.2; transform: scale(1); }
+                }
+                .animate-pulse-slow {
+                    animation: pulse-slow 12s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+                }
+                .animate-pulse-slow-reverse {
+                    animation: pulse-slow-reverse 15s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+                }
+            `}</style>
         </section>
     );
 };

@@ -56,6 +56,8 @@ const LoadingIndicator = () => (
     </div>
 );
 
+// ... imports ...
+
 const AppRoutes = () => {
     return (
         <Suspense fallback={<LoadingIndicator />}>
@@ -77,7 +79,7 @@ const AppRoutes = () => {
                     {/* Rutas de contenido */}
                     <Route path="/noticias" element={<NewsSection />} />
                     <Route path="/noticias/:id" element={<NewsDetail />} />
-                    <Route path="/politica-privacidad" component={<PrivacyPolicy />} />
+                    <Route path="/politica-privacidad" element={<PrivacyPolicy />} />
                     <Route path="/noticias-destacadas/:id" element={<NoticiaDestacadaDetalle />} />
                     <Route path="/pre_frecuentes" element={<PreguntasFrecuentesContabilidad />} />
 
@@ -91,9 +93,9 @@ const AppRoutes = () => {
                     <Route path="/contabilidad-fiscal" element={<ContabilidadFiscal />} />
                     <Route path="/contabilidad-costos" element={<ContabilidadCostos />} />
                     <Route path="/contabilidad-gerencial" element={<ContabilidadGerencial />} />
-                    <Route path="/contabilidad-administrativa" element={<ContabilidadAdministrativa />} />"
-                    <Route path="/facturas-electronicas" element={<FacturacionElectronica />} />"
- 
+                    <Route path="/contabilidad-administrativa" element={<ContabilidadAdministrativa />} /> {/* Corregido: Quitar comillas extras */}
+                    <Route path="/facturas-electronicas" element={<FacturacionElectronica />} /> {/* Corregido: Quitar comillas extras */}
+
                     {/* Rutas corporativas */}
                     <Route path="/nosotros" element={<AboutUs />} />
                     <Route path="/contacto" element={<Contactanos />} />

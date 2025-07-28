@@ -1,6 +1,14 @@
 [
     {
-        "id": 6,
+        "id": "7",
+        "titulo": "ACCIÓN DE DIPUTADA JOHANNA OBANDO BENEFICIA A INCUMPLIDORES Y AFECTA PLAN INTEGRAL PARA PONER EN MARCHA TRIBU-CR",
+        "resumen": "",
+        "imagen": "/ImagenNoticias/Foto41-2025s.png",
+        "fecha": "Julio 18, 2025",
+        "pdf": "/ImagenNoticias/CP46-2025.pdf"
+    },
+    {
+        "id": "6",
         "titulo": "Hacienda Digital sigue adelante: COSTA RICA MODERNIZA LA GESTIÓN TRIBUTARIA CON TRIBU-CR",
         "resumen": "Como parte del proceso de cambio hacia el nuevo sistema tributario",
         "imagen": "/ImagenNoticias/Foto39-2025.png",
@@ -8,7 +16,7 @@
         "pdf": "/ImagenNoticias/CP39-2025.pdf"
     },
     {
-        "id": 1,
+        "id": "1",
         "titulo": "Gobierno marca un hito en la política social y fiscal del país",
         "resumen": " IMPORTANTE PASO PARA FORTALECER EL SISTEMA NACIONAL",
         "imagen": "/ImagenNoticias/CP292025.png",
@@ -16,7 +24,7 @@
         "pdf": "/ImagenNoticias/CP29-2025.pdf"
     },
     {
-        "id": 1.1,
+        "id": "1.1",
         "titulo": "Costa Rica avanza 2025",
         "resumen": "Costa Rica avanza hacia una mayor resiliencia climática y financiera con el apoyo que Global Shield ofrecerá al país",
         "imagen": "/ImagenNoticias/foto-cp-12-jun2025.png",
@@ -24,7 +32,7 @@
         "pdf": "/ImagenNoticias/CP-12-06-2025.pdf"
     },
     {
-        "id": 2,
+        "id": "2",
         "titulo": "Costa Rica refuerza su estabilidad ",
         "resumen": "Costa Rica refuerza su estabilidad económica con la aprobación de la línea de crédito flexible del FMI",
         "imagen": "/ImagenNoticias/foto-cp362025.png",
@@ -32,7 +40,7 @@
         "pdf": "/ImagenNoticias/CP36-2025.pdf"
     },
     {
-        "id": 3,
+        "id": "3",
         "titulo": "Ingresos superan gastos",
         "resumen": "Ingresos superan gastos primario y deuda se mantienen por debajo del cierre de 2024",
         "contenido": "",
@@ -41,7 +49,7 @@
         "pdf": "/ImagenNoticias/CP352025.pdf"
     },
     {
-        "id": 4,
+        "id": "4",
         "titulo": "Tribu-CR toma el control",
         "resumen": "Así será el cambio de ATV a la nueva plataforma de Hacienda",
         "contenido": [
@@ -130,7 +138,7 @@
         "imagen": "/ImagenNoticias/TribuCR.png"
     },
     {
-        "id": 5,
+        "id": "5",
         "titulo": "Sociedades nuevas ya no tendrán razón social.",
         "resumen": "Entra en vigor reforma que simplifica su constitución",
         "imagen": "/ImagenNoticias/people-taking-part-business-event.jpg",
