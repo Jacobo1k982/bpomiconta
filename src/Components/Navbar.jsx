@@ -360,34 +360,87 @@ const NavbarFinanzas = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center">
                         <motion.div
-                            whileHover={{ scale: 1.03 }}
-                            whileTap={{ scale: 0.98 }}
                             onClick={handleLogoClick}
                             className="flex-shrink-0 flex items-center cursor-pointer"
-                            style={{ transformStyle: "preserve-3d" }}
+                            whileHover="hover"
+                            whileTap="tap"
+                            initial="initial"
+                            style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
                         >
-                            <div className="flex items-center group">
-                                <div className={`p-2 rounded-xl shadow-xl transition-all duration-300 ${scrolled
-                                    ? 'bg-gradient-to-br from-teal-500 to-emerald-500 group-hover:shadow-teal-500/20'
-                                    : 'bg-slate-800/90 group-hover:shadow-teal-500/20'
-                                    }`}>
-                                    <img
-                                        src={logoFinanzas}
-                                        alt="Logo Finanzas"
-                                        className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
+                            <motion.div
+                                variants={{
+                                    initial: { scale: 1 },
+                                    hover: { scale: 1.05 },
+                                    tap: { scale: 0.98 }
+                                }}
+                                transition={{ duration: 0.3, type: "spring", stiffness: 400, damping: 20 }}
+                                className="flex items-center group"
+                            >
+                                {/* Contenedor del ícono con efectos 3D y brillo */}
+                                <div className="relative">
+                                    <div
+                                        className={`relative p-2.5 rounded-2xl transition-all duration-300 
+                    ${scrolled
+                                                ? 'bg-gradient-to-br from-teal-500 to-emerald-600 shadow-lg'
+                                                : 'bg-gradient-to-br from-slate-800 to-slate-700 shadow-lg'
+                                            } 
+                    group-hover:shadow-2xl group-hover:shadow-teal-500/40
+                    transform-gpu`}
+                                        style={{
+                                            transform: 'translateZ(10px)',
+                                            boxShadow: scrolled
+                                                ? '0 10px 25px -5px rgba(20, 184, 166, 0.3), 0 5px 10px -5px rgba(20, 184, 166, 0.2)'
+                                                : '0 8px 20px -4px rgba(30, 41, 59, 0.3), 0 4px 8px -4px rgba(30, 41, 59, 0.2)'
+                                        }}
+                                    >
+                                        <img
+                                            src={logoFinanzas}
+                                            alt="Logo Finanzas"
+                                            className="h-8 w-auto transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
+                                        />
+                                    </div>
+
+                                    {/* Efecto de brillo (shine) */}
+                                    <motion.div
+                                        className="absolute inset-0 pointer-events-none rounded-2xl bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-80 transition-opacity"
+                                        variants={{
+                                            hover: {
+                                                backgroundPosition: '200% center'
+                                            }
+                                        }}
+                                        animate="initial"
+                                        whileHover={{
+                                            backgroundPosition: ['0% center', '200% center'],
+                                            transition: { duration: 1.5, ease: "easeInOut", repeat: Infinity }
+                                        }}
+                                        style={{
+                                            backgroundSize: '100% 100%',
+                                            transform: 'translateZ(5px)'
+                                        }}
                                     />
                                 </div>
-                                <div className="ml-3 flex flex-col">
-                                    <span className={`text-2xl font-bold transition-colors duration-300 ${scrolled ? 'text-white' : 'text-white'
-                                        }`}>
-                                        BPO<span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-emerald-400">MICONTA</span>
-                                    </span>
-                                    <span className={`text-xs transition-colors duration-300 ${scrolled ? 'text-gray-300' : 'text-gray-300'
-                                        }`}>
-                                        Soluciones financieras integrales
-                                    </span>
+
+                                {/* Texto del logo */}
+                                <div className="ml-3.5 transform-gpu" style={{ transform: 'translateZ(15px)' }}>
+                                    <div className="flex items-baseline space-x-1">
+                                        <span className={`text-xl sm:text-2xl font-extrabold ${scrolled ? 'text-white' : 'text-white'}`}>
+                                            BPO
+                                        </span>
+                                        <span className="text-xl sm:text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-emerald-300 to-teal-200">
+                                            MICONTA
+                                        </span>
+                                    </div>
+                                    <motion.p
+                                        className={`text-[12.2px] sm:text-[14.5px] md:text-[14.5px] lg:text-[14.6px] xl:text-[14.5px] mt-0.5 ${scrolled ? 'text-teal-200' : 'text-teal-200'} font-medium tracking-widest uppercase`}
+                                        initial={{ opacity: 0, y: 5 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.2 }}
+                                    >
+                                        Soluciones Financieras
+                                    </motion.p>
+
                                 </div>
-                            </div>
+                            </motion.div>
                         </motion.div>
 
                         <div className="hidden md:flex items-center space-x-2">

@@ -190,28 +190,29 @@ const NoticiaDestacada = () => {
 
                                 {/* Contenedor del video con relación de aspecto 16:9 */}
                                 <div className="relative pb-[56.25%] h-0 rounded-xl overflow-hidden bg-slate-800 border border-slate-700/50">
-                                    {/* Componente de Video Real */}
-                                    <ReactPlayer
-                                        url="/new.mp4"
-                                        width="100%"
-                                        height="100%"
-                                        controls={true}
-                                        light={false}
-                                        playing={false}
-                                        className="absolute inset-0 rounded-xl overflow-hidden"
-                                    />
+                                    <video
+                                        className="absolute inset-0 w-full h-full object-cover rounded-xl"
+                                        controls
+                                        preload="metadata"
+                                    >
+                                        <source src="/NoticiasDestacadas/videoplayback.mp4" type="video/mp4" />
+                                        Tu navegador no soporta el elemento de video.
+                                    </video>
                                 </div>
 
-                                <motion.button
-                                    whileHover={{
-                                        scale: 1.02,
-                                        backgroundColor: "rgba(20, 184, 166, 0.15)"
-                                    }}
-                                    whileTap={{ scale: 0.98 }}
-                                    className="mt-4 w-full py-2.5 text-center text-teal-300 font-semibold rounded-lg border border-teal-500/30 hover:border-teal-400 transition-all duration-300"
-                                >
-                                    Ver Playlist Completa
-                                </motion.button>
+                                {/* Botón que ahora SÍ redirige */}
+                                <Link to="/playlist">
+                                    <motion.button
+                                        whileHover={{
+                                            scale: 1.02,
+                                            backgroundColor: "rgba(20, 184, 166, 0.15)"
+                                        }}
+                                        whileTap={{ scale: 0.98 }}
+                                        className="mt-4 w-full py-2.5 text-center text-teal-300 font-semibold rounded-lg border border-teal-500/30 hover:border-teal-400 transition-all duration-300"
+                                    >
+                                        Ver Playlist Completa
+                                    </motion.button>
+                                </Link>
                             </div>
                         </motion.div>
 
