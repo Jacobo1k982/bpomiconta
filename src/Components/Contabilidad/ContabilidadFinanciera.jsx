@@ -329,7 +329,7 @@ const ContabilidadFinanciera = () => {
                 </motion.div>
             </div>
             {/* Animaciones CSS personalizadas */}
-            <style jsx>{`
+            <style>{`
                 @keyframes pulse-slow {
                     0%, 100% { opacity: 0.3; transform: scale(1); }
                     50% { opacity: 0.6; transform: scale(1.05); }

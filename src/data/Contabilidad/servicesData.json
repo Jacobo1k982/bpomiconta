@@ -32,7 +32,7 @@
             {
                 "name": "Contabilidad para Pymes o Simplificada",
                 "description": "Plan básico: ingresos y gastos + conciliaciones + declaración mensual.",
-                "path": "/servicios/contabilidad-financiera/conciliaciones-bancarias"
+                "path": "/servicios-contables"
             },
             {
                 "name": "Facturación Electrónica y Control de Comprobantes",
@@ -40,14 +40,9 @@
                 "path": "/facturas-electronicas"
             },
             {
-                "name": "Outsourcing Contable",
-                "description": "Externalización total o parcial de la contabilidad.",
-                "path": "/servicios/contabilidad-financiera/conciliaciones-bancarias"
-            },
-            {
                 "name": "Asesoría para Emprendedores",
                 "description": "Guías para organizar finanzas personales y del negocio.",
-                "path": "/servicios/contabilidad-financiera/conciliaciones-bancarias"
+                "path": "/asesoria-emprendedores"
             }
         ]
     },

@@ -28,6 +28,8 @@ const ContabilidadGerencial = lazy(() => import("../Components/Contabilidad/Cont
 const ContabilidadAdministrativa = lazy(() => import("../Components/Contabilidad/ContabilidadAdministrativa.jsx"));
 const FacturacionElectronica = lazy(() => import("../Components/Contabilidad/FacturacionElectronica.jsx"));
 const PlaylistPage = lazy(() => import("../page/PlaylistPage.jsx"));
+const ServiciosContables = lazy(() => import("../Components/Contabilidad/ServiciosContables.jsx"));
+const AsesoriaEmprendedores = lazy(() => import("../Components/Contabilidad/AsesoriaEmprendedores.jsx"));
 
 
 
@@ -97,6 +99,10 @@ const AppRoutes = () => {
                     <Route path="/contabilidad-gerencial" element={<ContabilidadGerencial />} />
                     <Route path="/contabilidad-administrativa" element={<ContabilidadAdministrativa />} /> {/* Corregido: Quitar comillas extras */}
                     <Route path="/facturas-electronicas" element={<FacturacionElectronica />} /> {/* Corregido: Quitar comillas extras */}
+                    <Route path="/servicios-contables" element={<ServiciosContables />} />
+                    <Route path="/asesoria-emprendedores" element={<AsesoriaEmprendedores />} />
+
+                    {/* Rutas de navegación */}    
 
                     {/* Rutas corporativas */}
                     <Route path="/nosotros" element={<AboutUs />} />
