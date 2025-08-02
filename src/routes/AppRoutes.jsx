@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { motion } from "framer-motion"; // Importa motion aquí
+import { motion } from "framer-motion";
 import Layout from "../Components/Layout";
 import Contactanos from "../Components/Contactanos.jsx";
 import FinanceDivider from "../page/FinanceDivider.jsx";
@@ -31,35 +31,94 @@ const PlaylistPage = lazy(() => import("../page/PlaylistPage.jsx"));
 const ServiciosContables = lazy(() => import("../Components/Contabilidad/ServiciosContables.jsx"));
 const AsesoriaEmprendedores = lazy(() => import("../Components/Contabilidad/AsesoriaEmprendedores.jsx"));
 
+// === LoadingIndicator mejorado y alineado con tu estilo ===
+const LoadingIndicator = () => {
+    return (
+        <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-slate-950 via-black to-teal-950 z-50 overflow-hidden">
+            {/* Textura de grid sutil */}
+            <div
+                className="absolute inset-0 opacity-5"
+                style={{
+                    backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.08) 1px, transparent 0)`,
+                    backgroundSize: "40px 40px",
+                }}
+            />
 
+            {/* Partículas sutiles (mismo estilo que ImplementacionERP/HeroElegant) */}
+            {[...Array(8)].map((_, i) => (
+                <motion.div
+                    key={`load-particle-${i}`}
+                    className="absolute w-2 h-2 text-teal-400 opacity-10"
+                    style={{
+                        top: `${Math.random() * 100}%`,
+                        left: `${Math.random() * 100}%`,
+                    }}
+                    animate={{
+                        y: [0, -20, 0],
+                        scale: [0.8, 1.2, 0.8],
+                        opacity: [0.1, 0.3, 0.1],
+                    }}
+                    transition={{
+                        duration: Math.random() * 10 + 15,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                    }}
+                >
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                        <circle cx="6" cy="6" r="6" />
+                    </svg>
+                </motion.div>
+            ))}
 
-// Loader mejorado con animación profesional
-const LoadingIndicator = () => (
-    <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-gray-900 to-blue-900 z-50">
-        <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3 }}
-            className="flex flex-col items-center gap-6"
-        >
-            <div className="relative">
-                <div className="w-16 h-16 border-4 border-blue-400 border-t-transparent rounded-full animate-spin"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-8 h-8 bg-blue-500 rounded-full animate-pulse"></div>
-                </div>
-            </div>
-            <motion.p
-                className="text-blue-300 text-lg font-medium"
-                animate={{ opacity: [0.6, 1, 0.6] }}
-                transition={{ duration: 2, repeat: Infinity }}
+            {/* Glow decorativos */}
+            <div className="absolute top-1/3 left-1/4 w-32 h-32 bg-teal-500/10 rounded-full blur-2xl"></div>
+            <div className="absolute bottom-1/3 right-1/4 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl"></div>
+
+            {/* Contenido del loader */}
+            <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4 }}
+                className="flex flex-col items-center gap-6 relative z-10"
             >
-                Cargando experiencia financiera...
-            </motion.p>
-        </motion.div>
-    </div>
-);
+                {/* Spinner con degradado */}
+                <div className="relative">
+                    <motion.div
+                        className="w-16 h-16 rounded-full border-4 border-teal-500/30 border-t-teal-400"
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                    />
+                    {/* Punto central animado */}
+                    <motion.div
+                        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-gradient-to-br from-teal-400 to-emerald-400 rounded-full shadow-lg"
+                        animate={{
+                            scale: [1, 1.3, 1],
+                            boxShadow: [
+                                "0 0 10px rgba(20, 184, 166, 0.5)",
+                                "0 0 20px rgba(20, 184, 166, 0.8)",
+                                "0 0 10px rgba(20, 184, 166, 0.5)",
+                            ],
+                        }}
+                        transition={{
+                            duration: 1.5,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        }}
+                    />
+                </div>
 
-// ... imports ...
+                {/* Texto con degradado */}
+                <motion.p
+                    className="text-lg font-medium bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-emerald-300 to-cyan-300"
+                    animate={{ opacity: [0.7, 1, 0.7] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                >
+                    Cargando experiencia financiera...
+                </motion.p>
+            </motion.div>
+        </div>
+    );
+};
 
 const AppRoutes = () => {
     return (
@@ -97,12 +156,10 @@ const AppRoutes = () => {
                     <Route path="/contabilidad-fiscal" element={<ContabilidadFiscal />} />
                     <Route path="/contabilidad-costos" element={<ContabilidadCostos />} />
                     <Route path="/contabilidad-gerencial" element={<ContabilidadGerencial />} />
-                    <Route path="/contabilidad-administrativa" element={<ContabilidadAdministrativa />} /> {/* Corregido: Quitar comillas extras */}
-                    <Route path="/facturas-electronicas" element={<FacturacionElectronica />} /> {/* Corregido: Quitar comillas extras */}
+                    <Route path="/contabilidad-administrativa" element={<ContabilidadAdministrativa />} />
+                    <Route path="/facturas-electronicas" element={<FacturacionElectronica />} />
                     <Route path="/servicios-contables" element={<ServiciosContables />} />
                     <Route path="/asesoria-emprendedores" element={<AsesoriaEmprendedores />} />
-
-                    {/* Rutas de navegación */}    
 
                     {/* Rutas corporativas */}
                     <Route path="/nosotros" element={<AboutUs />} />
