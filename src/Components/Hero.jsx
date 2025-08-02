@@ -1,4 +1,4 @@
-// src/components/Hero.tsx
+// src/components/HeroElegant.tsx
 import React, { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import {
@@ -10,260 +10,206 @@ import {
   FiActivity,
   FiFileText,
   FiPercent,
+  FiArrowRight,
 } from "react-icons/fi";
 
-// Componente memoizado para una partícula financiera
-const FinancialParticle = React.memo(({ id, element }) => {
+// Partícula refinada: más lenta, más discreta
+const ElegantParticle = React.memo(({ id, element }) => {
   return (
     <motion.div
       key={id}
-      className={`absolute flex items-center justify-center ${element.color} ${element.size}`}
+      className={`absolute ${element.size} ${element.color} opacity-10`}
       style={{
         top: `${Math.random() * 100}%`,
         left: `${Math.random() * 100}%`,
-        transformStyle: "preserve-3d",
       }}
       animate={{
-        rotateX: [0, 360],
-        rotateY: [0, 360],
-        y: [0, Math.random() > 0.5 ? -200 : 200],
-        x: [0, Math.random() > 0.5 ? -200 : 200],
-        scale: [0.8, 1.2, 0.8],
+        y: [0, -100, 0],
+        scale: [0.8, 1, 0.8],
+        opacity: [0.1, 0.4, 0.1],
       }}
       transition={{
-        duration: Math.random() * 40 + 40, // Más lento: 40-80 segundos
+        duration: Math.random() * 20 + 30,
         repeat: Infinity,
-        ease: "linear",
+        ease: "easeInOut",
       }}
     >
       {element.icon}
     </motion.div>
   );
 });
+ElegantParticle.displayName = "ElegantParticle";
 
-const Hero = () => {
+const HeroElegant = () => {
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(150);
+
   const words = ["empresas PyME", "tu negocio", "emprendedores", "profesionales"];
 
   useEffect(() => {
     const handleType = () => {
       const i = loopNum % words.length;
       const fullText = words[i];
-      setText(isDeleting
-        ? fullText.substring(0, text.length - 1)
-        : fullText.substring(0, text.length + 1)
+      setText(
+        isDeleting
+          ? fullText.substring(0, text.length - 1)
+          : fullText.substring(0, text.length + 1)
       );
       setTypingSpeed(isDeleting ? 30 : 150);
+
       if (!isDeleting && text === fullText) {
-        setTimeout(() => setIsDeleting(true), 1000);
+        setTimeout(() => setIsDeleting(true), 1800);
       } else if (isDeleting && text === "") {
         setIsDeleting(false);
         setLoopNum(loopNum + 1);
       }
     };
+
     const timer = setTimeout(handleType, typingSpeed);
     return () => clearTimeout(timer);
-  }, [text, isDeleting, loopNum, typingSpeed, words]);
+  }, [text, isDeleting, loopNum, typingSpeed]);
 
   const benefits = [
     {
-      icon: <FiBarChart2 className="text-teal-400 text-xl" />, // Icono más pequeño
-      title: "Análisis Financiero",
-      desc: "Informes claros para decisiones precisas",
+      icon: <FiBarChart2 className="text-teal-400" />,
+      title: "Análisis Estratégico",
+      desc: "Datos transformados en decisiones ejecutivas.",
     },
     {
-      icon: <FiTrendingUp className="text-teal-400 text-xl" />,
-      title: "Optimización de Costos",
-      desc: "Mejora tu rentabilidad y flujo de caja",
+      icon: <FiTrendingUp className="text-emerald-400" />,
+      title: "Optimización Fiscal",
+      desc: "Maximiza beneficios, minimiza riesgos.",
     },
     {
-      icon: <FiBriefcase className="text-teal-400 text-xl" />,
-      title: "Gestión Empresarial",
-      desc: "Control total de tus obligaciones fiscales",
+      icon: <FiBriefcase className="text-cyan-400" />,
+      title: "Gestión Integral",
+      desc: "Control total con precisión contable.",
     },
     {
-      icon: <FiCheckCircle className="text-teal-400 text-xl" />,
-      title: "Cumplimiento Legal",
-      desc: "Declaraciones y reportes sin errores",
+      icon: <FiCheckCircle className="text-teal-300" />,
+      title: "Cumplimiento Garantizado",
+      desc: "Sin errores, sin retrasos, sin estrés.",
     },
   ];
 
-  // Elementos financieros para el fondo animado (ajustados colores y tamaños)
-  const financialElements = useMemo(() => [
-    { icon: <FiDollarSign />, size: 'w-5 h-5', color: 'text-teal-400/20' }, // Menos opacidad
-    { icon: <FiActivity />, size: 'w-4 h-4', color: 'text-emerald-400/20' },
-    { icon: <FiTrendingUp />, size: 'w-5 h-5', color: 'text-cyan-400/20' },
-    { icon: <FiFileText />, size: 'w-4 h-4', color: 'text-teal-300/20' },
-    { icon: <FiPercent />, size: 'w-5 h-5', color: 'text-emerald-300/20' },
-    { icon: <FiBarChart2 />, size: 'w-4 h-4', color: 'text-cyan-300/20' },
+  const elegantElements = useMemo(() => [
+    { icon: <FiDollarSign size={12} />, size: 'w-2 h-2', color: 'text-teal-400' },
+    { icon: <FiActivity size={12} />, size: 'w-2 h-2', color: 'text-emerald-400' },
+    { icon: <FiTrendingUp size={12} />, size: 'w-2 h-2', color: 'text-cyan-400' },
+    { icon: <FiFileText size={12} />, size: 'w-2 h-2', color: 'text-teal-300' },
+    { icon: <FiPercent size={12} />, size: 'w-2 h-2', color: 'text-emerald-300' },
   ], []);
 
-  // Generar partículas con keys estables
-  const particleElements = useMemo(() => {
-    // Considera reducir el número de partículas si se siente muy ocupado, ej: 20 o 25
-    return [...Array(25)].map((_, i) => {
-      const element = financialElements[Math.floor(Math.random() * financialElements.length)];
-      return <FinancialParticle key={`fin-${i}`} id={`fin-${i}`} element={element} />;
+  const particles = useMemo(() => {
+    return [...Array(12)].map((_, i) => {
+      const element = elegantElements[Math.floor(Math.random() * elegantElements.length)];
+      return <ElegantParticle key={`eleg-${i}`} id={`eleg-${i}`} element={element} />;
     });
-  }, [financialElements]);
+  }, [elegantElements]);
 
   return (
-    <section className="relative w-full bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900 text-white overflow-hidden pt-20 min-h-screen">
-      {/* Contenedor 3D para elementos financieros */}
-      <div className="absolute inset-0 perspective-1000">
-        {particleElements}
-      </div>
+    <section className="relative w-full bg-black text-white overflow-hidden min-h-screen pt-20">
+      {/* Fondo: gradiente profundo en negro con textura sutil */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-black to-teal-950"></div>
 
-      {/* Efecto de luz cenital */}
-      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-teal-400/10 rounded-full blur-3xl"></div>
+      {/* Grid sutil como textura de fondo */}
+      <div
+        className="absolute inset-0 opacity-5"
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.08) 1px, transparent 0)`,
+          backgroundSize: "40px 40px",
+        }}
+      />
 
-      {/* Glow / Resplandor alrededor del contenido principal (opcional) */}
+      {/* Partículas flotantes muy sutiles */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-teal-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl"></div>
+        {particles}
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-16 md:py-28 grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
-        {/* Texto principal con efecto 3D */}
+      {/* Glow decorativos en esquinas */}
+      <div className="absolute top-20 left-1/4 w-64 h-64 bg-teal-500/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-1/4 w-72 h-72 bg-emerald-500/5 rounded-full blur-4xl"></div>
+
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-20 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+        {/* Texto Principal */}
         <motion.div
-          initial={{ opacity: 0, rotateY: -90 }}
-          animate={{ opacity: 1, rotateY: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="text-center md:text-left transform-style-3d"
-          style={{ transformStyle: "preserve-3d" }}
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center lg:text-left"
         >
           <motion.h1
-            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-5 relative inline-block"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            whileHover={{
-              scale: 1.01,
-              transition: { duration: 0.3 }
-            }}
-            style={{ transformStyle: "preserve-3d" }}
+            className="text-4xl sm:text-5xl lg:text-6xl font-light leading-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-emerald-300 to-cyan-300 tracking-wide"
           >
-            {/* Brillo animado sobre el texto (opcional) */}
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12"
-              animate={{ x: ['-100%', '100%'] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear", delay: 1 }}
-            />
-            Contabilidad financiera para{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-emerald-300 to-cyan-300 relative">
+            Claridad financiera para{" "}
+            <span className="font-semibold text-white">
               {text}
               <motion.span
-                className="inline-block w-0.5 h-10 sm:h-12 bg-gradient-to-b from-teal-300 to-emerald-400 ml-1.5 align-middle"
-                animate={{ opacity: [1, 0] }}
-                transition={{ duration: 0.8, repeat: Infinity }}
-                style={{ transform: "translateZ(20px)" }}
+                className="inline-block w-0.5 h-8 sm:h-10 bg-gradient-to-t from-teal-300 to-emerald-400 ml-2 align-middle"
+                animate={{ opacity: [0.7, 0, 0.7] }}
+                transition={{ duration: 1.2, repeat: Infinity }}
               />
             </span>
           </motion.h1>
+
           <motion.p
-            className="text-base sm:text-lg text-gray-300 mb-8 max-w-xl mx-auto md:mx-0"
-            initial={{ opacity: 0, y: 20 }}
+            className="text-lg text-gray-400 mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed"
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            whileHover={{
-              translateY: -2,
-              transition: { duration: 0.3 }
-            }}
-            style={{ transformStyle: "preserve-3d" }}
+            transition={{ delay: 0.3 }}
           >
-            Brindamos claridad, control y crecimiento para tu empresa con
-            soluciones contables modernas, ágiles y confiables.
+            Soluciones contables modernas, precisas y diseñadas para empresas que valoran el control, la transparencia y el crecimiento sostenible.
           </motion.p>
+
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
-            initial={{ opacity: 0, z: -50 }}
-            animate={{ opacity: 1, z: 0 }}
-            transition={{ delay: 0.6 }}
-            style={{ transformStyle: "preserve-3d" }}
+            className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
           >
             <motion.a
               href="/contacto"
-              className="relative bg-gradient-to-r from-teal-500 via-emerald-500 to-cyan-500 text-white px-7 py-3.5 rounded-full text-base sm:text-lg font-medium shadow-lg text-center overflow-hidden transition-all duration-300 hover:shadow-xl hover:from-teal-600 hover:via-emerald-600 hover:to-cyan-600"
-              whileHover={{
-                scale: 1.05,
-                // rotateX: 5, // Opcional: efecto 3D sutil
-                transition: { duration: 0.3 }
-              }}
-              whileTap={{ scale: 0.95 }}
-              style={{
-                transformStyle: "preserve-3d",
-                transform: "translateZ(20px)"
-              }}
+              className="group px-8 py-4 bg-gradient-to-r from-teal-500/20 to-emerald-500/20 backdrop-blur-sm border border-teal-500/40 text-teal-100 font-medium rounded-full shadow-lg hover:shadow-teal-500/20 transition-all duration-300 hover:scale-105 hover:from-teal-500/30 hover:to-emerald-500/30 flex items-center gap-2"
+              whileHover={{ borderColor: "rgba(20, 184, 166, 0.6)" }}
             >
-              <span className="relative z-10">Agenda tu asesoría</span>
+              <span>Agenda tu Consulta</span>
+              <FiArrowRight className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
             </motion.a>
+
             <motion.button
-              className="border border-teal-500/50 text-teal-300 hover:text-white px-7 py-3.5 rounded-full text-base sm:text-lg font-medium transition-all shadow-md relative overflow-hidden bg-slate-800/30 backdrop-blur-sm hover:bg-teal-500/10"
-              whileHover={{
-                scale: 1.05,
-                // backgroundColor: "rgba(20, 184, 166, 0.1)", // Ya manejado por hover:bg-teal-500/10
-                boxShadow: "0 0 15px rgba(20, 184, 166, 0.3)", // Glow hover
-                transition: { duration: 0.3 }
-              }}
-              whileTap={{ scale: 0.95 }}
-              style={{
-                transformStyle: "preserve-3d",
-                transform: "translateZ(15px)"
-              }}
+              className="px-8 py-4 text-gray-300 border border-gray-700 hover:border-teal-400 font-medium rounded-full transition-all duration-300 hover:bg-teal-500/10 hover:text-teal-300 backdrop-blur-sm bg-black/20"
             >
-              <span className="relative z-10">Conoce nuestros planes</span>
+              Conoce nuestros servicios
             </motion.button>
           </motion.div>
         </motion.div>
 
-        {/* Tarjetas de beneficios con efecto 3D actualizadas */}
+        {/* Beneficios con estilo elegante y limpio */}
         <motion.div
-          className="flex flex-col gap-5"
-          initial={{ opacity: 0, rotateY: 90 }}
-          animate={{ opacity: 1, rotateY: 0 }}
-          transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-          style={{ transformStyle: "preserve-3d" }}
+          className="space-y-5"
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.6, duration: 0.5 }}
         >
           {benefits.map((item, i) => (
             <motion.div
               key={i}
-              className="flex items-center gap-4 bg-slate-800/30 backdrop-blur-lg p-4 rounded-2xl border border-slate-700/30 shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-              whileHover={{
-                scale: 1.02,
-                // z: 10, // Efecto 3D sutil
-                boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 0 15px rgba(20, 184, 166, 0.15)", // Glow hover
-                transition: { duration: 0.3 }
-              }}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.8 + i * 0.1, duration: 0.5 }}
-              style={{
-                transformStyle: "preserve-3d",
-                transform: "translateZ(10px)"
-              }}
+              className="group p-5 bg-slate-800/20 backdrop-blur-md rounded-xl border border-slate-700/40 hover:border-teal-500/40 transition-all duration-300 relative overflow-hidden"
+              whileHover={{ scale: 1.02, backgroundColor: "rgba(20, 184, 166, 0.03)" }}
             >
-              {/* Efecto de luz en las esquinas */}
-              <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-                <div className="absolute top-0 left-0 w-24 h-24 bg-teal-400/5 rounded-full blur-xl group-hover:bg-teal-400/10 transition-colors duration-300"></div>
-                <div className="absolute bottom-0 right-0 w-20 h-20 bg-emerald-400/5 rounded-full blur-xl group-hover:bg-emerald-400/10 transition-colors duration-300"></div>
-              </div>
+              {/* Barra lateral animada */}
+              <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-teal-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-              {/* Icono en círculo */}
-              <div className="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-slate-700/50 border border-slate-600/50 group-hover:bg-teal-500/10 transition-colors duration-300">
-                <motion.div
-                  className="transform translate-z-20"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                >
+              <div className="flex items-center gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-black/30 flex items-center justify-center border border-teal-500/30 text-teal-300 group-hover:bg-teal-500/10 group-hover:border-teal-400 transition-all">
                   {item.icon}
-                </motion.div>
-              </div>
-
-              <div className="transform translate-z-10">
-                <p className="font-bold text-white text-base">{item.title}</p>
-                <p className="text-xs sm:text-sm text-gray-300">{item.desc}</p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-white text-base">{item.title}</h3>
+                  <p className="text-sm text-gray-400">{item.desc}</p>
+                </div>
               </div>
             </motion.div>
           ))}
@@ -273,7 +219,4 @@ const Hero = () => {
   );
 };
 
-// Añadir display name para evitar warnings en desarrollo
-FinancialParticle.displayName = 'FinancialParticle';
-
-export default Hero;
+export default HeroElegant;
