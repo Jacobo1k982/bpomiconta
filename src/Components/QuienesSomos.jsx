@@ -164,7 +164,7 @@ const SobreNosotros = () => {
     };
 
     return (
-        <section className="relative min-h-screen bg-black text-white overflow-hidden pt-20">
+        <section className="relative min-h-screen bg-black text-white overflow-hidden pt-10">
             {/* Fondo: gradiente profundo */}
             <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-black to-teal-950"></div>
 

@@ -65,7 +65,7 @@ const SistemaFacturacion = () => {
     ];
 
     return (
-        <section className="relative py-24 md:py-32 overflow-hidden pt-10">
+        <section className="relative py-24 md:py-32 overflow-hidden pt-28">
             {/* === FONDO UNIFICADO CON EL HERO === */}
             <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-black to-teal-950"></div>
 
