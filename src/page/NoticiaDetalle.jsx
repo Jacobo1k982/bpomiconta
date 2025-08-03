@@ -344,7 +344,7 @@ const NoticiaDetalle = () => {
                 </motion.div>
             </div>
             {/* Animaciones CSS personalizadas */}
-            <style>{`
+            <style jsx>{`
                 @keyframes pulse-slow {
                     0%, 100% { opacity: 0.1; transform: scale(1); }
                     50% { opacity: 0.2; transform: scale(1.05); }

@@ -39,7 +39,7 @@ const ServiciosContables = () => {
     ];
 
     return (
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900 text-white overflow-hidden pt-28">
+        <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900 text-white overflow-hidden pt-10">
             {/* Fondo con textura sutil */}
             <div className="absolute inset-0 opacity-3">
                 <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
@@ -178,7 +178,7 @@ const ServiciosContables = () => {
             </div>
 
             {/* Animaciones CSS */}
-            <style>{`
+            <style jsx>{`
                 @keyframes pulse-slow {
                     0%, 100% { opacity: 0.1; transform: scale(1); }
                     50% { opacity: 0.2; transform: scale(1.05); }

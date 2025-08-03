@@ -48,7 +48,7 @@ const ContabilidadCostos = () => {
     ];
 
     return (
-        <section className="relative py-20 md:py-32 bg-gradient-to-br from-gray-950 via-slate-900 to-blue-950/20 text-white overflow-hidden">
+        <section className="relative py-20 md:py-32 bg-gradient-to-br from-gray-950 via-slate-900 to-blue-950/20 text-white overflow-hidden pt-10">
             {/* Fondo con textura sutil */}
             <div className="absolute inset-0 opacity-3"> {/* Opacidad reducida */}
                 <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>

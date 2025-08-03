@@ -110,7 +110,7 @@ const HeroContabilidadPymeCR = () => {
   }, [elegantElements]);
 
   return (
-    <section className="relative w-full bg-black text-white overflow-hidden min-h-screen pt-20">
+    <section className="relative w-full bg-black text-white overflow-hidden min-h-screen pt-10">
       {/* Fondo: gradiente profundo y profesional */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-gray-950 to-emerald-900"></div>
 
