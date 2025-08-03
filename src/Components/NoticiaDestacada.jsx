@@ -62,7 +62,7 @@ const NoticiaDestacada = () => {
             <div className="absolute bottom-10 right-1/4 w-72 h-72 bg-emerald-500/3 rounded-full blur-4xl"></div>
 
             {/* Contenido principal */}
-            <div className="relative z-10 px-6 sm:px-8 md:px-10 lg:px-12 py-20">
+            <div className="relative z-10 px-6 sm:px-8 md:px-10 lg:px-12 py-20 text-justify">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 lg:gap-16 items-center">
                     {/* Contenido textual */}
                     <motion.div
@@ -118,23 +118,14 @@ const NoticiaDestacada = () => {
 
                         {/* Botones */}
                         <div className="flex flex-wrap gap-3 pt-4">
-                            <Link to={noticiaPrincipal.link || "/guias/migracion-tribu-cr"}>
+                            <Link to={noticiaPrincipal.link || "/noticias"}>
                                 <motion.button
                                     whileHover={{ scale: 1.03, y: -1 }}
                                     whileTap={{ scale: 0.98 }}
                                     className="group relative bg-gradient-to-r from-teal-500/20 to-emerald-500/20 backdrop-blur-sm border border-teal-500/40 text-teal-100 px-6 py-3 rounded-xl font-medium shadow-lg hover:shadow-teal-500/20 transition-all duration-300 flex items-center"
                                 >
-                                    <span>Leer Análisis Completo</span>
+                                    <span>Leer Análisis Completo en noticias</span>
                                     <FiArrowRight className="ml-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                                </motion.button>
-                            </Link>
-                            <Link to="/noticias">
-                                <motion.button
-                                    whileHover={{ scale: 1.02, backgroundColor: "rgba(20, 184, 166, 0.05)" }}
-                                    whileTap={{ scale: 0.98 }}
-                                    className="border border-gray-700 hover:border-teal-400 text-gray-300 px-6 py-3 rounded-xl font-medium transition-all duration-300 backdrop-blur-sm bg-black/20"
-                                >
-                                    Ver Todas
                                 </motion.button>
                             </Link>
                         </div>
