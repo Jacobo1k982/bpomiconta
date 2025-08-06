@@ -69,18 +69,18 @@ const FooterFinanzas = () => {
                                 <img
                                     src="/Imagen/Navbar/icon.png"
                                     alt="Logo BPO MICONTA"
-                                    className="h-8 w-auto"
+                                    className="h-9 w-auto"
                                 />
                             </div>
                             <div className="ml-3">
                                 <div className="flex items-baseline">
-                                    <span className="text-xl font-bold text-white">BPO</span>
-                                    <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-300 to-emerald-300 ml-1">
+                                    <span className="text-2xl font-bold text-white">BPO</span>
+                                    <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-300 to-emerald-300 ml-1">
                                         MICONTA
                                     </span>
                                 </div>
-                                <p className="text-xs text-teal-200 font-medium tracking-wide uppercase mt-1">
-                                    Soluciones Financieras
+                                <p className="text-sm text-teal-200 font-medium tracking-wide uppercase mt-1">
+                                    Contabilidad Digital
                                 </p>
                             </div>
                         </div>

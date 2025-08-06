@@ -349,19 +349,19 @@ const NavbarElegantFinance = () => {
                                         <img
                                             src={logoFinanzas}
                                             alt="Logo"
-                                            className="h-8 w-auto transition-transform duration-500 group-hover:rotate-3"
+                                            className="h-11 w-auto transition-transform duration-500 group-hover:rotate-3"
                                         />
                                     </div>
                                 </div>
                                 <div className="ml-3">
                                     <div className="flex items-baseline">
-                                        <span className="text-xl sm:text-2xl font-semibold text-white">BPO</span>
-                                        <span className="text-xl sm:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-300 to-cyan-300 ml-1">
+                                        <span className="text-2xl sm:text-3xl font-bold text-white">BPO</span>
+                                        <span className="text-2xl sm:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-300 to-cyan-300 ml-1">
                                             MICONTA
                                         </span>
                                     </div>
-                                    <p className="text-xs text-emerald-200 font-medium tracking-wide uppercase">
-                                        Contabilidad Ejecutiva
+                                    <p className="text-sm sm:text-base text-emerald-200 font-medium tracking-wide uppercase">
+                                        Contabilidad Digital
                                     </p>
                                 </div>
                             </motion.div>
