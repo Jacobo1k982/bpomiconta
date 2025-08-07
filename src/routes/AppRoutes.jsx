@@ -30,6 +30,7 @@ const FacturacionElectronica = lazy(() => import("../Components/Contabilidad/Fac
 const PlaylistPage = lazy(() => import("../page/PlaylistPage.jsx"));
 const ServiciosContables = lazy(() => import("../Components/Contabilidad/ServiciosContables.jsx"));
 const AsesoriaEmprendedores = lazy(() => import("../Components/Contabilidad/AsesoriaEmprendedores.jsx"));
+const InteractiveFinanceDashboard = lazy(() => import("../Components/InteractiveFinanceDashboard.jsx"));
 
 // === LoadingIndicator mejorado y alineado con tu estilo ===
 const LoadingIndicator = () => {
@@ -131,6 +132,7 @@ const AppRoutes = () => {
                         element={
                             <div className="space-y-0">
                                 <HomeHero />
+                                <InteractiveFinanceDashboard />
                                 <NoticiaDestacada />
                                 <FinanceDivider />
                                 <CarouselServicios />
