@@ -1,56 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Título y descripción mejorados -->
+  <!-- Favicon y manifest -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- Meta tags mejorados -->
   <title>BPOMICONTA | Soluciones Contables Modernas para PyMEs en Costa Rica</title>
   <meta name="description"
     content="Asesoría contable y financiera especializada para PyMEs. Claridad, cumplimiento y crecimiento con tecnología y transparencia.">
   <meta name="keywords"
     content="contabilidad, PyMEs, asesoría financiera, tributación, impuestos, Costa Rica, auditoría, gestión empresarial">
   <meta name="author" content="BPOMICONTA">
-  <meta name="theme-color" content="#0d9488"> <!-- Color para PWA y navegadores móviles -->
+  <meta name="theme-color" content="#0d9488">
 
-  <!-- Open Graph / Facebook / WhatsApp -->
+  <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.bpomiconta.netlify.app/">
   <meta property="og:title" content="BPOMICONTA | Soluciones Contables para PyMEs">
   <meta property="og:description"
     content="Asesoría contable moderna, ágil y confiable para empresas en Costa Rica. Impulsa tu crecimiento con claridad financiera.">
-  <meta property="og:image" content="https://www.bpomiconta.netlify.app/favicon.ico">
+  <meta property="og:image" content="https://www.bpomiconta.netlify.app/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:site_name" content="BPOMICONTA">
+  <meta property="og:locale" content="es_CR">
 
-  <!-- Twitter -->
+  <!-- Twitter Card -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://www.bpomiconta.netlify.app/">
   <meta property="twitter:title" content="BPOMICONTA | Soluciones Contables para PyMEs">
   <meta property="twitter:description"
     content="Soluciones contables modernas y personalizadas para el crecimiento de tu PyME en Costa Rica.">
-  <meta property="twitter:image" content="https://www.bpomiconta.netlify.app/favicon.ico">
+  <meta property="twitter:image" content="https://www.bpomiconta.netlify.app/og-image.jpg">
 
-  <!-- Preconnect a Google Fonts (sin espacios extra) -->
+  <!-- Preconnect a Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Carga asíncrona de fuentes con estilo optimizado -->
+  <!-- Carga asíncrona de Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"
     media="print" onload="this.media='all'">
   <noscript>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   </noscript>
 
-  <!-- Preload de favicon (corregido tipo) -->
-  <link rel="preload" href="/favicon.ico" as="fetch" type="image/x-icon" crossorigin>
+  <!-- Preload del favicon (corregido tipo y uso) -->
+  <link rel="preload" href="/favicon.ico" as="image" type="image/x-icon">
 
-  <!-- Estilos en línea mejorados (diseño moderno, elegante y animaciones suaves) -->
+  <!-- Estilos en línea optimizados -->
   <style>
-    /* Reset y base moderna */
+    /* Reset moderno */
     *,
     *::before,
     *::after {
@@ -61,11 +65,10 @@
 
     html {
       font-size: 16px;
+      scroll-behavior: smooth;
     }
 
     body {
-      margin: 0;
-      padding: 0;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f766e 100%);
       color: #e2e8f0;
@@ -73,6 +76,8 @@
       min-height: 100vh;
       overflow-x: hidden;
       transition: background 0.4s ease;
+      margin: 0;
+      padding: 0;
     }
 
     #root {
@@ -81,7 +86,7 @@
       flex-direction: column;
     }
 
-    /* Loader moderno con diseño elegante */
+    /* Loader elegante y accesible */
     .app-loader {
       position: fixed;
       top: 0;
@@ -93,8 +98,8 @@
       justify-content: center;
       align-items: center;
       z-index: 9999;
-      -webkit-backdrop-filter: blur(4px);
       backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
     }
 
     .loader-content {
@@ -148,17 +153,14 @@
       transition: opacity 0.6s ease-out, visibility 0.6s;
     }
 
-    /* Animación de entrada para el contenido principal */
+    /* Overlay de entrada (opcional para efecto de revelado) */
     .app-loaded #root::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      inset: 0;
       background: rgba(15, 23, 42, 0.85);
-      -webkit-backdrop-filter: blur(8px);
       backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       z-index: 100;
       animation: fadeOutOverlay 0.8s ease-out forwards;
     }
@@ -169,55 +171,51 @@
         visibility: hidden;
       }
     }
-
-    /* Clase para indicar que la app está lista */
-    .app-loaded body {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f766e 100%);
-    }
   </style>
 </head>
 
 <body class="antialiased">
-  <!-- Loader inicial con logo y animación suave -->
-  <div class="app-loader">
+  <!-- Loader inicial con animación y accesibilidad -->
+  <div class="app-loader" aria-label="Cargando aplicación" role="status" aria-live="polite">
     <div class="loader-content">
-      <div class="loader-logo">BPOMICONTA</div>
+      <div class="loader-logo" aria-hidden="true">BPOMICONTA</div>
       <div class="loader-spinner" aria-hidden="true"></div>
-      <p class="loader-text" aria-label="Cargando aplicación contable">Cargando plataforma...</p>
+      <p class="loader-text">Cargando plataforma...</p>
     </div>
   </div>
 
   <!-- Contenedor principal de la app -->
   <div id="root"></div>
 
-  <!-- Script para ocultar el loader con mejor UX -->
+  <!-- Script de carga del loader -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Simulación de carga (puedes sincronizar con tu app real)
       const hideLoader = () => {
         document.body.classList.add('app-loaded');
       };
 
-      // Asegurar que el loader dure al menos 800ms para buena UX
       const minLoadTime = 800;
       const startTime = Date.now();
 
-      // Aquí podrías esperar a que tu app React esté lista
+      // Simulación de carga mínima para buena UX
       setTimeout(hideLoader, minLoadTime);
+
+      // Opcional: esperar a que recursos críticos carguen
+      // window.addEventListener('load', hideLoader);
     });
   </script>
 
-  <!-- Script principal de la aplicación -->
+  <!-- Script principal de la app -->
   <script type="module" src="/src/main.jsx"></script>
 
-  <!-- Service Worker (opcional - descomentar cuando tengas sw.js) -->
+  <!-- Service Worker para PWA (descomenta cuando esté listo) -->
   <!--
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js')
           .then(reg => console.log('SW registrado:', reg.scope))
-          .catch(err => console.log('Error al registrar SW:', err));
+          .catch(err => console.error('Error al registrar SW:', err));
       });
     }
   </script>

@@ -328,23 +328,6 @@ const ContabilidadFinanciera = () => {
                     </div>
                 </motion.div>
             </div>
-            {/* Animaciones CSS personalizadas */}
-            <style jsx>{`
-                @keyframes pulse-slow {
-                    0%, 100% { opacity: 0.3; transform: scale(1); }
-                    50% { opacity: 0.6; transform: scale(1.05); }
-                }
-                @keyframes pulse-slow-reverse {
-                    0%, 100% { opacity: 0.3; transform: scale(1.05); }
-                    50% { opacity: 0.6; transform: scale(1); }
-                }
-                .animate-pulse-slow {
-                    animation: pulse-slow 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-                }
-                .animate-pulse-slow-reverse {
-                    animation: pulse-slow-reverse 10s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-                }
-            `}</style>
         </section>
     );
 };
